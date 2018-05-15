@@ -23,12 +23,14 @@ void Ass_03_Task_02(void const * argument)
       event = osMessageGet(myQueue01Handle, osWaitForever);
       if (event.status == osEventMessage)
       {
-	  b = event.value.v;
-	  sprintf(s,"Task 2: %d (got %d)",loop,b);
+		  b = event.value.v;
+		  sprintf(s,"Task 2: %d (got %d)",loop,b);
       }
+
       osMutexWait(myMutex01Handle, osWaitForever);
-      BSP_LCD_DisplayStringAt(5,205, s, LEFT_MODE);
+      	  BSP_LCD_DisplayStringAt(5,205, s, LEFT_MODE);
       osMutexRelease(myMutex01Handle);
+
       safe_printf("%s\n", s);
       loop++;
   }

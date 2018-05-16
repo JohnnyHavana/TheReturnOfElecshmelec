@@ -55,6 +55,7 @@ extern uint8_t BSP_TP_GetDisplayPoint(Coordinate *pDisplay);
 	printf(fmt, ##__VA_ARGS__); \
 	osMutexRelease(myMutex02Handle);
 
+
 //
 // ADD YOUR CODE
 //

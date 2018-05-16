@@ -1,6 +1,6 @@
 #include "Debug.h"
 
-uint8_t debugOn = 0;
+uint8_t debugOn = 1;
 
 
 /*

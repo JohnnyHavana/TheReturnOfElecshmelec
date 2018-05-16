@@ -11,49 +11,63 @@
 //
 
 uint8_t myReadFile();
-
 FATFS SDFatFs;
 FIL MyFile;
 FIL MyFile2, MyFile3;
-FRESULT Status;
+//FRESULT Status;
 
 void Ass_03_Task_03(void const * argument)
 {
     FRESULT res;
-    FRESULT status;
+    //FRESULT status;
     uint8_t c; // [2];
-    uint8_t ReadFlag = 1;
+    //uint8_t ReadFlag = 1;
     uint32_t loop = 0;
     uint8_t s[100];
 
     safe_printf("Hello from Task 3 (press any key)\n");
 
-    // Check if SD card driver available
-    if (retSD != 0)
-    {
-        safe_printf("ERROR: SD card driver not available.");
-        ReadFlag = 0;
-    }
-    else
-    {
-        safe_printf("SD card driver available.\n");
+	// Check if SD card driver available
+	if (retSD != 0)
+	{
+		safe_printf("ERROR: SD card driver not available.");
+		//ReadFlag = 0;
+	}
+	else
+	{
+		safe_printf("SD card driver available.\n");
 
-        // Mount file system
-        if ((res = f_mount( & SDFatFs, (TCHAR const * ) SDPath, 0)) != FR_OK)
-        {
-            safe_printf("ERROR: Could not mount file system.\n");
-            ReadFlag = 0;
-        }
-        else
-        {
-            safe_printf("Mounted file system: %s\n", SDPath);
-        }
-    }
+		// Mount file system
+		if ((res = f_mount( & SDFatFs, (TCHAR const * ) SDPath, 0)) != FR_OK)
+		{
+			safe_printf("ERROR: Could not mount file system.\n");
+			//ReadFlag = 0;
+		}
+		else
+		{
+			safe_printf("Mounted file system: %s\n", SDPath);
+		}
+	}
+
 
     while (1)
     {
         c = getchar();
-        sprintf(s, "Task 3: %d (got '%c')", loop, c);
+    	//c = 'c';
+        osMutexWait(myMutex02Handle, osWaitForever);
+			if(c == '\n' || c == 10 || c == '\0' || c == '\r')
+				parseInputString();
+			else
+			{
+				sprintf(s,"Task 3: %d (got '%c')", loop, c);
+				printf("%s\n", s);
+				buildInputString2(c);
+				printf("Current InputString =>%s\n", newString);
+			}
+		osMutexRelease(myMutex02Handle);
+
+
+
 
         osMutexWait(myMutex01Handle, osWaitForever);
         	BSP_LCD_DisplayStringAt(5, 220, s, LEFT_MODE);
@@ -62,13 +76,20 @@ void Ass_03_Task_03(void const * argument)
         HAL_GPIO_TogglePin(GPIOD, LD3_Pin); // Toggle LED3
         loop++;
 
-        safe_printf("%s", s);
-        sprintf(s, "\nRead file from SD card...\n"); // Test over writing string
-        safe_printf("\n");
+        if(c == 10 || c == '\0')
+        {
+        	safe_printf("%s", s);
+			sprintf(s, "\nRead file from SD card...\n"); // Test over writing string
+			safe_printf("\n");
 
-        myReadFile();
+			myReadFile();
+        }
+
+
     }
 }
+
+
 
 uint8_t myReadFile()
 {
@@ -86,7 +107,7 @@ uint8_t myReadFile()
     safe_printf("Task 3: Opened file 'Hello.txt'\n");
 
     // Read data from file
-    if ((res = f_read( & MyFile, rtext, BUFF_SIZE - 1, & bytesread)) != FR_OK)
+    if ((res = f_read( & MyFile, rtext, BUFF_SIZE - 1, &bytesread)) != FR_OK)
     {
         safe_printf("ERROR: Reading 'Hello.txt'\n");
         f_close(&MyFile);

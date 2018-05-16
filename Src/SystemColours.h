@@ -10,3 +10,4 @@
 #define C_SYSTEM C_YELLOW
 #define C_DEBUG C_MAGENTA
 #define C_ERROR C_RED
+#define C_INPUT C_GREEN

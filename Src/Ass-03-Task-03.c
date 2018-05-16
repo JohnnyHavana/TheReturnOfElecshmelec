@@ -5,6 +5,8 @@
 
 #include "Ass-03.h"
 #include "StringBuilder.h"
+#include "SystemColours.h"
+#include "CommandList.h"
 
 //
 // REPLACE THE EXAMPLE CODE WITH YOUR CODE
@@ -55,14 +57,23 @@ void Ass_03_Task_03(void const * argument)
         c = getchar();
     	//c = 'c';
         osMutexWait(myMutex02Handle, osWaitForever);
-			if(c == '\n' || c == 10 || c == '\0' || c == '\r')
+			if(c == '\n' || c == '\r')
+			{
+				printf("\n");
 				parseInputString();
+
+				//analyse keywords to determine what function to do
+				analyseCommands(wordCount, array_of_words);
+				releaseAndFreeBuiltStrings();
+			}
 			else
 			{
 				sprintf(s,"Task 3: %d (got '%c')", loop, c);
-				printf("%s\n", s);
+				printf("%sINPUT%s: \t Task 3: %d (got '%c')\n",C_GREEN, C_NORMAL,loop,c); //some weird alternative with sprintf.
+
 				buildInputString2(c);
-				printf("Current InputString =>%s\n", newString);
+
+				printf("%sINPUT%s: \t Current InputString => %s\n", C_INPUT,C_NORMAL,newString);
 			}
 		osMutexRelease(myMutex02Handle);
 

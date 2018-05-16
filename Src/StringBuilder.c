@@ -2,98 +2,38 @@
 #include "Debug.h"
 #include <malloc.h>
 #include <stdio.h>
-char **array_of_words;
+//char **array_of_words;
 
-//int length = 10;
 int stringIndex = 0;
 int wordCount = 0;
-//uint8_t buildInputStringFirstTime = 1;
 
-
-///*
-// * Builds input string from command line
-// * gets char by char and keeps reallocating till finished with input string
-// * Once enter is hit, it will begin to parse the string into keywords and begin analysing
-// * */
-//void buildInputString(uint8_t c){
-//	if(buildInputStringFirstTime == 1)	  {
-//	  newString = (char*)malloc(sizeof(char*) * length); //start of string. will have reallocation of memory if string is longer
-//	  buildInputStringFirstTime = 0; //now not the first run through
-//	  if(c == '\0' || c == 10) {
-//		  newString[stringIndex] = '\0';
-//
-//		  wordCount = string_parser(newString, &array_of_words);
-//
-//		  //analyseKeywords(wordCount, array_of_words);
-//		  freeStrings();
-//
-//		  buildInputStringFirstTime = 1; //reset
-//		  length = 10;
-//	  }
-//	  else{
-//		  newString[stringIndex] = c;
-//		  stringIndex++;
-//
-//	  }
-//
-//	}
-//	else{
-//		newString = (char*)realloc(newString, sizeof(newString)+1);
-//
-//		if(c == '\0' || c == 10){ //if enter
-//		  newString[stringIndex] = '\0'; //null terminate string
-//		  //begin parse
-//		  wordCount = string_parser(newString, &array_of_words);
-//		  if(debugOn == 1) printArrayOfWords();
-//		  //begin analysis of keywords
-//		  //analyseKeywords(wordCount, array_of_words);
-//		  freeStrings();
-//
-//
-//		  buildInputStringFirstTime = 1; //reset
-//		  stringIndex = 0; //reset
-//
-//		}
-//		else{
-//		  newString[stringIndex] = c; //keep appending
-//		  stringIndex++;
-//		  if(stringIndex == length) //if string length is maxed out
-//		  {
-//			  length *=2; //allocate more memory
-//			  newString = (char*)realloc(newString,sizeof(char*) * length);
-//		  }
-//		}
-//	}
-//}
-
+/*
+ * Builds input string from command line
+ * gets char by char and keeps reallocating till finished with input string
+ * Once enter is hit, it will begin to parse the string into keywords and begin analysing
+ * */
 void buildInputString2(uint8_t c)
 {
-	if(c == '\n' || c == 10 || c == '\0' || c == '\r')
-		parseInputString();
-	else
+	newString[stringIndex] = c;
+
+	stringIndex++;
+	if(stringIndex == 100)
 	{
-		newString[stringIndex] = c;
-
-		stringIndex++;
-		if(stringIndex == 100)
-		{
-			printf("%sSYSTEM%s - Cannot create an input of anything longer than 100. Continuing...\n", C_SYSTEM,C_NORMAL);
-			parseInputString();
-		}
+		printf("%sSYSTEM%s - Cannot create an input of anything longer than 100. Continuing...\n", C_SYSTEM,C_NORMAL);
+		parseInputString();
 	}
-
-
 }
 
 void parseInputString()
 {
 	newString[stringIndex] = '\0';
 
-	printf("yes bitch you made it\n");
-
 	wordCount = string_parser(newString, &array_of_words);
 	if(debugOn == 1) printArrayOfWords();
+}
 
+void releaseAndFreeBuiltStrings()
+{
 	free(array_of_words);
 	stringIndex = 0;
 	for(int i = 0; newString[i] != '\0'; i++)
@@ -113,15 +53,6 @@ void printArrayOfWords()
 	  }
 	else
 		printf("%sDEBUG%s: \t No words found\n", C_DEBUG,C_NORMAL);
-}
-
-/*
- * Used to free global char arrays - newString(created from newString), array_of_words
- * */
-void freeStrings()
-{
-	//free(newString);
-	//free(array_of_words);
 }
 
 /*

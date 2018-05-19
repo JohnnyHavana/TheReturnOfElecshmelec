@@ -66,6 +66,7 @@ osMessageQId myQueue01Handle;
 osTimerId myTimer01Handle;
 osMutexId myMutex01Handle;
 osMutexId myMutex02Handle;
+osMutexId myMutex03Handle;
 osSemaphoreId myBinarySem01Handle;
 osSemaphoreId myBinarySem02Handle;
 osSemaphoreId myCountingSem01Handle;

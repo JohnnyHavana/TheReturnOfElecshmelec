@@ -37,6 +37,7 @@ extern osSemaphoreId myBinarySem02Handle;
 extern osMessageQId myQueue01Handle;
 extern osMutexId myMutex01Handle; // Protect LCD
 extern osMutexId myMutex02Handle; // Protect console output
+extern osMutexId myMutex03Handle; //Because fuck concurrency
 
 // Assignment tasks
 extern void Ass_03_Task_01(void const *argument);

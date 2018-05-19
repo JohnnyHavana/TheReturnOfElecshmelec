@@ -63,7 +63,7 @@ void Ass_03_Task_03(void const * argument)
 				parseInputString();
 
 				//analyse keywords to determine what function to do
-				analyseCommands(wordCount, array_of_words);
+				analyseCommands(wordCount, array_of_words,SDFatFs);
 				releaseAndFreeBuiltStrings();
 			}
 			else

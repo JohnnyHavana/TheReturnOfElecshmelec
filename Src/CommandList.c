@@ -2,6 +2,8 @@
 #include "Debug.h"
 #include <string.h>
 
+//Here is your bible. Fucking use it.
+//http://www.elm-chan.org/fsw/ff/00index_e.html
 
 #define DEBUG "debug"
 #define HELP "help"
@@ -12,7 +14,7 @@
 #define CP "cp"
 #define RM "rm"
 
-void analyseCommands(int argNum, char* argStrings[])
+void analyseCommands(uint8_t argNum, char *argStrings[], FATFS SDFatFs)
 {
 	if(argNum == 0)
 	{
@@ -36,7 +38,7 @@ void analyseCommands(int argNum, char* argStrings[])
 	}
 	else if(strcmp(firstKeyword,LS) == 0)
 	{
-		ls(argNum,argStrings);
+		ls(argNum,argStrings,SDFatFs);
 
 	}
 	else if(strcmp(firstKeyword, CD) == 0)
@@ -128,7 +130,9 @@ void analog(uint8_t argNum, char *argStrings[])
 
 }
 
-void ls(uint8_t argNum, char *argStrings[])
+
+
+void ls(uint8_t argNum, char *argStrings[],FATFS SDFatFs)
 {
 	printf("Found ls\n");
 	if(argNum > 1)
@@ -136,8 +140,48 @@ void ls(uint8_t argNum, char *argStrings[])
 		printf("Error. Ls must not have any arguments\n");
 		return;
 	}
+	char buff[256];
 
-	//todo get implementation from slides
+	strcpy(buff, "/");
+
+	scan_files(buff);
+
+}
+
+//Modified from http://www.elm-chan.org/fsw/ff/doc/readdir.html
+void scan_files (char* path) /* Start node to be scanned (***also used as work area***) */
+{
+    FRESULT res;
+    DIR dir;
+    UINT i;
+    static FILINFO fno;
+
+
+    res = f_opendir(&dir, path);                       /* Open the directory */
+    if (res == FR_OK)
+    {
+        for (;;)
+        {
+            res = f_readdir(&dir, &fno);                   /* Read a directory item */
+            if (res != FR_OK || fno.fname[0] == 0) break;  /* Break on error or end of dir */
+            if (fno.fattrib & AM_DIR)
+            {                    /* It is a directory */
+                i = strlen(path);
+                sprintf(&path[i], "/%s", fno.fname);
+                //res = scan_files(path);                    /* Enter the directory */
+                scan_files(path);
+                if (res != FR_OK) break;
+                path[i] = 0;
+            }
+            else
+            {                                       /* It is a file. */
+                printf("%s/%s\n", path, fno.fname);
+            }
+        }
+        f_closedir(&dir);
+    }
+
+    //return res;
 }
 
 void cd(uint8_t argNum, char *argStrings[])
@@ -152,9 +196,17 @@ void cd(uint8_t argNum, char *argStrings[])
 	else if(argNum  == 2)
 	{
 		printf("Hey. Missing implementation. Add later\n");
-		//todo go to folder
+		//FRESULT cdResult = f_opendir(&SDFatFs,argStrings[1]);
+		if(1)
+		{
+			printf("Error. Directory does not exist\n");
+		}
+		else
+		{
+			//todo change to correct directory
+		}
 
-		//todo check for invalid folder name
+
 	}
 	else
 	{
@@ -173,7 +225,18 @@ void mkdir(uint8_t argNum, char *argStrings[])
 		return;
 	}
 
+	char* directoryToMake = argStrings[1];
 
+	FRESULT mkdirResult = f_mkdir(directoryToMake);
+	if(mkdirResult)
+	{
+		printf("Made it.\n");
+	}
+	else
+	{
+		printf("Error occurred making directory.\n");
+		//die(mkdirResult);
+	}
 
 }
 

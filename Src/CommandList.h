@@ -1,14 +1,16 @@
 #include "Ass-03.h"
 #include "SystemColours.h"
+#include "ff.h"
 
-void analyseCommands();
+void analyseCommands(uint8_t argNum, char *argStrings[], FATFS SDFatFs);
 void helpDesk(uint8_t argNum, char *argStrings[]);
 void analog(uint8_t argNum, char *argStrings[]);
-void ls(uint8_t argNum, char *argStrings[]);
+void ls(uint8_t argNum, char *argStrings[],FATFS SDFatFs);
 void cd(uint8_t argNum, char *argStrings[]);
 void mkdir(uint8_t argNum, char *argStrings[]);
 void cp(uint8_t argNum, char *argStrings[]);
 void rm(uint8_t argNum, char *argStrings[]);
+void scan_files (char* path);
 
 
 uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, char* argStrings[]);

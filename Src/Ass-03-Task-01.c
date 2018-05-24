@@ -5,6 +5,7 @@
 #include "Ass-03.h"
 #include "StringBuilder.h"
 #include "CommandList.h"
+#include "Button.h"
 
 // This is the console task. Can use your code from the previous assignment
 // and expand.
@@ -51,9 +52,14 @@ void Ass_03_Task_01(void const * argument)
   BSP_LCD_Clear(LCD_COLOR_WHITE);
   BSP_LCD_SetFont(&Font12);
   BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-  BSP_LCD_DisplayStringAt(5, 5, (uint8_t*)"ELEC3730 Assignment 3 (v03 $Rev: 1330 $)",LEFT_MODE);
-  BSP_LCD_DisplayStringAt(5,20, (uint8_t*)"This demonstration code can be used",LEFT_MODE);
-  BSP_LCD_DisplayStringAt(5,35, (uint8_t*)"as a starting point for the assignment.",LEFT_MODE);
+  //BSP_LCD_DisplayStringAt(5, 5, (uint8_t*)"ELEC3730 Assignment 3 (v03 $Rev: 1330 $)",LEFT_MODE);
+  //BSP_LCD_DisplayStringAt(5,20, (uint8_t*)"This demonstration code can be used",LEFT_MODE);
+  //BSP_LCD_DisplayStringAt(5,35, (uint8_t*)"as a starting point for the assignment.",LEFT_MODE);
+  for(int i = 0; buttons[i].valid !=0;i++)
+  {
+	  showButton(buttons[i]);
+  }
+
   osMutexRelease(myMutex01Handle);
 
   while (1)

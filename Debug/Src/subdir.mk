@@ -9,6 +9,7 @@ C_SRCS += \
 ../Src/Ass-03-Task-02.c \
 ../Src/Ass-03-Task-03.c \
 ../Src/Ass-03-Task-04.c \
+../Src/Button.c \
 ../Src/CommandList.c \
 ../Src/Debug.c \
 ../Src/StringBuilder.c \
@@ -35,6 +36,7 @@ OBJS += \
 ./Src/Ass-03-Task-02.o \
 ./Src/Ass-03-Task-03.o \
 ./Src/Ass-03-Task-04.o \
+./Src/Button.o \
 ./Src/CommandList.o \
 ./Src/Debug.o \
 ./Src/StringBuilder.o \
@@ -61,6 +63,7 @@ C_DEPS += \
 ./Src/Ass-03-Task-02.d \
 ./Src/Ass-03-Task-03.d \
 ./Src/Ass-03-Task-04.d \
+./Src/Button.d \
 ./Src/CommandList.d \
 ./Src/Debug.d \
 ./Src/StringBuilder.d \

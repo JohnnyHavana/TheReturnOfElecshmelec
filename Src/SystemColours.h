@@ -1,3 +1,7 @@
+#ifndef SYSTEMCOLOURS_H_
+#define SYSTEMCOLOURS_H_
+
+
 #define C_NORMAL "\e[0m"
 #define C_RED "\e[31m"
 #define C_GREEN "\e[32m"
@@ -11,3 +15,5 @@
 #define C_DEBUG C_MAGENTA
 #define C_ERROR C_RED
 #define C_INPUT C_GREEN
+
+#endif

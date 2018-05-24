@@ -24,14 +24,14 @@ void Ass_03_Task_04(void const * argument)
   uint16_t ypos=0;
   uint16_t last_xpos=0;
   uint16_t last_ypos=0;
-#define XOFF 55
-#define YOFF 80
-#define XSIZE 250
+#define XOFF 70
+#define YOFF 5
+#define XSIZE 240
 #define YSIZE 150
+
 
   osSignalWait(1,osWaitForever);
   safe_printf("Hello from Task 4 - Analog Input (turn ADC knob or use pulse sensor)\n");
-
   // Draw a box to plot in
   osMutexWait(myMutex01Handle, osWaitForever);
   BSP_LCD_DrawRect(XOFF-1,YOFF-1,XSIZE+1,YSIZE+1);

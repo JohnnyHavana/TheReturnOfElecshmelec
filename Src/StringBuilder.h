@@ -1,3 +1,7 @@
+#ifndef STRINGBUILDER_H_
+#define STRINGBUILDER_H_
+
+
 #include <stdint.h>
 
 int length;
@@ -17,3 +21,4 @@ void freeStrings();
 int string_parser(char *inp, char **array_of_words_p[]);
 
 
+#endif

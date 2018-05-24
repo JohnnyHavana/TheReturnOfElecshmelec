@@ -14,7 +14,7 @@
 #define CP "cp"
 #define RM "rm"
 
-void analyseCommands(uint8_t argNum, char *argStrings[], FATFS SDFatFs)
+void analyseCommands(uint8_t argNum, char *argStrings[])
 {
 	if(argNum == 0)
 	{
@@ -38,7 +38,7 @@ void analyseCommands(uint8_t argNum, char *argStrings[], FATFS SDFatFs)
 	}
 	else if(strcmp(firstKeyword,LS) == 0)
 	{
-		ls(argNum,argStrings,SDFatFs);
+		ls(argNum,argStrings);
 
 	}
 	else if(strcmp(firstKeyword, CD) == 0)
@@ -132,7 +132,7 @@ void analog(uint8_t argNum, char *argStrings[])
 
 
 
-void ls(uint8_t argNum, char *argStrings[],FATFS SDFatFs)
+void ls(uint8_t argNum, char *argStrings[])
 {
 	printf("Found ls\n");
 	if(argNum > 1)

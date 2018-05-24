@@ -3,6 +3,8 @@
 //   $Author: Peter $
 
 #include "Ass-03.h"
+#include "StringBuilder.h"
+#include "CommandList.h"
 
 // This is the console task. Can use your code from the previous assignment
 // and expand.
@@ -20,6 +22,7 @@ uint8_t myWriteFile();
 FIL MyFile;
 FIL MyFile2, MyFile3;
 FRESULT Status;
+
 
 void Ass_03_Task_01(void const * argument)
 {
@@ -57,9 +60,37 @@ void Ass_03_Task_01(void const * argument)
   {
 	  c = getchar();
 	  safe_printf("Task 1: %d (got '%c')\n",loop,c);
+
+	  if(c == '\r' || c == '\n')
+	  {
+		  printf("\n");
+		  //end of input
+		  //parse input
+		  parseInputString();
+		  analyseCommands(wordCount, array_of_words);
+		  releaseAndFreeBuiltStrings();
+//		  FRESULT res;
+//		  if((res = f_open(&MyFile, "file1.txt", FA_READ)) != FR_OK)
+//		  {
+//			  printf("error.");
+//		  }
+
+
+	  }
+	  else
+	  {
+		  //safe_printf("INPUT: Task 1. Got '%c' or in ascii '%d'\n",c,c);
+		  //printf("%c",c);
+		  //build input string
+		  buildInputString2(c);
+
+		  //safe_printf("INPUT: Current Input String =>%s", newString);
+	  }
+
       loop++;
-      myReadFile();
-      myWriteFile();
+
+      //myReadFile();
+      //myWriteFile();
   }
 
 }

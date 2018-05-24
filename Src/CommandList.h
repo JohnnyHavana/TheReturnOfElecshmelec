@@ -2,10 +2,10 @@
 #include "SystemColours.h"
 #include "ff.h"
 
-void analyseCommands(uint8_t argNum, char *argStrings[], FATFS SDFatFs);
+void analyseCommands(uint8_t argNum, char *argStrings[]);
 void helpDesk(uint8_t argNum, char *argStrings[]);
 void analog(uint8_t argNum, char *argStrings[]);
-void ls(uint8_t argNum, char *argStrings[],FATFS SDFatFs);
+void ls(uint8_t argNum, char *argStrings[]);
 void cd(uint8_t argNum, char *argStrings[]);
 void mkdir(uint8_t argNum, char *argStrings[]);
 void cp(uint8_t argNum, char *argStrings[]);

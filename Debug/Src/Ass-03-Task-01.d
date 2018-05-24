@@ -66,7 +66,8 @@ Src/Ass-03-Task-01.o: ../Src/Ass-03-Task-01.c ../Src/Ass-03.h \
  U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v03/Ass-03-STM32/Middlewares/Third_Party/FatFs/src/diskio.h \
  U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v03/Ass-03-STM32/Middlewares/Third_Party/FatFs/src/ff.h \
  U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v03/Ass-03-STM32/Inc/sd_diskio.h \
- U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v03/Ass-03-STM32/Inc/adc.h
+ U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v03/Ass-03-STM32/Inc/adc.h \
+ ../Src/StringBuilder.h ../Src/CommandList.h ../Src/SystemColours.h
 
 ../Src/Ass-03.h:
 
@@ -205,3 +206,9 @@ U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v
 U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v03/Ass-03-STM32/Inc/sd_diskio.h:
 
 U:/ELEC3730/jordanandevansharedworkspacefolder/ELEC3730-2018s1-Ass-03-Template-v03/Ass-03-STM32/Inc/adc.h:
+
+../Src/StringBuilder.h:
+
+../Src/CommandList.h:
+
+../Src/SystemColours.h:

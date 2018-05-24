@@ -24,8 +24,8 @@
   <config>
     <name>Ass-03-STM32</name>				
     <device>STM32F407VGTx</device>		 
-    <heapSize>0x10000</heapSize>
-    <stackSize>0x2000</stackSize>
+    <heapSize>0x8000</heapSize>
+    <stackSize>0x4000</stackSize>
     
     	<board>STM32F4DISCOVERY</board>
 			

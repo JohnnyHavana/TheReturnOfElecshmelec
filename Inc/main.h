@@ -80,14 +80,12 @@
 #define I2S3_WS_GPIO_Port GPIOA
 #define SPI1_SCK_Pin GPIO_PIN_5
 #define SPI1_SCK_GPIO_Port GPIOA
-#define SPI1_MISO_Pin GPIO_PIN_6
-#define SPI1_MISO_GPIO_Port GPIOA
-#define SPI1_MOSI_Pin GPIO_PIN_7
-#define SPI1_MOSI_GPIO_Port GPIOA
 #define LCDTP_CS_Pin GPIO_PIN_4
 #define LCDTP_CS_GPIO_Port GPIOC
 #define LCDTP_IRQ_Pin GPIO_PIN_5
 #define LCDTP_IRQ_GPIO_Port GPIOC
+#define BL_PWM_Pin GPIO_PIN_0
+#define BL_PWM_GPIO_Port GPIOB
 #define BOOT1_Pin GPIO_PIN_2
 #define BOOT1_GPIO_Port GPIOB
 #define CLK_IN_Pin GPIO_PIN_10

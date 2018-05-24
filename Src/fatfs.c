@@ -55,6 +55,10 @@ FIL SDFile;       /* File object for SD */
 
 /* USER CODE BEGIN Variables */
 
+#include "Ass-03.h"
+
+// int8_t work[512]; // STEPIEN: For creating file system
+
 /* USER CODE END Variables */    
 
 void MX_FATFS_Init(void) 
@@ -64,6 +68,34 @@ void MX_FATFS_Init(void)
 
   /* USER CODE BEGIN Init */
   /* additional user code for init */     
+
+  // STEPIEN: Added initialisation code
+
+  FRESULT res; // Return status
+
+  // Check if SD card driver available
+  if(retSD != 0)
+  {
+    safe_printf("ERROR: SD card driver not available (%d).", retSD);
+    return;
+  }
+  safe_printf("INFO: SD card driver available.\n");
+
+  // Create FAT volume
+  // if ((res = f_mkfs(SDPath, FM_FAT32, 0, work, sizeof(work))) != FR_OK)
+  // {
+  // 	safe_printf("ERROR: Could not create file system (%d)\n", res);
+  // 	return;
+  //  }
+  // safe_printf("INFO: Created FAT volume\n");
+
+  // Mount file system
+  if((res = f_mount(&SDFatFS, (TCHAR const *)SDPath, 0)) != FR_OK)
+  {
+    safe_printf("ERROR: Could not mount file system (%d).\n", res);
+  }
+  safe_printf("INFO: Mounted file system: %s\n", SDPath);
+
   /* USER CODE END Init */
 }
 

@@ -1,37 +1,47 @@
-//     $Date: 2018-05-10 10:07:15 +1000 (Thu, 10 May 2018) $
-// $Revision: 1301 $
+//     $Date: 2018-05-22 06:24:02 +1000 (Tue, 22 May 2018) $
+// $Revision: 1330 $
 //   $Author: Peter $
 
 #include "Ass-03.h"
 
 //
-// REPLACE THE EXAMPLE CODE WITH YOUR CODE
+// This task can be used as the main pulse rate application as it takes
+// input from the front panel.
 //
+// *** MAKE UPDATES TO THE CODE AS REQUIRED ***
+//
+// Draw the boxes that make up the buttons and take action when the
+// buttons are pressed. See suggested updates for the touch panel task
+// that checks for button presses. Can do more in that task.
+
+#define XOFF 55
+#define YOFF 80
+#define XSIZE 250
+#define YSIZE 150
 
 void Ass_03_Task_02(void const * argument)
 {
-  uint32_t loop=0;
-  uint16_t i;
-  uint8_t s[100];
-  osEvent event;
-  int32_t b;
 
-  safe_printf("Hello from Task 2\n");
+	uint32_t loop=0;
 
-  while (1)
-  {
-      event = osMessageGet(myQueue01Handle, osWaitForever);
-      if (event.status == osEventMessage)
-      {
-		  b = event.value.v;
-		  sprintf(s,"Task 2: %d (got %d)",loop,b);
-      }
+	Coordinate display;
 
-      osMutexWait(myMutex01Handle, osWaitForever);
-      	  BSP_LCD_DisplayStringAt(5,205, s, LEFT_MODE);
-      osMutexRelease(myMutex01Handle);
+	osSignalWait(1,osWaitForever);
+	safe_printf("Hello from Task 2 - Pulse Rate Application (touch screen input)\n");
 
-      safe_printf("%s\n", s);
-      loop++;
-  }
+while (1)
+{
+	if (getfp(&display) == 0)
+    {
+		if((display.y > YOFF+5) && (display.y < YOFF+YSIZE-5) &&
+			(display.x > XOFF+5) && (display.x < XOFF+XSIZE-5))
+		{
+			osMutexWait(myMutex01Handle, osWaitForever);
+			BSP_LCD_FillCircle(display.x, display.y, 2);
+			osMutexRelease(myMutex01Handle);
+			loop++;
+			safe_printf("Task 2: %d (got  %3d,%3d)\n", loop, display.x, display.y);
+		}
+    }
+}
 }

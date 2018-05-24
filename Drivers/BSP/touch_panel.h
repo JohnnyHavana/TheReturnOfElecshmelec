@@ -80,10 +80,11 @@ long double An,
 } Matrix ;
 
 /* Private variables ---------------------------------------------------------*/
-extern Coordinate ScreenSample[3];
-extern Coordinate DisplaySample[3];
-extern Matrix matrix ;
-extern Coordinate  display ;
+// STEPIEN: Were public previously
+// extern Coordinate ScreenSample[3];
+// extern Coordinate DisplaySample[3];
+// extern Matrix matrix ;
+// extern Coordinate  display ;
 
 /* Private define ------------------------------------------------------------*/
 

@@ -62,6 +62,7 @@
 osThreadId defaultTaskHandle;
 osThreadId myTask02Handle;
 osThreadId myTask03Handle;
+osThreadId myTask04Handle;
 osMessageQId myQueue01Handle;
 osTimerId myTimer01Handle;
 osMutexId myMutex01Handle;
@@ -69,6 +70,10 @@ osMutexId myMutex02Handle;
 osMutexId myMutex03Handle;
 osSemaphoreId myBinarySem01Handle;
 osSemaphoreId myBinarySem02Handle;
+osSemaphoreId myBinarySem03Handle;
+osSemaphoreId myBinarySem04Handle;
+osSemaphoreId myBinarySem05Handle;
+osSemaphoreId myBinarySem06Handle;
 osSemaphoreId myCountingSem01Handle;
 
 /* USER CODE BEGIN Variables */
@@ -79,6 +84,7 @@ osSemaphoreId myCountingSem01Handle;
 void StartDefaultTask(void const * argument);
 void StartTask02(void const * argument);
 void StartTask03(void const * argument);
+void StartTask04(void const * argument);
 void Callback01(void const * argument);
 
 extern void MX_FATFS_Init(void);
@@ -106,6 +112,10 @@ void MX_FREERTOS_Init(void) {
   osMutexDef(myMutex02);
   myMutex02Handle = osMutexCreate(osMutex(myMutex02));
 
+  /* definition and creation of myMutex03 */
+  osMutexDef(myMutex03);
+  myMutex03Handle = osMutexCreate(osMutex(myMutex03));
+
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
@@ -119,6 +129,22 @@ void MX_FREERTOS_Init(void) {
   osSemaphoreDef(myBinarySem02);
   myBinarySem02Handle = osSemaphoreCreate(osSemaphore(myBinarySem02), 1);
 
+  /* definition and creation of myBinarySem03 */
+  osSemaphoreDef(myBinarySem03);
+  myBinarySem03Handle = osSemaphoreCreate(osSemaphore(myBinarySem03), 1);
+
+  /* definition and creation of myBinarySem04 */
+  osSemaphoreDef(myBinarySem04);
+  myBinarySem04Handle = osSemaphoreCreate(osSemaphore(myBinarySem04), 1);
+
+  /* definition and creation of myBinarySem05 */
+  osSemaphoreDef(myBinarySem05);
+  myBinarySem05Handle = osSemaphoreCreate(osSemaphore(myBinarySem05), 1);
+
+  /* definition and creation of myBinarySem06 */
+  osSemaphoreDef(myBinarySem06);
+  myBinarySem06Handle = osSemaphoreCreate(osSemaphore(myBinarySem06), 1);
+
   /* definition and creation of myCountingSem01 */
   osSemaphoreDef(myCountingSem01);
   myCountingSem01Handle = osSemaphoreCreate(osSemaphore(myCountingSem01), 2);
@@ -126,6 +152,9 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   osSemaphoreWait(myBinarySem01Handle, osWaitForever); // STEPIEN: Start with nothing
+  osSemaphoreWait(myBinarySem04Handle, osWaitForever); // STEPIEN: Start with nothing
+  osSemaphoreWait(myBinarySem05Handle, osWaitForever); // STEPIEN: Start with nothing
+  osSemaphoreWait(myBinarySem06Handle, osWaitForever); // STEPIEN: Start with nothing
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* Create the timer(s) */
@@ -145,12 +174,16 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of myTask02 */
-  osThreadDef(myTask02, StartTask02, osPriorityIdle, 0, 2048);
+  osThreadDef(myTask02, StartTask02, osPriorityNormal, 0, 2048);
   myTask02Handle = osThreadCreate(osThread(myTask02), NULL);
 
   /* definition and creation of myTask03 */
-  osThreadDef(myTask03, StartTask03, osPriorityIdle, 0, 2048);
+  osThreadDef(myTask03, StartTask03, osPriorityHigh, 0, 2048);
   myTask03Handle = osThreadCreate(osThread(myTask03), NULL);
+
+  /* definition and creation of myTask04 */
+  osThreadDef(myTask04, StartTask04, osPriorityRealtime, 0, 2048);
+  myTask04Handle = osThreadCreate(osThread(myTask04), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -158,7 +191,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the queue(s) */
   /* definition and creation of myQueue01 */
-  osMessageQDef(myQueue01, 16, uint16_t);
+  osMessageQDef(myQueue01, 4, uint32_t);
   myQueue01Handle = osMessageCreate(osMessageQ(myQueue01), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -198,13 +231,22 @@ void StartTask03(void const * argument)
   /* USER CODE END StartTask03 */
 }
 
+/* StartTask04 function */
+void StartTask04(void const * argument)
+{
+  /* USER CODE BEGIN StartTask04 */
+  osDelay(300);
+  Ass_03_Task_04(argument);
+  /* USER CODE END StartTask04 */
+}
+
 /* Callback01 function */
 void Callback01(void const * argument)
 {
   /* USER CODE BEGIN Callback01 */
 
   // STEPIEN: Period timer to signal reading the touch panel display
-  osSignalSet(defaultTaskHandle, 1);
+  osSemaphoreRelease(myBinarySem04Handle);
   
   /* USER CODE END Callback01 */
 }

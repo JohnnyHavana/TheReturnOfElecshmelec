@@ -1,3 +1,10 @@
+//     $Date: 2018-05-22 06:24:02 +1000 (Tue, 22 May 2018) $
+// $Revision: 1330 $
+//   $Author: Peter $
+//
+// STEPIEN: Modified to be interrupt driven and feed result into a message queue.
+//          Added interrupt version of function and added interrupt driven nested state machine.
+
 /*********************************************************************************************************
 *
 * File                : touch_panel.c
@@ -17,19 +24,79 @@
 #include "openx07v_c_lcd.h"
 #include "spi.h"
 
+// STEPIEN: Include the assignment header file just to make it easier
+#include "../../src/Ass-03.h"
 
 /* Private variables ---------------------------------------------------------*/
-Matrix matrix ;
-Coordinate  display ;
+static Matrix matrix ; // STEPIEN: Made static (calibration matrix)
+// static Coordinate  display ; // STEPIEN: No longer needed
+// STEPIEN: Made static (used for calibration)
+static Coordinate ScreenSample[3];
 
-
-Coordinate ScreenSample[3];
-
-Coordinate DisplaySample[3] = {
+static Coordinate DisplaySample[3] = {
                                 {30, 45},
                                 {220, 45},
                                 {160,210}
                               };
+
+// STEPIEN: Added two touch panel functions to make the interface more
+//          consistent with the LCD BSP.
+
+uint8_t BSP_TP_Init(void)
+{
+  // Initialise the interface and calibrate
+  TP_Init(); // This is an empty function since done by STM32CubeMX
+  TouchPanel_Calibrate();
+//  matrix.An = -466620;
+//  matrix.Bn = -6610;
+//  matrix.Cn = 156312970;
+//  matrix.Dn = 19800;
+//  matrix.En = 315480;
+//  matrix.Fn = -1194221640;
+//  matrix.Divider = -4691496;
+
+  return 0;
+}
+
+uint8_t BSP_TP_GetDisplayPoint(Coordinate *pDisplay)
+{
+  volatile Coordinate *pScreen;
+
+  static uint16_t r0=0;
+  static uint16_t r11=0;
+  static uint16_t r12=0;
+  static uint16_t xstat[8]={0};
+  static uint16_t ystat[8]={0};
+  // static uint16_t xystat[8][8]={0};
+  // uint16_t xx,yy;
+#define XC (320/2)
+#define YC (240/2)
+
+  pScreen = Read_Ads7846();
+
+  if (pScreen == NULL)
+  {
+	  r11++;
+    return 1; // Panel not touched
+  }
+  if (getDisplayPoint(pDisplay, pScreen, &matrix ) == DISABLE)
+  {
+	  r12++;
+    return 1; // Error in LCD
+  }
+  // xstat[pDisplay->x & 0x0007]++;
+  // ystat[pDisplay->y & 0x0007]++;
+  xstat[pScreen->x & 0x0007]++;
+  ystat[pScreen->y & 0x0007]++;
+  // xx = pScreen->x; // pDisplay->x;
+  // yy = pScreen->y; // pDisplay->y;
+  // if (xx >= XC-4 && xx < XC+4 && yy >= YC-4 && yy < YC+4)
+  // {
+  //  xystat[xx - (XC-4)][yy - (YC-4)]++;
+  // }
+  r0++;
+  return 0;
+}
 
 /* Private define ------------------------------------------------------------*/
 #define THRESHOLD 2
@@ -131,9 +198,14 @@ void DelayUS(uint32_t cnt)
 static void WR_CMD (uint8_t cmd)  
 { 
   HAL_SPI_Transmit(&TP_hspi,&cmd,1,1000);
+}
+
+// STEPIEN: Interrupt version
+static uint8_t WR_CMD_IT (uint8_t cmd)
+{
+  HAL_SPI_Transmit_IT(&TP_hspi,&cmd,1);
+  return 0;
 } 
-
-
 
 /*******************************************************************************
 * Function Name  : RD_AD
@@ -148,10 +220,32 @@ static int RD_AD(void)
   uint8_t buf[2];
   int value;
   HAL_SPI_Receive(&TP_hspi,buf,2,1000);
-  value = (uint16_t)((buf[0] << 8) + buf[1]) >> 3;
+  value = (uint16_t)((buf[0] << 8) + buf[1]) >> 4; // STEPIEN: Was 3 It is 12 bit ADC
   return value;
 } 
 
+// STEPIEN: Interrupt version broken into two states
+//            1: Initiate the transfer
+//            2: Read the result
+
+static uint8_t RD_AD_IT(int *value)
+{
+  static uint8_t buf[2];
+  static uint8_t state=0;
+
+  switch (state)
+  {
+	case 0:
+	  HAL_SPI_Receive_IT(&TP_hspi,buf,2);
+	  state = 1;
+	  break;
+	case 1:
+	  *value = (uint16_t)((buf[0] << 8) + buf[1]) >> 3;
+	  state = 0;
+	  break;
+	}
+  return state;
+}
 
 /*******************************************************************************
 * Function Name  : Read_X
@@ -173,6 +267,40 @@ int Read_X(void)
   return i;    
 } 
 
+// STEPIEN: Interrupt version broken into two states
+
+uint8_t Read_X_IT(int *i)
+{
+  static uint8_t state=0;
+
+  switch (state)
+  {
+	case 0:
+	case 1:
+	  TP_CS(0);
+	  DelayUS(1);
+	  if (WR_CMD_IT(CHX) == 0)
+	  {
+		state = 2;
+	  }
+	  else
+	  {
+	    state = 1;
+	  }
+	  break;
+	case 2:
+	  DelayUS(1);
+      if (RD_AD_IT(i) == 0)
+      {
+    	TP_CS(1);
+        state = 0;
+      }
+	  break;
+	}
+  return state;
+
+}
+
 /*******************************************************************************
 * Function Name  : Read_Y
 * Description    : Read ADS7843 ADC Y
@@ -193,6 +321,40 @@ int Read_Y(void)
   return i;     
 } 
 
+// STEPIEN: Interrupt version broken into two states
+
+uint8_t Read_Y_IT(int *i)
+{
+  static uint8_t state=0;
+
+  switch (state)
+  {
+	case 0:
+	case 1:
+	  TP_CS(0);
+	  DelayUS(1);
+	  if (WR_CMD_IT(CHY) == 0)
+	  {
+		state = 2;
+	  }
+	  else
+	  {
+	    state = 1;
+	  }
+	  break;
+	case 2:
+	  DelayUS(1);
+      if (RD_AD_IT(i) == 0)
+      {
+    	TP_CS(1);
+        state = 0;
+      }
+	  break;
+	}
+  return state;
+
+}
+
 
 /*******************************************************************************
 * Function Name  : TP_GetAdXY
@@ -211,6 +373,173 @@ void TP_GetAdXY(int *x,int *y)
   *x=adx; 
   *y=ady; 
 } 
+
+// STEPIEN: Interrupt version broken into two states
+
+uint8_t TP_GetAdXY_IT_OLD(int *x,int *y)
+{
+  static uint8_t state=0;
+
+  switch (state)
+  {
+	case 0:
+	case 1:
+	  if (Read_X_IT(x) == 0)
+	  {
+	    state = 2;
+	  }
+	  else
+	  {
+	    state = 1;
+	  }
+	  break;
+	case 2:
+	  DelayUS(1);
+	  if (Read_Y_IT(y) == 0)
+      {
+        state = 0;
+      }
+	  break;
+  }
+  return state;
+
+}
+
+// STEPIEN: Interrupt version broken into a number of states
+//          New version to do manually
+
+void LD3Tog(uint8_t n)
+{
+  uint8_t i;
+  for (i=0;i<n+1;i++)
+    HAL_GPIO_TogglePin(GPIOD, LD3_Pin); // Toggle LED3
+}
+
+void check_error(HAL_StatusTypeDef err)
+{
+	if (err != HAL_OK)
+	{
+		while (1)
+		{
+			LD3Tog(0);
+		}
+	}
+}
+void TP_GetAdXY_IT(int *x, int *y)
+{
+  static uint8_t buf[2];
+  static uint8_t outbuf[2] = {0,0};
+
+  static uint8_t ChannelX = CHX;
+  static uint8_t ChannelY = CHY;
+
+  volatile HAL_StatusTypeDef hal_error;
+
+	  // Write X command
+	  TP_CS(0);
+	  DelayUS(1);
+	  hal_error = HAL_SPI_Transmit_IT(&TP_hspi,&ChannelX,1);
+	  // hal_error = HAL_SPI_Transmit(&TP_hspi,&ChannelX,1,1000);
+      check_error(hal_error);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
+      osSemaphoreWait(myBinarySem03Handle, osWaitForever);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
+
+	  // Read X command
+	  DelayUS(1);
+      hal_error = HAL_SPI_TransmitReceive_IT(&TP_hspi,outbuf,buf,2);
+      // hal_error = HAL_SPI_Receive(&TP_hspi,buf,2,1000); // STEPIEN: Need to transmit 0
+	  // hal_error = HAL_SPI_TransmitReceive(&TP_hspi,outbuf,buf,2,1000);
+      check_error(hal_error);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
+      osSemaphoreWait(myBinarySem03Handle, osWaitForever);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
+
+	  // Read X value
+	  TP_CS(1);
+	  *x = (int)((uint16_t)((buf[0] << 8) + buf[1]) >> 4); // STEPIEN: Was 3
+
+	  // Write Y command
+	  TP_CS(0);
+	  DelayUS(1);
+	  hal_error = HAL_SPI_Transmit_IT(&TP_hspi,&ChannelY,1);
+	  // hal_error = HAL_SPI_Transmit(&TP_hspi,&ChannelY,1,1000);
+      check_error(hal_error);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
+      osSemaphoreWait(myBinarySem03Handle, osWaitForever);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
+
+	  // Read Y value
+	  DelayUS(1);
+	  hal_error = HAL_SPI_TransmitReceive_IT(&TP_hspi,outbuf,buf,2);
+	  // hal_error = HAL_SPI_Receive(&TP_hspi,buf,2,1000); // STEPIEN: Need to transmit 0
+	  // hal_error = HAL_SPI_TransmitReceive(&TP_hspi,outbuf,buf,2,1000);
+      check_error(hal_error);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
+      osSemaphoreWait(myBinarySem03Handle, osWaitForever);
+      // HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
+
+	  // Read Y value
+	  *y = (int)((uint16_t)((buf[0] << 8) + buf[1]) >> 4); // STEPIEN: Was 3
+
+	  TP_CS(1);
+
+}
+
+// STEPIEN: Callback function for LCDTP_IRQ (PC5) LCDTP_IRQ_EXTI_IRQn
+
+//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+//{
+//      Coordinate screen; // Will not be set on the first call
+//
+//      if (GPIO_Pin == 32)
+//      {
+//	    HAL_NVIC_DisableIRQ(LCDTP_IRQ_EXTI_IRQn);
+//	    HAL_GPIO_TogglePin(GPIOD, LD4_Pin); // Toggle LED4
+//        TP_GetAdXY_IT();
+//      }
+//}
+
+// STEPIEN: Callback function for SPI2
+
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+      Coordinate screen;
+
+      if (hspi == &TP_hspi)
+      {
+    		osSemaphoreRelease(myBinarySem03Handle);
+      }
+}
+
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+      Coordinate screen;
+
+      if (hspi == &TP_hspi)
+      {
+  		osSemaphoreRelease(myBinarySem03Handle);
+      }
+}
+
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+      Coordinate screen;
+
+      if (hspi == &TP_hspi)
+      {
+  		osSemaphoreRelease(myBinarySem03Handle);
+      }
+}
+
+void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+{
+	volatile uint32_t hal_error;
+
+	hal_error=HAL_SPI_GetError(hspi);
+	if (hal_error != HAL_SPI_ERROR_NONE)
+	  while (1);
+}
 
 /*******************************************************************************
 * Function Name  : TP_DrawPoint
@@ -264,7 +593,7 @@ Coordinate *Read_Ads7846(void)
   
   do
   {       
-    TP_GetAdXY(TP_X,TP_Y);  
+	TP_GetAdXY_IT(TP_X,TP_Y); // STEPIEN: Interrupt driven version
     buffer[0][count]=TP_X[0];  
     buffer[1][count]=TP_Y[0];
     count++;  
@@ -328,6 +657,91 @@ Coordinate *Read_Ads7846(void)
   return 0; 
 }
    
+// STEPIEN: Interrupt version
+
+//uint8_t Read_Ads7846_IT(Coordinate *screen)
+//{
+//  static int TP_X,TP_Y;
+//	  int m0,m1,m2,temp[3];
+//  static uint8_t count=0;
+//  static int buffer[2][9]={{0},{0}};
+//  static uint8_t state=0;
+//
+//  switch (state)
+//  {
+//	case 0:
+//	case 1:
+//      if (TP_GetAdXY_IT(&TP_X,&TP_Y) == 0)
+//      {
+//        buffer[0][count]=TP_X;
+//        buffer[1][count]=TP_Y;
+//        count++;
+//      }
+//      if (count < 9)
+//      {
+//    	  state = 1;
+//      }
+//      else
+//      {
+//
+//    /* Average X  */
+//    temp[0]=(buffer[0][0]+buffer[0][1]+buffer[0][2])/3;
+//    temp[1]=(buffer[0][3]+buffer[0][4]+buffer[0][5])/3;
+//    temp[2]=(buffer[0][6]+buffer[0][7]+buffer[0][8])/3;
+//
+//    m0=temp[0]-temp[1];
+//    m1=temp[1]-temp[2];
+//    m2=temp[2]-temp[0];
+//
+//    m0=m0>0?m0:(-m0);
+//    m1=m1>0?m1:(-m1);
+//    m2=m2>0?m2:(-m2);
+//
+//    if( m0>THRESHOLD  &&  m1>THRESHOLD  &&  m2>THRESHOLD ) return 0;
+//
+//    if(m0<m1)
+//    {
+//      if(m2<m0)
+//        screen->x=(temp[0]+temp[2])/2;
+//      else
+//        screen->x=(temp[0]+temp[1])/2;
+//    }
+//    else if(m2<m1)
+//      screen->x=(temp[0]+temp[2])/2;
+//    else
+//      screen->x=(temp[1]+temp[2])/2;
+//
+//    /* Average Y  */
+//    temp[0]=(buffer[1][0]+buffer[1][1]+buffer[1][2])/3;
+//    temp[1]=(buffer[1][3]+buffer[1][4]+buffer[1][5])/3;
+//    temp[2]=(buffer[1][6]+buffer[1][7]+buffer[1][8])/3;
+//    m0=temp[0]-temp[1];
+//    m1=temp[1]-temp[2];
+//    m2=temp[2]-temp[0];
+//    m0=m0>0?m0:(-m0);
+//    m1=m1>0?m1:(-m1);
+//    m2=m2>0?m2:(-m2);
+//    if(m0>THRESHOLD&&m1>THRESHOLD&&m2>THRESHOLD) return 0;
+//
+//    if(m0<m1)
+//    {
+//      if(m2<m0)
+//        screen->y=(temp[0]+temp[2])/2;
+//      else
+//        screen->y=(temp[0]+temp[1])/2;
+//      }
+//    else if(m2<m1)
+//       screen->y=(temp[0]+temp[2])/2;
+//    else
+//       screen->y=(temp[1]+temp[2])/2;
+//    state = 0;
+//    count = 0;
+//      }
+//  }
+//
+//return state;
+//
+//}
 
 /*******************************************************************************
 * Function Name  : setCalibrationMatrix
@@ -443,8 +857,10 @@ void TouchPanel_Calibrate(void)
     do
     {
       Ptr=Read_Ads7846();
+      // HAL_Delay(1); // STEPIEN: TEST
     }
-    while( Ptr == (void*)0 );
+    // while( 1 );
+    while( Ptr == (void*)0 ); // STEPIEN: TEST
     ScreenSample[i].x= Ptr->x; ScreenSample[i].y= Ptr->y;
   }
   setCalibrationMatrix( &DisplaySample[0],&ScreenSample[0],&matrix );

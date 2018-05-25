@@ -66,10 +66,16 @@ void Ass_03_Task_01(void const * argument)
 
 
   int consoleIndex = 0;
-  safe_printf("%s>",currentFilePath);
+  int firstFlag = 1;
   fflush(stdout);
   while (1)
   {
+	  if(firstFlag == 1)
+	  {
+		  firstFlag = 0;
+		  safe_printf("%s>",currentFilePath);
+		  fflush(stdout);
+	  }
 	  //HAL_GPIO_TogglePin(GPIOD, LD3_Pin);
 	  c = getchar();
 	  while((c != '\r' && c != '\n'))
@@ -95,14 +101,14 @@ void Ass_03_Task_01(void const * argument)
 	  }
 
 	  consoleIndex = 0;
-
+	  firstFlag = 1;
 	  safe_printf("\n");
 
 	  parseInputString();
 	  analyseCommands(wordCount, array_of_words);
 	  releaseAndFreeBuiltStrings();
 
-	  safe_printf("%s>",currentFilePath);
+	  //safe_printf("%s>",currentFilePath);
 	  fflush(stdout);
 
 

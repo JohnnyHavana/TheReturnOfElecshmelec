@@ -198,7 +198,9 @@ void cd(uint8_t argNum, char *argStrings[])
 {
 	printf("Found cd\n");
 
-	char* previousDirectory = currentFilePath;
+	char previousDirectory[256];
+	strcpy(previousDirectory, currentFilePath);
+
 
 
 	if(argNum > 2)
@@ -256,7 +258,8 @@ void cd(uint8_t argNum, char *argStrings[])
 	}
 	else
 	{
-		previousDirectory = currentFilePath;
+		//move to root
+		strcpy(previousDirectory,"/");
 		strcpy(currentFilePath,"/");
 
 		FRESULT changingDirectory = f_chdir(currentFilePath);

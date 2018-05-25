@@ -70,8 +70,15 @@ void Ass_03_Task_01(void const * argument)
 	  {
 		  safe_printf("%c",c);
 		  fflush(stdout);
+		  buildInputString2(c);
+
 		  c = getchar();
 	  }
+	  safe_printf("\n");
+
+	  parseInputString();
+	  analyseCommands(wordCount, array_of_words);
+	  releaseAndFreeBuiltStrings();
 
 
 

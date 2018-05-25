@@ -30,6 +30,9 @@ void parseInputString()
 
 	wordCount = string_parser(newString, &array_of_words);
 	if(debugOn == 1) printArrayOfWords();
+
+
+
 }
 
 void releaseAndFreeBuiltStrings()
@@ -45,14 +48,15 @@ void releaseAndFreeBuiltStrings()
  * */
 void printArrayOfWords()
 {
+
 	if (wordCount != 0) {
-		safe_printf("%sDEBUG%s: \t count = %d\n", C_DEBUG,C_NORMAL,wordCount);
+		printf("%sDEBUG%s: \t count = %d\n", C_DEBUG,C_NORMAL,wordCount);
 		for (int j=0;j<wordCount;j++) {
-		  safe_printf("%sDEBUG%s: \t Word(%d): '%s'\n", C_DEBUG, C_NORMAL, j+1, (array_of_words)[j]);
+		  printf("%sDEBUG%s: \t Word(%d): '%s'\n", C_DEBUG, C_NORMAL, j+1, (array_of_words)[j]);
 		}
 	  }
 	else
-		safe_printf("%sDEBUG%s: \t No words found\n", C_DEBUG,C_NORMAL);
+		printf("%sDEBUG%s: \t No words found\n", C_DEBUG,C_NORMAL);
 }
 
 /*

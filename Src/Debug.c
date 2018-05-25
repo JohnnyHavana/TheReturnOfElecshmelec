@@ -17,12 +17,8 @@ void debugMode(uint8_t argNum, char* argStrings[])
 	{
 		safe_printf("%sDEBUG%s: \t Debug status: %d\n", C_DEBUG,C_NORMAL, debugOn);
 	}
-	else if(argNum > 2)
-	{
-		safe_printf("%sERROR%s: \t Error. Debug command must take zero or one argument. Seek help.\n", C_ERROR,C_NORMAL);
-		return;
-	}
-	else
+
+	else if(argNum ==2)
 	{
 
 		char * secondKeyword =  (argStrings)[1];
@@ -30,7 +26,7 @@ void debugMode(uint8_t argNum, char* argStrings[])
 		{
 			if(debugOn == 1)
 			{
-				safe_printf("%sSYSTEM%s: \t Debug is already on.\n", C_SYSTEM,C_NORMAL);
+				safe_printf("%sSYSTEM%s: Debug is already on.\n", C_SYSTEM,C_NORMAL);
 			}
 			else
 			{
@@ -42,7 +38,7 @@ void debugMode(uint8_t argNum, char* argStrings[])
 		{
 			if(debugOn == 0)
 			{
-				safe_printf("%sSYSTEM%s: \t Debug is already off.\n", C_SYSTEM,C_NORMAL);
+				safe_printf("%sSYSTEM%s: Debug is already off.\n", C_SYSTEM,C_NORMAL);
 			}
 			else
 			{
@@ -51,6 +47,15 @@ void debugMode(uint8_t argNum, char* argStrings[])
 			}
 		}
 		else
+		{
 			safe_printf("%sERROR%s: \t Error. Not a valid input for debug keyword. Seek help.\n", C_ERROR,C_NORMAL);
+
+
+		}
 	}
+	else
+		{
+			safe_printf("%sERROR%s: \t Error. Debug command must take zero or one argument. Seek help.\n", C_ERROR,C_NORMAL);
+			return;
+		}
 }

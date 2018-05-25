@@ -1,7 +1,6 @@
 
 #include "CommandList.h"
-#include "Debug.h"
-#include <string.h>
+
 
 //Here is your bible. Fucking use it.
 //http://www.elm-chan.org/fsw/ff/00index_e.html
@@ -14,7 +13,8 @@
 #define MKDIR "mkdir"
 #define CP "cp"
 #define RM "rm"
-
+#include "ff.h"
+#include "ffconf.h"
 void analyseCommands(uint8_t argNum, char *argStrings[])
 {
 	if(argNum == 0)
@@ -141,11 +141,9 @@ void ls(uint8_t argNum, char *argStrings[])
 		printf("Error. Ls must not have any arguments\n");
 		return;
 	}
-	char buff[256];
 
-	strcpy(buff, "/");
 
-	scan_files(buff);
+	scan_files(currentFilePath);
 
 }
 
@@ -154,7 +152,6 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
 {
     FRESULT res;
     DIR dir;
-    UINT i;
     static FILINFO fno;
 
 
@@ -201,6 +198,9 @@ void cd(uint8_t argNum, char *argStrings[])
 {
 	printf("Found cd\n");
 
+	char* previousDirectory = currentFilePath;
+
+
 	if(argNum > 2)
 	{
 		safe_printf("Error. Cd must require at most one argument\n");
@@ -208,23 +208,67 @@ void cd(uint8_t argNum, char *argStrings[])
 	}
 	else if(argNum  == 2)
 	{
-		safe_printf("Hey. Missing implementation. Add later\n");
-		//FRESULT cdResult = f_opendir(&SDFatFs,argStrings[1]);
-		if(1)
-		{
-			safe_printf("Error. Directory does not exist\n");
-		}
-		else
-		{
-			//todo change to correct directory
-		}
+		char* directoryToMoveTo = argStrings[1];
+
+		FILINFO fno;
+		strcat(currentFilePath,"/");
+		strcat(currentFilePath,directoryToMoveTo);
+		FRESULT directoryResult = f_stat(currentFilePath ,&fno);
 
 
+		FRESULT changingDirectory;
+
+		switch(directoryResult)
+		{
+			case FR_OK:
+
+				changingDirectory = f_chdir(currentFilePath);
+
+				if(changingDirectory != FR_OK)
+				{
+					safe_printf("Something went wrong when changing directory.\n");
+					strcpy(currentFilePath, previousDirectory);
+
+					//currentFilePath = previousDirectory;
+				}
+				else
+				{
+					safe_printf("Changed directory to %s\n",currentFilePath);
+				}
+				break;
+
+			case FR_NO_FILE:
+			{
+				safe_printf("Error. Directory does not exist\n");
+				strcpy(currentFilePath, previousDirectory);
+
+				break;
+
+			}
+			default:
+			{
+				safe_printf("Error. Something went wrong.\n");
+				strcpy(currentFilePath, previousDirectory);
+
+			}
+
+		}
 	}
 	else
 	{
-		//todo go to root
-		safe_printf("Hey/ Missing Implementation. Add later\n");
+		previousDirectory = currentFilePath;
+		strcpy(currentFilePath,"/");
+
+		FRESULT changingDirectory = f_chdir(currentFilePath);
+		if(changingDirectory != FR_OK)
+		{
+			safe_printf("Error. Could not transfer back to root\n");
+			strcpy(currentFilePath, previousDirectory);
+		}
+		else
+		{
+			safe_printf("Moved to Root\n");
+		}
 	}
 }
 
@@ -247,7 +291,7 @@ void mkdir(uint8_t argNum, char *argStrings[])
 	}
 	else
 	{
-		safe_printf("Directory created\n");
+		safe_printf("Created: %s\n", directoryToMake);
 		//die(mkdirResult);
 	}
 
@@ -262,6 +306,41 @@ void cp(uint8_t argNum, char *argStrings[])
 		safe_printf("Error. Cp must require two arguments\n");
 		return;
 	}
+
+	char* source = argStrings[1];
+	char* destination = argStrings[2];
+
+	char* foundDotInSource = strstr(source, ".");
+	char* foundDotInDestination = strstr(destination,".");
+	if(foundDotInSource && foundDotInDestination)
+	{
+		//Making a copy of a file
+		//Make sure that they source exists
+		//Make sure that destination doesnt exist
+	}
+	else if(foundDotInSource && !foundDotInDestination)
+	{
+		//Should throw an error in the early stages, if enough time at the end, implement mkdir inside here
+
+
+		//Copying a file to a folder
+		//Make sure the source exists
+		//Make sure the destination folder doesn't already exist
+		//If the folder doesn't exist, make the folder
+	}
+	else if(!foundDotInSource && !foundDotInDestination)
+	{
+		//Making a copy of a folder
+		//Make sure the source exists
+		//Make sure the destionation folder doesnt already exist
+		//if the destination folder doesnt exist, make the folder
+	}
+	else
+	{
+		safe_printf("Hey. Invalid Copying. Cannot copy a folder to a file????\n");
+	}
+
+
 
 
 
@@ -288,7 +367,7 @@ void rm(uint8_t argNum, char *argStrings[])
 	}
 	else
 	{
-		safe_printf("File/Folder Removed\n");
+		safe_printf("Deleted: %s\n",directoryToRemove);
 	}
 }
 

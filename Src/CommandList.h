@@ -5,6 +5,8 @@
 #include "Ass-03.h"
 #include "SystemColours.h"
 #include "ff.h"
+#include "Debug.h"
+#include <string.h>
 
 void analyseCommands(uint8_t argNum, char *argStrings[]);
 void helpDesk(uint8_t argNum, char *argStrings[]);
@@ -19,5 +21,8 @@ void scan_files (char* path);
 
 uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, char* argStrings[]);
 uint8_t checkArgumentLength(uint8_t flag, uint8_t expectedWordCount, uint8_t argNum);
+
+
+char currentFilePath[100];
 
 #endif

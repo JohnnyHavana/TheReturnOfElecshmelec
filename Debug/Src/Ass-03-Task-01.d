@@ -68,7 +68,7 @@ Src/Ass-03-Task-01.o: ../Src/Ass-03-Task-01.c ../Src/Ass-03.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/sd_diskio.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h \
  ../Src/StringBuilder.h ../Src/CommandList.h ../Src/SystemColours.h \
- ../Src/Button.h ../Src/Debug.h
+ ../Src/Debug.h ../Src/Button.h
 
 ../Src/Ass-03.h:
 
@@ -214,6 +214,6 @@ C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheRetur
 
 ../Src/SystemColours.h:
 
-../Src/Button.h:
-
 ../Src/Debug.h:
+
+../Src/Button.h:

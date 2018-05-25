@@ -18,6 +18,7 @@
 #include "openx07v_c_lcd.h"
 #include "fatfs.h"
 #include "adc.h"
+#include "ff.h"
 
 #include <stdio.h>
 #include <stdint.h>

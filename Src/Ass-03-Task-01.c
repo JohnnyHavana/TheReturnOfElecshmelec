@@ -62,55 +62,51 @@ void Ass_03_Task_01(void const * argument)
 
   osMutexRelease(myMutex01Handle);
 
+  currentFilePath[0] = '/';
+
+
+  int consoleIndex = 0;
+  safe_printf("%s>",currentFilePath);
+  fflush(stdout);
   while (1)
   {
 	  //HAL_GPIO_TogglePin(GPIOD, LD3_Pin);
 	  c = getchar();
 	  while((c != '\r' && c != '\n'))
 	  {
-		  safe_printf("%c",c);
-		  fflush(stdout);
-		  buildInputString2(c);
+		  if((c == 8 || c == 127) && consoleIndex == 0){}
+		  else if((c == 8 || c == 127) && consoleIndex > 0)
+		  {
+			  consoleIndex--;
+			  safe_printf("%c",c);
+			  		  fflush(stdout);
+			  		  buildInputString2(c);
+		  }
+		  else
+		  {
+			  consoleIndex++;
+			  safe_printf("%c",c);
+			  		  fflush(stdout);
+			  		  buildInputString2(c);
+		  }
+
 
 		  c = getchar();
 	  }
+
+	  consoleIndex = 0;
+
 	  safe_printf("\n");
 
 	  parseInputString();
 	  analyseCommands(wordCount, array_of_words);
 	  releaseAndFreeBuiltStrings();
 
+	  safe_printf("%s>",currentFilePath);
+	  fflush(stdout);
 
 
 
-//	  if(c == '\r' || c == '\n')
-//	  {
-//
-//		  safe_printf("\n");
-//		  //end of input
-//		  //parse input
-//		  parseInputString();
-//		  analyseCommands(wordCount, array_of_words);
-//		  releaseAndFreeBuiltStrings();
-////		  FRESULT res;
-////		  if((res = f_open(&MyFile, "file1.txt", FA_READ)) != FR_OK)
-////		  {
-////			  printf("error.");
-////		  }
-//
-//
-//	  }
-//	  else
-//	  {
-//
-//
-//		  //safe_printf("INPUT: Task 1. Got '%c' or in ascii '%d'\n",c,c);
-//		  //printf("%c",c);
-//		  //build input string
-//		  buildInputString2(c);
-//
-//		  //safe_printf("INPUT: Current Input String =>%s", newString);
-//	  }
 
       loop++;
 

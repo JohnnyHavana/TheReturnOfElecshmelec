@@ -195,34 +195,6 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
 	safe_printf("=================End of Directory=================\n");
 	res = f_closedir(&dir);
 
-//
-//
-//    else
-//    {
-//
-//
-////        for (;;)
-////        {
-////            res = f_readdir(&dir, &fno);                   /* Read a directory item */
-////            if (res != FR_OK || fno.fname[0] == 0) break;  /* Break on error or end of dir */
-////            if (fno.fattrib & AM_DIR)
-////            {                    /* It is a directory */
-////                i = strlen(path);
-////                sprintf(&path[i], "/%s", fno.fname);
-////                //res = scan_files(path);                    /* Enter the directory */
-////                scan_files(path);
-////                if (res != FR_OK) break;
-////                path[i] = 0;
-////            }
-////            else
-////            {                                       /* It is a file. */
-////                printf("%s/%s\n", path, fno.fname);
-////            }
-////        }
-//        f_closedir(&dir);
-//    }
-//
-//    //return res;
 }
 
 void cd(uint8_t argNum, char *argStrings[])
@@ -271,11 +243,11 @@ void mkdir(uint8_t argNum, char *argStrings[])
 	FRESULT mkdirResult = f_mkdir(directoryToMake);
 	if(mkdirResult)
 	{
-		safe_printf("Made it.\n");
+		safe_printf("Error occurred making directory.\n");
 	}
 	else
 	{
-		safe_printf("Error occurred making directory.\n");
+		safe_printf("Directory created\n");
 		//die(mkdirResult);
 	}
 

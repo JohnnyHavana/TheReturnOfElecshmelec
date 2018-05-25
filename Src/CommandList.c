@@ -264,6 +264,8 @@ void cp(uint8_t argNum, char *argStrings[])
 	}
 
 
+
+
 }
 
 
@@ -275,6 +277,18 @@ void rm(uint8_t argNum, char *argStrings[])
 	{
 		safe_printf("Error. Rm must require one argument\n");
 		return;
+	}
+
+	char* directoryToRemove = argStrings[1];
+
+	FRESULT rmResult = f_unlink(directoryToRemove);
+	if(rmResult)
+	{
+		safe_printf("Unable to remove file (May not exist)\n");
+	}
+	else
+	{
+		safe_printf("File/Folder Removed\n");
 	}
 }
 

@@ -115,7 +115,7 @@ void analog(uint8_t argNum, char *argStrings[])
 {
 	printf("Found analog\n");
 
-	if(argNum < 2 || argNum > 2)
+	if(argNum != 2)
 	{
 		printf("Error. Analog must take one argument\n");
 		return;
@@ -159,30 +159,70 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
 
 
     res = f_opendir(&dir, path);                       /* Open the directory */
-    if (res == FR_OK)
+    if (res != FR_OK)
     {
-        for (;;)
-        {
-            res = f_readdir(&dir, &fno);                   /* Read a directory item */
-            if (res != FR_OK || fno.fname[0] == 0) break;  /* Break on error or end of dir */
-            if (fno.fattrib & AM_DIR)
-            {                    /* It is a directory */
-                i = strlen(path);
-                sprintf(&path[i], "/%s", fno.fname);
-                //res = scan_files(path);                    /* Enter the directory */
-                scan_files(path);
-                if (res != FR_OK) break;
-                path[i] = 0;
-            }
-            else
-            {                                       /* It is a file. */
-                printf("%s/%s\n", path, fno.fname);
-            }
-        }
-        f_closedir(&dir);
+    	safe_printf("ERROR: Directory could not be opened.\n");
+    	return;
     }
 
-    //return res;
+    res = f_readdir(&dir, &fno);
+	if(res != FR_OK)
+	{
+		safe_printf("ERROR: Could not read directory");
+		f_closedir(&dir);
+		return;
+	}
+	safe_printf("=================Current Directory=================\n");
+	while(res == FR_OK)
+	{
+		if(fno.fname[0] == 0) //null
+		{
+			break;
+		}
+
+		safe_printf("%s",fno.fname);
+		if(fno.fattrib == AM_DIR) //if folder
+		{
+			safe_printf("\t (Folder)\n");
+		}
+		else
+		{
+			safe_printf("\n");
+		}
+
+		res = f_readdir(&dir, &fno);
+	}
+	safe_printf("=================End of Directory=================\n");
+	res = f_closedir(&dir);
+
+//
+//
+//    else
+//    {
+//
+//
+////        for (;;)
+////        {
+////            res = f_readdir(&dir, &fno);                   /* Read a directory item */
+////            if (res != FR_OK || fno.fname[0] == 0) break;  /* Break on error or end of dir */
+////            if (fno.fattrib & AM_DIR)
+////            {                    /* It is a directory */
+////                i = strlen(path);
+////                sprintf(&path[i], "/%s", fno.fname);
+////                //res = scan_files(path);                    /* Enter the directory */
+////                scan_files(path);
+////                if (res != FR_OK) break;
+////                path[i] = 0;
+////            }
+////            else
+////            {                                       /* It is a file. */
+////                printf("%s/%s\n", path, fno.fname);
+////            }
+////        }
+//        f_closedir(&dir);
+//    }
+//
+//    //return res;
 }
 
 void cd(uint8_t argNum, char *argStrings[])
@@ -191,16 +231,16 @@ void cd(uint8_t argNum, char *argStrings[])
 
 	if(argNum > 2)
 	{
-		printf("Error. Cd must require at most one argument\n");
+		safe_printf("Error. Cd must require at most one argument\n");
 		return;
 	}
 	else if(argNum  == 2)
 	{
-		printf("Hey. Missing implementation. Add later\n");
+		safe_printf("Hey. Missing implementation. Add later\n");
 		//FRESULT cdResult = f_opendir(&SDFatFs,argStrings[1]);
 		if(1)
 		{
-			printf("Error. Directory does not exist\n");
+			safe_printf("Error. Directory does not exist\n");
 		}
 		else
 		{
@@ -212,17 +252,17 @@ void cd(uint8_t argNum, char *argStrings[])
 	else
 	{
 		//todo go to root
-		printf("Hey/ Missing Implementation. Add later\n");
+		safe_printf("Hey/ Missing Implementation. Add later\n");
 	}
 }
 
 void mkdir(uint8_t argNum, char *argStrings[])
 {
-	printf("Found mkdir\n");
+	safe_printf("Found mkdir\n");
 
-	if(argNum > 2 || argNum == 1)
+	if(argNum != 2)
 	{
-		printf("Error. Mkdir must require one argument\n");
+		safe_printf("Error. Mkdir must require one argument\n");
 		return;
 	}
 
@@ -231,11 +271,11 @@ void mkdir(uint8_t argNum, char *argStrings[])
 	FRESULT mkdirResult = f_mkdir(directoryToMake);
 	if(mkdirResult)
 	{
-		printf("Made it.\n");
+		safe_printf("Made it.\n");
 	}
 	else
 	{
-		printf("Error occurred making directory.\n");
+		safe_printf("Error occurred making directory.\n");
 		//die(mkdirResult);
 	}
 
@@ -243,11 +283,11 @@ void mkdir(uint8_t argNum, char *argStrings[])
 
 void cp(uint8_t argNum, char *argStrings[])
 {
-	printf("Found cp\n");
+	safe_printf("Found cp\n");
 
-	if(argNum < 3 || argNum > 3)
+	if(argNum != 3)
 	{
-		printf("Error. Cp must require two arguments\n");
+		safe_printf("Error. Cp must require two arguments\n");
 		return;
 	}
 
@@ -257,11 +297,11 @@ void cp(uint8_t argNum, char *argStrings[])
 
 void rm(uint8_t argNum, char *argStrings[])
 {
-	printf("Found rm\n");
+	safe_printf("Found rm\n");
 
 	if(argNum < 2 || argNum > 2)
 	{
-		printf("Error. Rm must require one argument\n");
+		safe_printf("Error. Rm must require one argument\n");
 		return;
 	}
 }
@@ -288,7 +328,7 @@ uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, ch
 					foundDecimalPoint = 1;
 				else
 				{
-					printf("Error. Not a valid input\n");
+					safe_printf("Error. Not a valid input\n");
 					return 0;
 				}
 			}
@@ -297,13 +337,13 @@ uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, ch
 			{
 				//if the number is not within 0-9 (non numeric)
 
-				printf("Error. Not a valid input\n");
+				safe_printf("Error. Not a valid input\n");
 				return 0;
 			}
 
 			else if(processingIntegerFlag == 1 && foundDecimalPoint == 1 && (argStrings[i][j] >= 48 && argStrings[i][j] <= 57)) //if a decimal point is found and numerals trail it, it must be a decimal
 			{
-				printf("Error. Not a valid Input\n");
+				safe_printf("Error. Not a valid Input\n");
 				return 0;
 			}
 

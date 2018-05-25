@@ -9,7 +9,7 @@
 
 #ifndef MEBUTTONS
 #define MEBUTTONS
-static Button buttons[10]= {
+Button buttons[10]= {
 /*    STARTX  STARTY  WIDTH   HEIGHT    LABEL       ID     VALIDITY*/
 		{15,	45,		30,		30,		"START",	1,		1},
 		{15,	90,		30,		30,		"STOP",		2,		1},
@@ -65,13 +65,13 @@ void buttonToString(Button button)
 {
 	if(debugOn == 1)
 	{
-		printf("Debug: \n");
-		printf("Button startX: %d\n", button.startX);
-		printf("Button startY: %d\n", button.startY);
-		printf("Button width: %d\n", button.width);
-		printf("Button height: %d\n", button.height);
-		printf("Button text: %s\n", button.text);
-		printf("Button id: %d\n", button.id);
+		safe_printf("Debug: \n");
+		safe_printf("Button startX: %d\n", button.startX);
+		safe_printf("Button startY: %d\n", button.startY);
+		safe_printf("Button width: %d\n", button.width);
+		safe_printf("Button height: %d\n", button.height);
+		safe_printf("Button text: %s\n", button.text);
+		safe_printf("Button id: %d\n", button.id);
 	}
 
 }

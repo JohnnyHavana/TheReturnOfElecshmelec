@@ -15,11 +15,11 @@ void debugMode(uint8_t argNum, char* argStrings[])
 {
 	if(argNum < 2)
 	{
-		printf("%sDEBUG%s: \t Debug status: %d\n", C_DEBUG,C_NORMAL, debugOn);
+		safe_printf("%sDEBUG%s: \t Debug status: %d\n", C_DEBUG,C_NORMAL, debugOn);
 	}
 	else if(argNum > 2)
 	{
-		printf("%sERROR%s: \t Error. Debug command must take zero or one argument. Seek help.\n", C_ERROR,C_NORMAL);
+		safe_printf("%sERROR%s: \t Error. Debug command must take zero or one argument. Seek help.\n", C_ERROR,C_NORMAL);
 		return;
 	}
 	else
@@ -29,24 +29,28 @@ void debugMode(uint8_t argNum, char* argStrings[])
 		if(strcmp(secondKeyword, ON) == 0)
 		{
 			if(debugOn == 1)
-				printf("%sSYSTEM%s: \t Debug is already on.\n", C_SYSTEM,C_NORMAL);
+			{
+				safe_printf("%sSYSTEM%s: \t Debug is already on.\n", C_SYSTEM,C_NORMAL);
+			}
 			else
 			{
+				safe_printf("%sSYSTEM%s: \t Debug message will be displayed\n", C_SYSTEM,C_NORMAL);
 				debugOn = 1;
-				printf("%sSYSTEM%s: \t Debug message will be displayed\n", C_SYSTEM,C_NORMAL);
 			}
 		}
 		else if(strcmp(secondKeyword, OFF) == 0)
 		{
 			if(debugOn == 0)
-				printf("%sSYSTEM%s: \t Debug is already off.\n", C_SYSTEM,C_NORMAL);
+			{
+				safe_printf("%sSYSTEM%s: \t Debug is already off.\n", C_SYSTEM,C_NORMAL);
+			}
 			else
 			{
 				debugOn = 0;
-				printf("%sSYSTEM%s: \t Debug message will not be displayed\n", C_SYSTEM,C_NORMAL);
+				safe_printf("%sSYSTEM%s: \t Debug message will not be displayed\n", C_SYSTEM,C_NORMAL);
 			}
 		}
 		else
-			printf("%sERROR%s: \t Error. Not a valid input for debug keyword. Seek help.\n", C_ERROR,C_NORMAL);
+			safe_printf("%sERROR%s: \t Error. Not a valid input for debug keyword. Seek help.\n", C_ERROR,C_NORMAL);
 	}
 }

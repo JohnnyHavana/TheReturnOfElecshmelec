@@ -19,7 +19,7 @@ void buildInputString2(uint8_t c)
 	stringIndex++;
 	if(stringIndex == 100)
 	{
-		printf("%sSYSTEM%s - Cannot create an input of anything longer than 100. Continuing...\n", C_SYSTEM,C_NORMAL);
+		safe_printf("%sSYSTEM%s - Cannot create an input of anything longer than 100. Continuing...\n", C_SYSTEM,C_NORMAL);
 		parseInputString();
 	}
 }
@@ -46,13 +46,13 @@ void releaseAndFreeBuiltStrings()
 void printArrayOfWords()
 {
 	if (wordCount != 0) {
-		printf("%sDEBUG%s: \t count = %d\n", C_DEBUG,C_NORMAL,wordCount);
+		safe_printf("%sDEBUG%s: \t count = %d\n", C_DEBUG,C_NORMAL,wordCount);
 		for (int j=0;j<wordCount;j++) {
-		  printf("%sDEBUG%s: \t Word(%d): '%s'\n", C_DEBUG, C_NORMAL, j+1, (array_of_words)[j]);
+		  safe_printf("%sDEBUG%s: \t Word(%d): '%s'\n", C_DEBUG, C_NORMAL, j+1, (array_of_words)[j]);
 		}
 	  }
 	else
-		printf("%sDEBUG%s: \t No words found\n", C_DEBUG,C_NORMAL);
+		safe_printf("%sDEBUG%s: \t No words found\n", C_DEBUG,C_NORMAL);
 }
 
 /*

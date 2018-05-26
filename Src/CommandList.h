@@ -13,6 +13,11 @@ void helpDesk(uint8_t argNum, char *argStrings[]);
 void analog(uint8_t argNum, char *argStrings[]);
 void ls(uint8_t argNum, char *argStrings[]);
 void cd(uint8_t argNum, char *argStrings[]);
+void moveForwardDirectory(char* argStrings[], char* previousDirectory);
+void moveBackwardDirectory(char* previousDirectory);
+
+
+
 void mkdir(uint8_t argNum, char *argStrings[]);
 void cp(uint8_t argNum, char *argStrings[]);
 void rm(uint8_t argNum, char *argStrings[]);

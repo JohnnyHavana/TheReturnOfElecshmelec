@@ -210,50 +210,16 @@ void cd(uint8_t argNum, char *argStrings[])
 	}
 	else if(argNum  == 2)
 	{
-		char* directoryToMoveTo = argStrings[1];
-
-		FILINFO fno;
-		strcat(currentFilePath,"/");
-		strcat(currentFilePath,directoryToMoveTo);
-		FRESULT directoryResult = f_stat(currentFilePath ,&fno);
-
-
-		FRESULT changingDirectory;
-
-		switch(directoryResult)
+		if(strcmp(argStrings[1],"..") == 0)
 		{
-			case FR_OK:
+			safe_printf("Moving backward directory..\n");
+			moveBackwardDirectory(previousDirectory);
 
-				changingDirectory = f_chdir(currentFilePath);
-
-				if(changingDirectory != FR_OK)
-				{
-					safe_printf("Something went wrong when changing directory.\n");
-					strcpy(currentFilePath, previousDirectory);
-
-					//currentFilePath = previousDirectory;
-				}
-				else
-				{
-					safe_printf("Changed directory to %s\n",currentFilePath);
-				}
-				break;
-
-			case FR_NO_FILE:
-			{
-				safe_printf("Error. Directory does not exist\n");
-				strcpy(currentFilePath, previousDirectory);
-
-				break;
-
-			}
-			default:
-			{
-				safe_printf("Error. Something went wrong.\n");
-				strcpy(currentFilePath, previousDirectory);
-
-			}
-
+		}
+		else
+		{
+			safe_printf("Moving forward directory..\n");
+			moveForwardDirectory(argStrings,previousDirectory);
 		}
 	}
 	else
@@ -272,6 +238,99 @@ void cd(uint8_t argNum, char *argStrings[])
 		{
 			safe_printf("Moved to Root\n");
 		}
+	}
+}
+
+void moveForwardDirectory(char* argStrings[], char* previousDirectory)
+{
+
+	char* directoryToMoveTo = argStrings[1];
+
+	FILINFO fno;
+	strcat(currentFilePath,"/");
+	strcat(currentFilePath,directoryToMoveTo);
+	FRESULT directoryResult = f_stat(currentFilePath ,&fno);
+
+
+	FRESULT changingDirectory;
+
+	switch(directoryResult)
+	{
+		case FR_OK:
+
+			changingDirectory = f_chdir(currentFilePath);
+
+			if(changingDirectory != FR_OK)
+			{
+				safe_printf("Something went wrong when changing directory.\n");
+				strcpy(currentFilePath, previousDirectory);
+
+				//currentFilePath = previousDirectory;
+			}
+			else
+			{
+				safe_printf("Changed directory to %s\n",currentFilePath);
+			}
+			break;
+
+		case FR_NO_FILE:
+		{
+			safe_printf("Error. Directory does not exist\n");
+			strcpy(currentFilePath, previousDirectory);
+
+			break;
+
+		}
+		default:
+		{
+			safe_printf("Error. Something went wrong.\n");
+			strcpy(currentFilePath, previousDirectory);
+
+		}
+
+	}
+}
+
+void moveBackwardDirectory(char *previousDirectory)
+{
+	if(strlen(currentFilePath) <= 1)
+	{
+		safe_printf("Cant go back from nothing dummy.\n");
+		//dont do anything
+		return;
+	}
+	else
+	{
+		strcpy(previousDirectory, currentFilePath);
+
+		for(int i = strlen(currentFilePath); i>1 ;i--)
+		{
+			currentFilePath[i] = 0;
+
+			if(currentFilePath[i-1] == '/')
+			{
+				currentFilePath[i-1] = 0;
+				break;
+			}
+			else
+				currentFilePath[i-1] = 0;
+
+		}
+
+		safe_printf("New filepath =>%s\n",currentFilePath);
+
+		FRESULT changingDirectory = f_chdir(currentFilePath);
+		if(changingDirectory != FR_OK)
+		{
+			safe_printf("Error. Could not transfer back a folder\n");
+			strcpy(currentFilePath, previousDirectory);
+		}
+		else
+		{
+			safe_printf("Moved back a folder\n");
+		}
+
+
 	}
 }
 

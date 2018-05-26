@@ -13,6 +13,9 @@
 #define MKDIR "mkdir"
 #define CP "cp"
 #define RM "rm"
+
+#define MKFIL "mkfil"
+
 #include "ff.h"
 #include "ffconf.h"
 void analyseCommands(uint8_t argNum, char *argStrings[])
@@ -61,6 +64,10 @@ void analyseCommands(uint8_t argNum, char *argStrings[])
 	{
 		rm(argNum,argStrings);
 	}
+	else if(strcmp(firstKeyword, MKFIL) == 0)
+	{
+		mkfil(argNum,argStrings);
+	}
 	else
 		printf("Error. Invalid command. Seek help.\n");
 }
@@ -83,6 +90,7 @@ void helpDesk(uint8_t argNum, char* argStrings[])
 		printf("mkdir <dir> : Make directory <dir>\n");
 		printf("cp <source> <destination> : Copies <source> to new file <destination>\n");
 		printf("rm <file> : Deletes file\n");
+		printf("mkfil <name> : Creates a new file\n");
 
 	}
 	else if(argNum == 2)
@@ -104,6 +112,8 @@ void helpDesk(uint8_t argNum, char* argStrings[])
 			printf("cp <source> <destination> : Copies <source> to new file <destination>\n");
 		else if(strcmp(secondKeyword, RM) == 0)
 			printf("rm <file> : Deletes file\n");
+		else if(strcmp(secondKeyword, MKFIL) == 0)
+			printf("mkfil <name> : Creates a new file\n");
 		else
 			printf("Error. Unrecognised command. Seek help.\n");
 	}
@@ -401,12 +411,6 @@ void cp(uint8_t argNum, char *argStrings[])
 	{
 		safe_printf("Hey. Invalid Copying. Cannot copy a folder to a file????\n");
 	}
-
-
-
-
-
-
 }
 
 
@@ -431,6 +435,51 @@ void rm(uint8_t argNum, char *argStrings[])
 	{
 		safe_printf("Deleted: %s\n",directoryToRemove);
 	}
+}
+
+
+void mkfil(int argNum, char* argStrings[])
+{
+	if(argNum != 2)
+	{
+		safe_printf("Error. Invalid number of arguments.\n")
+		return;
+	}
+
+	char* newFileName = argStrings[1];
+	char* foundDot = strstr(newFileName,".");
+	if(!foundDot)
+	{
+		safe_printf("Error. Seems you're trying to make a folder dummy\n");
+		return;
+	}
+
+
+
+	char pathAndFileName[256];
+	for(int i = 0; i < 256;i++)
+	{
+		pathAndFileName[i] = 0;
+	}
+
+	strcat(pathAndFileName, currentFilePath);
+	strcat(pathAndFileName, "/");
+	strcat(pathAndFileName, newFileName);
+
+	FRESULT res;
+	FIL newFile;
+
+	// Open file There.txt
+		if((res = f_open(&newFile, pathAndFileName, FA_CREATE_ALWAYS | FA_WRITE)) != FR_OK)
+		{
+			safe_printf("ERROR: Opening '%s'\n", pathAndFileName);
+			return;
+		}
+		safe_printf("Task 1: Opened file '%s'\n", pathAndFileName);
+
+		// Close file
+		f_close(&newFile);
+
 }
 
 

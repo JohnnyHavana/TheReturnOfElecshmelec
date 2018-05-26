@@ -23,6 +23,8 @@ void cp(uint8_t argNum, char *argStrings[]);
 void rm(uint8_t argNum, char *argStrings[]);
 void scan_files (char* path);
 
+void mkfil(int argNum, char* argStrings[]);
+
 
 uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, char* argStrings[]);
 uint8_t checkArgumentLength(uint8_t flag, uint8_t expectedWordCount, uint8_t argNum);

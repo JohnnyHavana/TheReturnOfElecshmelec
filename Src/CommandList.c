@@ -15,6 +15,8 @@
 #define RM "rm"
 
 #define MKFIL "mkfil"
+#define READ "read"
+#define WRITE "write"
 
 #include "ff.h"
 #include "ffconf.h"
@@ -68,6 +70,14 @@ void analyseCommands(uint8_t argNum, char *argStrings[])
 	{
 		mkfil(argNum,argStrings);
 	}
+	else if(strcmp(firstKeyword, READ) == 0)
+	{
+		read(argNum,argStrings);
+	}
+	else if(strcmp(firstKeyword, WRITE) == 0)
+	{
+		write(argNum, argStrings);
+	}
 	else
 		printf("Error. Invalid command. Seek help.\n");
 }
@@ -91,6 +101,8 @@ void helpDesk(uint8_t argNum, char* argStrings[])
 		printf("cp <source> <destination> : Copies <source> to new file <destination>\n");
 		printf("rm <file> : Deletes file\n");
 		printf("mkfil <name> : Creates a new file\n");
+		printf("read <file> : Reads the contents of a file\n");
+		printf("write <file> <String> : Writes a string to the file\n");
 
 	}
 	else if(argNum == 2)
@@ -114,6 +126,10 @@ void helpDesk(uint8_t argNum, char* argStrings[])
 			printf("rm <file> : Deletes file\n");
 		else if(strcmp(secondKeyword, MKFIL) == 0)
 			printf("mkfil <name> : Creates a new file\n");
+		else if(strcmp(secondKeyword, READ) == 0)
+			printf("read <file> : Reads the contents of a file\n");
+		else if(strcmp(secondKeyword, WRITE) == 0)
+			printf("write <file> <String> : Writes a string to the file\n");
 		else
 			printf("Error. Unrecognised command. Seek help.\n");
 	}
@@ -386,45 +402,7 @@ void cp(uint8_t argNum, char *argStrings[])
 	char* foundDotInDestination = strstr(destination,".");
 	if(foundDotInSource && foundDotInDestination)
 	{
-		//FILE->FILE
-		//Make sure that they source exists
-		char filePathPlusSource[256];
-		for(int i = 0; i < 256;i++)
-		{
-			filePathPlusSource[i] = 0;
-		}
-		strcat(filePathPlusSource, currentFilePath);
-		strcat(filePathPlusSource, source);
-
-		int sourceExistenceCheck = checkFileFolderExists(filePathPlusSource);
-		printf("filepathplussource =>%s\n",filePathPlusSource);
-		if(sourceExistenceCheck != 1)
-		{
-			safe_printf("Error. Source File does not exist");
-			return;
-		}
-
-		//Make sure that destination doesnt exist
-		char filePathPlusDestination[256];
-		for(int i = 0; i < 256;i++)
-		{
-			filePathPlusDestination[i] = 0;
-		}
-		strcat(filePathPlusDestination, currentFilePath);
-		strcat(filePathPlusDestination, destination);
-
-		int destinationExistenceCheck = checkFileFolderExists(filePathPlusDestination);
-		if(destinationExistenceCheck == 0)
-		{
-			safe_printf("Error. File %s already exists. Remove before copying.\n", destination);
-			return;
-		}
-		else
-		{
-			//Making a copy of a file
-			copyObjectToObject(filePathPlusSource, filePathPlusDestination);
-			return;
-		}
+		fileToFile(source, destination);
 	}
 	else if(foundDotInSource && !foundDotInDestination)
 	{
@@ -472,6 +450,49 @@ int checkFileFolderExists(char* directoryOfInterest)
 	}
 }
 
+void fileToFile(char* source, char* destination)
+{
+	//FILE->FILE
+	//Make sure that they source exists
+	char filePathPlusSource[256];
+	for(int i = 0; i < 256;i++)
+	{
+		filePathPlusSource[i] = 0;
+	}
+	strcat(filePathPlusSource, currentFilePath);
+	strcat(filePathPlusSource, source);
+
+	int sourceExistenceCheck = checkFileFolderExists(filePathPlusSource);
+	printf("filepathplussource =>%s\n",filePathPlusSource);
+	if(sourceExistenceCheck != 1)
+	{
+		safe_printf("Error. Source File does not exist");
+		return;
+	}
+
+	//Make sure that destination doesnt exist
+	char filePathPlusDestination[256];
+	for(int i = 0; i < 256;i++)
+	{
+		filePathPlusDestination[i] = 0;
+	}
+	strcat(filePathPlusDestination, currentFilePath);
+	strcat(filePathPlusDestination, destination);
+
+	int destinationExistenceCheck = checkFileFolderExists(filePathPlusDestination);
+	if(destinationExistenceCheck == 0)
+	{
+		safe_printf("Error. File %s already exists. Remove before copying.\n", destination);
+		return;
+	}
+	else
+	{
+		//Making a copy of a file
+		copyObjectToObject(filePathPlusSource, filePathPlusDestination);
+		return;
+	}
+
+}
 
 void copyObjectToObject(char* source, char* destination)
 {
@@ -555,8 +576,6 @@ void mkfil(int argNum, char* argStrings[])
 		return;
 	}
 
-
-
 	char pathAndFileName[256];
 	for(int i = 0; i < 256;i++)
 	{
@@ -584,6 +603,114 @@ void mkfil(int argNum, char* argStrings[])
 }
 
 
+void read(int argNum, char* argStrings[])
+{
+	if(argNum != 2)
+	{
+		safe_printf("Error. Read must require a second argument\n");
+		return;
+	}
+
+	FIL file;
+	#define BUFF_SIZE 256
+	uint8_t rtext[BUFF_SIZE];
+	FRESULT res;
+	uint32_t bytesread;
+
+
+	char* fileToRead = argStrings[1];
+
+	char pathPlusFile[256];
+	for(int i = 0; i < 256; i++)
+	{
+		pathPlusFile[i] = 0;
+	}
+
+	strcat(pathPlusFile, currentFilePath);
+	strcat(pathPlusFile, fileToRead);
+	////todo add global and local check rather than global.
+	int fileExistenceCheck = checkFileFolderExists(fileToRead);
+	if(fileExistenceCheck != 1)
+	{
+		safe_printf("Error. The File does not exist\n");
+		return;
+	}
+
+
+
+	// Open file Hello.txt
+	if((res = f_open(&file, fileToRead, FA_READ)) != FR_OK)
+	{
+		safe_printf("ERROR: Opening '%s'\n", fileToRead);
+		return;
+	}
+	safe_printf("Task 1: Opened file '%s'\n", fileToRead);
+
+	// Read data from file
+	if ((res = f_read(&file, rtext, BUFF_SIZE-1, &bytesread)) != FR_OK)
+	{
+		safe_printf("ERROR: Reading '%s'\n", fileToRead);
+		f_close(&file);
+		return;
+	}
+	rtext[bytesread] = '\0';
+	safe_printf("Task 1: Read: '%s'\n", rtext);
+
+	// Close file
+	f_close(&file);
+}
+
+void write(int argNum, char* argStrings[])
+{
+	if(argNum != 3)
+	{
+		safe_printf("Error. Write must contain 2 additional arguments\n");
+		return;
+	}
+
+	char* fileToWriteTo = argStrings[1];
+
+	char pathPlusFile[256];
+	for(int i = 0; i < 256; i++)
+	{
+		pathPlusFile[i] = 0;
+	}
+
+	strcat(pathPlusFile, currentFilePath);
+	strcat(pathPlusFile, fileToWriteTo);
+	////todo add global and local check rather than global.
+	int fileExistenceCheck = checkFileFolderExists(fileToWriteTo);
+	if(fileExistenceCheck != 1)
+	{
+		safe_printf("Error. The File does not exist\n");
+		return;
+	}
+
+	char* stringToWrite = argStrings[2];
+	FIL file;
+	FRESULT res;
+	UINT byteswritten;
+
+	// Open file There.txt
+	if((res = f_open(&file, fileToWriteTo, FA_CREATE_ALWAYS | FA_WRITE)) != FR_OK)
+	{
+		safe_printf("ERROR: Opening '%s'\n", fileToWriteTo);
+		return;
+	}
+	safe_printf("Task 1: Opened file '%s'\n", fileToWriteTo);
+
+	// Write to file
+	if ((res = f_write(&file, stringToWrite, 6, &byteswritten)) != FR_OK)
+	{
+		safe_printf("ERROR: Writing '%s'\n", fileToWriteTo);
+		f_close(&file);
+		return;
+	}
+	safe_printf("Task 1: Written: %d bytes\n", byteswritten);
+
+	// Close file
+	f_close(&file);
+}
 
 /*
  * Validity check used by mathematical functions. It will return true or false depending whether the argument is all

@@ -386,9 +386,45 @@ void cp(uint8_t argNum, char *argStrings[])
 	char* foundDotInDestination = strstr(destination,".");
 	if(foundDotInSource && foundDotInDestination)
 	{
-		//Making a copy of a file
+		//FILE->FILE
 		//Make sure that they source exists
+		char filePathPlusSource[256];
+		for(int i = 0; i < 256;i++)
+		{
+			filePathPlusSource[i] = 0;
+		}
+		strcat(filePathPlusSource, currentFilePath);
+		strcat(filePathPlusSource, source);
+
+		int sourceExistenceCheck = checkFileFolderExists(filePathPlusSource);
+		printf("filepathplussource =>%s\n",filePathPlusSource);
+		if(sourceExistenceCheck != 1)
+		{
+			safe_printf("Error. Source File does not exist");
+			return;
+		}
+
 		//Make sure that destination doesnt exist
+		char filePathPlusDestination[256];
+		for(int i = 0; i < 256;i++)
+		{
+			filePathPlusDestination[i] = 0;
+		}
+		strcat(filePathPlusDestination, currentFilePath);
+		strcat(filePathPlusDestination, destination);
+
+		int destinationExistenceCheck = checkFileFolderExists(filePathPlusDestination);
+		if(destinationExistenceCheck == 0)
+		{
+			safe_printf("Error. File %s already exists. Remove before copying.\n", destination);
+			return;
+		}
+		else
+		{
+			//Making a copy of a file
+			copyObjectToObject(filePathPlusSource, filePathPlusDestination);
+			return;
+		}
 	}
 	else if(foundDotInSource && !foundDotInDestination)
 	{
@@ -411,6 +447,71 @@ void cp(uint8_t argNum, char *argStrings[])
 	{
 		safe_printf("Hey. Invalid Copying. Cannot copy a folder to a file????\n");
 	}
+}
+
+
+int checkFileFolderExists(char* directoryOfInterest)
+{
+
+	FILINFO fno;
+	FRESULT directoryResult = f_stat(directoryOfInterest ,&fno);
+	switch(directoryResult)
+	{
+		case FR_OK:
+		{
+			return 1;
+		}
+		case FR_NO_FILE:
+		{
+			return 2;
+		}
+		default:
+		{
+			return 0;
+		}
+	}
+}
+
+
+void copyObjectToObject(char* source, char* destination)
+{
+	//Modified from
+	//http://elm-chan.org/fsw/ff/doc/open.html
+
+
+	FIL fsrc, fdst;      /* File objects */
+	BYTE buffer[4096];   /* File copy buffer */
+	FRESULT fr;
+	UINT br, bw;         /* File read/write count */
+
+	/* Open source file on the drive 1 */
+	fr = f_open(&fsrc, source, FA_READ);
+	if (fr)
+	{
+		safe_printf("Unable to open source object\n");
+		return;
+	}
+
+	/* Create destination file on the drive 0 */
+	fr = f_open(&fdst, destination, FA_WRITE | FA_CREATE_ALWAYS);
+	if (fr)
+	{
+		safe_printf("Unable to open destination object\n");
+		return;
+	}
+
+	/* Copy source to destination */
+	for (;;) {
+		fr = f_read(&fsrc, buffer, sizeof buffer, &br);  /* Read a chunk of source file */
+		if (fr || br == 0) break; /* error or eof */
+		fr = f_write(&fdst, buffer, br, &bw);            /* Write it to the destination file */
+		if (fr || bw < br) break; /* error or disk full */
+	}
+
+	/* Close open files */
+	f_close(&fsrc);
+	f_close(&fdst);
+
 }
 
 

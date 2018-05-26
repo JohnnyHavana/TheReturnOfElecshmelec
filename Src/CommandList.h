@@ -25,6 +25,10 @@ void scan_files (char* path);
 
 void mkfil(int argNum, char* argStrings[]);
 
+int checkFileFolderExists(char* directoryOfInterest);
+void copyObjectToObject(char* source, char* destination);
+
+
 
 uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, char* argStrings[]);
 uint8_t checkArgumentLength(uint8_t flag, uint8_t expectedWordCount, uint8_t argNum);

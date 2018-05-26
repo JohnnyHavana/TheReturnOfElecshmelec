@@ -662,9 +662,9 @@ void read(int argNum, char* argStrings[])
 
 void write(int argNum, char* argStrings[])
 {
-	if(argNum != 3)
+	if(argNum < 3)
 	{
-		safe_printf("Error. Write must contain 2 additional arguments\n");
+		safe_printf("Error. Write must contain at least 2 additional arguments\n");
 		return;
 	}
 
@@ -686,7 +686,32 @@ void write(int argNum, char* argStrings[])
 		return;
 	}
 
-	char* stringToWrite = argStrings[2];
+	int writeStringLength = 0;
+	char stringToWrite[256];
+	//blank out the string. otherwise corrupted shit at the beginning
+	for(int i = 0; i < 256;i++)
+	{
+		stringToWrite[i] = 0;
+	}
+
+	//start concatenating arguments
+	for(int i = 2; i < argNum;i++)
+	{
+		safe_printf("testing word %d\n",i);
+		if(writeStringLength + (int)strlen(argStrings[i]) < 256)
+		{
+			strcat(stringToWrite, argStrings[i]);
+			strcat(stringToWrite, " ");
+			safe_printf("concatenated word %s\n",argStrings[i]);
+
+		}
+		else
+			break;
+	}
+	safe_printf("writing %s\n",stringToWrite);
+
+
+
 	FIL file;
 	FRESULT res;
 	UINT byteswritten;
@@ -700,7 +725,7 @@ void write(int argNum, char* argStrings[])
 	safe_printf("Task 1: Opened file '%s'\n", fileToWriteTo);
 
 	// Write to file
-	if ((res = f_write(&file, stringToWrite, 6, &byteswritten)) != FR_OK)
+	if ((res = f_write(&file, stringToWrite, strlen(stringToWrite), &byteswritten)) != FR_OK)
 	{
 		safe_printf("ERROR: Writing '%s'\n", fileToWriteTo);
 		f_close(&file);

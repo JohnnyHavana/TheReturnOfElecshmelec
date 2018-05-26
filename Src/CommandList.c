@@ -636,8 +636,6 @@ void read(int argNum, char* argStrings[])
 		return;
 	}
 
-
-
 	// Open file Hello.txt
 	if((res = f_open(&file, fileToRead, FA_READ)) != FR_OK)
 	{
@@ -698,7 +696,7 @@ void write(int argNum, char* argStrings[])
 	for(int i = 2; i < argNum;i++)
 	{
 		safe_printf("testing word %d\n",i);
-		if(writeStringLength + (int)strlen(argStrings[i]) < 256)
+		if(writeStringLength + (int)strlen(argStrings[i]) < 255)
 		{
 			strcat(stringToWrite, argStrings[i]);
 			strcat(stringToWrite, " ");
@@ -708,6 +706,8 @@ void write(int argNum, char* argStrings[])
 		else
 			break;
 	}
+
+	strcat(stringToWrite, "\n");
 	safe_printf("writing %s\n",stringToWrite);
 
 
@@ -717,7 +717,7 @@ void write(int argNum, char* argStrings[])
 	UINT byteswritten;
 
 	// Open file There.txt
-	if((res = f_open(&file, fileToWriteTo, FA_CREATE_ALWAYS | FA_WRITE)) != FR_OK)
+	if((res = f_open(&file, fileToWriteTo, 	FA_OPEN_APPEND | FA_WRITE)) != FR_OK)
 	{
 		safe_printf("ERROR: Opening '%s'\n", fileToWriteTo);
 		return;

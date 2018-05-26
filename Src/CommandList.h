@@ -25,6 +25,7 @@ void cp(uint8_t argNum, char *argStrings[]);
 	int checkFileFolderExists(char* directoryOfInterest);
 	void copyObjectToObject(char* source, char* destination);
 	void fileToFile(char* source, char* destination);
+	void folderToFolder(char* source, char* destination);
 
 void rm(uint8_t argNum, char *argStrings[]);
 

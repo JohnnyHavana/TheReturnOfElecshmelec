@@ -406,8 +406,9 @@ void cp(uint8_t argNum, char *argStrings[])
 	}
 	else if(foundDotInSource && !foundDotInDestination)
 	{
-		//Should throw an error in the early stages, if enough time at the end, implement mkdir inside here
-
+		//Should throw an error in the early stages,
+		//todo if enough time at the end, implement mkdir inside here
+		safe_printf("Error. Cannot copy a file to a folder.\n");
 
 		//Copying a file to a folder
 		//Make sure the source exists
@@ -417,6 +418,12 @@ void cp(uint8_t argNum, char *argStrings[])
 	else if(!foundDotInSource && !foundDotInDestination)
 	{
 		//Making a copy of a folder
+		//FOLDER->FOLDER
+
+
+		folderToFolder(source, destination);
+
+
 		//Make sure the source exists
 		//Make sure the destionation folder doesnt already exist
 		//if the destination folder doesnt exist, make the folder
@@ -494,11 +501,61 @@ void fileToFile(char* source, char* destination)
 
 }
 
+
+void folderToFolder(char* source, char* destination)
+{
+	//FILE->FILE
+	//Make sure that they source exists
+	char filePathPlusSource[256];
+	for(int i = 0; i < 256;i++)
+	{
+		filePathPlusSource[i] = 0;
+	}
+	strcat(filePathPlusSource, currentFilePath);
+	strcat(filePathPlusSource, source);
+	//strcat(filePathPlusSource,"/");
+
+	int sourceExistenceCheck = checkFileFolderExists(filePathPlusSource);
+	printf("filepathplussource =>%s\n",filePathPlusSource);
+	if(sourceExistenceCheck != 1)
+	{
+		safe_printf("Error. Source folder does not exist");
+		return;
+	}
+
+	//Make sure that destination doesnt exist
+	char filePathPlusDestination[256];
+	for(int i = 0; i < 256;i++)
+	{
+		filePathPlusDestination[i] = 0;
+	}
+	strcat(filePathPlusDestination, currentFilePath);
+	strcat(filePathPlusDestination, destination);
+	//strcat(filePathPlusDestination,"/");
+
+
+	int destinationExistenceCheck = checkFileFolderExists(filePathPlusDestination);
+	if(destinationExistenceCheck == 0)
+	{
+		safe_printf("Error. File %s already exists. Remove before copying.\n", destination);
+		return;
+	}
+	else
+	{
+		//Making a copy of a file
+		copyObjectToObject(filePathPlusSource, filePathPlusDestination);
+		return;
+	}
+
+}
+
+
+
 void copyObjectToObject(char* source, char* destination)
 {
 	//Modified from
 	//http://elm-chan.org/fsw/ff/doc/open.html
-
+	safe_printf("Inside copy obkect to object\n");
 
 	FIL fsrc, fdst;      /* File objects */
 	BYTE buffer[4096];   /* File copy buffer */

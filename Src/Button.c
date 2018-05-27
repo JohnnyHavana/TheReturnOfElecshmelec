@@ -9,18 +9,20 @@
 
 #ifndef MEBUTTONS
 #define MEBUTTONS
+#define WIDTH 50
+#define HEIGHT 50
 Button buttons[10]= {
-/*    STARTX  STARTY  WIDTH   HEIGHT    LABEL       ID     VALIDITY*/
-		{15,	45,		30,		30,		"START",	1,		1},
-		{15,	90,		30,		30,		"STOP",		2,		1},
-		{15,	135,	30,		30,		"DEBUG",	3,		1},
-		{15,	180,	30,		30,		"SAVE",		4,		1},
-		{90,	200,	30,		30,		"LOAD",		5,		1},
-		{180,	170,	30,		30,		"S1",		6,		1},
-		{250,	160,	30,		30,		"S2",		7,		1},
-		{180,	200,	30,		30,		"S3",		8,		1},
-		{250,	190,	30,		30,		"S4",		9,		1},
-		{NULL,	NULL,	NULL,	NULL,	NULL,		0,		0}
+/*    STARTX  STARTY    WIDTH       HEIGHT    LABEL       ID     VALIDITY*/
+		{255,	10,		WIDTH+12,	HEIGHT,		"Start",		2,		1},
+		{255,	70,		WIDTH+12,	HEIGHT,		"Stop",			3,		1},
+		//{270,	130,	WIDTH,		HEIGHT,		"Mystery",		4,		1},
+		{10,	180,	WIDTH,		HEIGHT,		"LD",			4,		1},
+		{70,	180,	WIDTH,		HEIGHT,		"STR",			5,		1},
+		{140,	180,	WIDTH,		HEIGHT,		"SAV1",		6,		1},
+		{200,	180,	WIDTH,		HEIGHT,		"SAV2",		7,		1},
+		{260,	180,	WIDTH,		HEIGHT,		"SAV3",			8,		1},
+		//{270,	190,	WIDTH,		HEIGHT,		"Save 4",		10,		1},
+		{NULL,	NULL,	NULL,		NULL,		NULL,			0,		0}
 };
 #endif
 /**************************Button Methods********************************/
@@ -53,7 +55,7 @@ int buttonHere(int x, int y, Button button)
 void showButton(Button button){
 
 	BSP_LCD_DrawRect(button.startX, button.startY, button.width, button.height);
-	BSP_LCD_SetFont(&Font20);
+	BSP_LCD_SetFont(&Font16);
 	BSP_LCD_DisplayStringAt(button.startX + button.width/2,button.startY + button.height/2 -8,button.text,CENTER_MODE);
 }
 

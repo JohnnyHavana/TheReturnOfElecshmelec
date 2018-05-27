@@ -14,10 +14,10 @@
 // buttons are pressed. See suggested updates for the touch panel task
 // that checks for button presses. Can do more in that task.
 
-#define XOFF 70
-#define YOFF 5
+#define XOFF 10
+#define YOFF 10
 #define XSIZE 240
-#define YSIZE 150
+#define YSIZE 160
 
 void Ass_03_Task_02(void const * argument)
 {

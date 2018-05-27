@@ -24,10 +24,10 @@ void Ass_03_Task_04(void const * argument)
   uint16_t ypos=0;
   uint16_t last_xpos=0;
   uint16_t last_ypos=0;
-#define XOFF 70
-#define YOFF 5
+#define XOFF 10
+#define YOFF 10
 #define XSIZE 240
-#define YSIZE 150
+#define YSIZE 160
 
 
   osSignalWait(1,osWaitForever);

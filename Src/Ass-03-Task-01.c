@@ -50,7 +50,7 @@ void Ass_03_Task_01(void const * argument)
   // Display welcome message
   osMutexWait(myMutex01Handle, osWaitForever);
   BSP_LCD_Clear(LCD_COLOR_WHITE);
-  BSP_LCD_SetFont(&Font12);
+  BSP_LCD_SetFont(&Font8);
   BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
   //BSP_LCD_DisplayStringAt(5, 5, (uint8_t*)"ELEC3730 Assignment 3 (v03 $Rev: 1330 $)",LEFT_MODE);
   //BSP_LCD_DisplayStringAt(5,20, (uint8_t*)"This demonstration code can be used",LEFT_MODE);

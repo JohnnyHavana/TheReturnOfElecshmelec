@@ -67,7 +67,8 @@ Src/fatfs.o: ../Src/fatfs.c \
  c:\users\jordan\documents\systemworkbench\thereturnofelecshmelec-master\thereturnofelecshmelec-master\drivers\bsp\ili9325.h \
  c:\users\jordan\documents\systemworkbench\thereturnofelecshmelec-master\thereturnofelecshmelec-master\drivers\bsp\lcd.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Drivers/BSP/Fonts/fonts.h \
- C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h
+ C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h \
+ ../Src/SystemColours.h
 
 C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/fatfs.h:
 
@@ -206,3 +207,5 @@ c:\users\jordan\documents\systemworkbench\thereturnofelecshmelec-master\theretur
 C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Drivers/BSP/Fonts/fonts.h:
 
 C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h:
+
+../Src/SystemColours.h:

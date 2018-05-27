@@ -31,7 +31,7 @@ void Ass_03_Task_04(void const * argument)
 
 
   osSignalWait(1,osWaitForever);
-  safe_printf("Hello from Task 4 - Analog Input (turn ADC knob or use pulse sensor)\n");
+  system_safe_printf("Hello from Task 4 - Analog Input (turn ADC knob or use pulse sensor)\n");
   // Draw a box to plot in
   osMutexWait(myMutex01Handle, osWaitForever);
   BSP_LCD_DrawRect(XOFF-1,YOFF-1,XSIZE+1,YSIZE+1);
@@ -41,7 +41,7 @@ void Ass_03_Task_04(void const * argument)
   status = HAL_ADC_Start_DMA(&hadc1, (uint32_t *)&ADC_Value, 1000);
   if (status != HAL_OK)
   {
-	  safe_printf("ERROR: Task 4 HAL_ADC_Start_DMA() %d\n", status);
+	  error_safe_printf("Task 4 HAL_ADC_Start_DMA() %d\n", status);
   }
 
   // Start main loop

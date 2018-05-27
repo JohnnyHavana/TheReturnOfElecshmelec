@@ -27,7 +27,7 @@ void Ass_03_Task_02(void const * argument)
 	Coordinate display;
 
 	osSignalWait(1,osWaitForever);
-	safe_printf("Hello from Task 2 - Pulse Rate Application (touch screen input)\n");
+	system_safe_printf("Hello from Task 2 - Pulse Rate Application (touch screen input)\n");
 
 while (1)
 {
@@ -40,7 +40,7 @@ while (1)
 			BSP_LCD_FillCircle(display.x, display.y, 2);
 			osMutexRelease(myMutex01Handle);
 			loop++;
-			safe_printf("Task 2: %d (got  %3d,%3d)\n", loop, display.x, display.y);
+			system_safe_printf("Task 2: %d (got  %3d,%3d)\n", loop, display.x, display.y);
 		}
     }
 }

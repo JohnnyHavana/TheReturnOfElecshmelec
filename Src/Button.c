@@ -65,13 +65,12 @@ void buttonToString(Button button)
 {
 	if(debugOn == 1)
 	{
-		safe_printf("Debug: \n");
+		debug_safe_printf("Button %d\n",button.id);
 		safe_printf("Button startX: %d\n", button.startX);
 		safe_printf("Button startY: %d\n", button.startY);
 		safe_printf("Button width: %d\n", button.width);
 		safe_printf("Button height: %d\n", button.height);
 		safe_printf("Button text: %s\n", button.text);
-		safe_printf("Button id: %d\n", button.id);
 	}
 
 }

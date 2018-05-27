@@ -26,6 +26,8 @@
 #include <string.h>
 #include <math.h>
 
+
+#include "SystemColours.h"
 // OS handles
 extern osThreadId defaultTaskHandle;
 extern osThreadId myTask02Handle;
@@ -61,6 +63,8 @@ extern uint8_t getfp(Coordinate *display);
 // STEPIEN: Safe printf() to ensure that only one task can write to
 //          the console at a time
 
+
+
 #define safe_printf(fmt, ...) \
 	osMutexWait(myMutex02Handle, osWaitForever); \
 	printf(fmt, ##__VA_ARGS__); \
@@ -69,5 +73,39 @@ extern uint8_t getfp(Coordinate *display);
 //
 // ADD YOUR CODE
 //
+
+#define printSystem() \
+	safe_printf("%sSYSTEM%s: ",C_SYSTEM,C_NORMAL);
+
+#define printDebug() \
+	safe_printf("%sDEBUG%s: ",C_DEBUG,C_NORMAL);
+
+#define printInput() \
+	safe_printf("%sINPUT%s: ",C_INPUT,C_NORMAL);
+
+#define printError() \
+	safe_printf("%sERROR%s: ",C_ERROR,C_NORMAL);
+
+
+
+#define system_safe_printf(fmt, ...) \
+		printSystem(); \
+		safe_printf(fmt, ##__VA_ARGS__); \
+
+#define debug_safe_printf(fmt, ...) \
+		printDebug(); \
+		safe_printf(fmt, ##__VA_ARGS__); \
+
+#define input_safe_printf(fmt, ...) \
+		printInput(); \
+		safe_printf(fmt, ##__VA_ARGS__); \
+
+#define error_safe_printf(fmt, ...) \
+		printError(); \
+		safe_printf(fmt, ##__VA_ARGS__); \
+
+
+
+
 
 #endif /* ASS_03_H_ */

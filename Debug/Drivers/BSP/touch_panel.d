@@ -68,7 +68,8 @@ Drivers/BSP/touch_panel.o: ../Drivers/BSP/touch_panel.c \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Middlewares/Third_Party/FatFs/src/diskio.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Middlewares/Third_Party/FatFs/src/ff.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/sd_diskio.h \
- C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h
+ C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h \
+ ../Drivers/BSP/../../src/SystemColours.h
 
 ../Drivers/BSP/touch_panel.h:
 
@@ -213,3 +214,5 @@ C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheRetur
 C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/sd_diskio.h:
 
 C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h:
+
+../Drivers/BSP/../../src/SystemColours.h:

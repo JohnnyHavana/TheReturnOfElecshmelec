@@ -420,8 +420,9 @@ void cp(uint8_t argNum, char *argStrings[])
 		//Making a copy of a folder
 		//FOLDER->FOLDER
 
-
-		folderToFolder(source, destination);
+		safe_printf("Error. Folder to Folder is not yet implemented\n");
+		//todo implement folder to folder later
+		//folderToFolder(source, destination);
 
 
 		//Make sure the source exists

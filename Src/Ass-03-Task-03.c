@@ -3,7 +3,7 @@
 //   $Author: Peter $
 
 #include "Ass-03.h"
-
+#include "Button.h"
 //
 // Task that reads input from the front panel display. It uses a timer
 // to periodically signal the task to check if the touch panel is being
@@ -76,8 +76,31 @@ void Ass_03_Task_03(void const * argument)
 				if (pressed_count == 0)
 				{
 					// Debounced: queue key pressed message
-					pressed_num++;
+					pressed_num++; //iterator
+
+
 					safe_printf("Task 3: %d (sent %3d,%3d)\n", pressed_num, display.x, display.y);
+
+					Button currentButtonPressed;
+
+
+					currentButtonPressed.text = "NOT A BUTTON";
+					currentButtonPressed.id = 999;
+
+					//go through button array and figure out which button was being pressed
+					for(int i = 0; i < 8;i++)
+					{
+					  if(buttonHere(display.x, display.y, buttons[i])!= -1)
+					  {
+						  if(debugOn ==1)printf("Found button..\n");
+						  currentButtonPressed = buttons[i];
+						  break;
+					  }
+					}
+
+					if(debugOn ==1)printf("I am touching '%s'. ID is %d \n" , currentButtonPressed.text, currentButtonPressed.id);
+//					if(debugOn ==1)printf("TOUCH:  Got (%3d,%3d)\n", display.x, display.y);
+
 					osMessagePut (myQueue01Handle, (uint32_t)((display.x << 16) + display.y), 0);
 					pressed_count = -OFF_COUNT;
 				}

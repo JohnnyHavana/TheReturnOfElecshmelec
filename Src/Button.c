@@ -9,19 +9,17 @@
 
 #ifndef MEBUTTONS
 #define MEBUTTONS
-#define WIDTH 50
-#define HEIGHT 50
-Button buttons[10]= {
+	#define WIDTH 50
+	#define HEIGHT 50
+Button buttons[8]= {
 /*    STARTX  STARTY    WIDTH       HEIGHT    LABEL       ID     VALIDITY*/
-		{255,	10,		WIDTH+12,	HEIGHT,		"Start",		2,		1},
-		{255,	70,		WIDTH+12,	HEIGHT,		"Stop",			3,		1},
-		//{270,	130,	WIDTH,		HEIGHT,		"Mystery",		4,		1},
-		{10,	180,	WIDTH,		HEIGHT,		"LD",			4,		1},
-		{70,	180,	WIDTH,		HEIGHT,		"STR",			5,		1},
-		{140,	180,	WIDTH,		HEIGHT,		"SAV1",		6,		1},
-		{200,	180,	WIDTH,		HEIGHT,		"SAV2",		7,		1},
-		{260,	180,	WIDTH,		HEIGHT,		"SAV3",			8,		1},
-		//{270,	190,	WIDTH,		HEIGHT,		"Save 4",		10,		1},
+		{255,	10,		WIDTH+12,	HEIGHT,		"Start",		1,		1},
+		{255,	70,		WIDTH+12,	HEIGHT,		"Stop",			2,		1},
+		{10,	180,	WIDTH,		HEIGHT,		"LD",			3,		1},
+		{70,	180,	WIDTH,		HEIGHT,		"STR",			4,		1},
+		{140,	180,	WIDTH,		HEIGHT,		"SAV1",			5,		1},
+		{200,	180,	WIDTH,		HEIGHT,		"SAV2",			6,		1},
+		{260,	180,	WIDTH,		HEIGHT,		"SAV3",			7,		1},
 		{NULL,	NULL,	NULL,		NULL,		NULL,			0,		0}
 };
 #endif

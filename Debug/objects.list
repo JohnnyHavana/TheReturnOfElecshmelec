@@ -48,6 +48,7 @@
 "Src/Ass-03-Task-04.o"
 "Src/Button.o"
 "Src/Question1.o"
+"Src/Question2.o"
 "Src/adc.o"
 "Src/bsp_driver_sd.o"
 "Src/dma.o"

@@ -68,6 +68,11 @@ osTimerId myTimer01Handle;
 osMutexId myMutex01Handle;
 osMutexId myMutex02Handle;
 osMutexId myMutex03Handle;
+osMutexId PlayMutexHandle;
+osMutexId ChooseFileMutexHandle;
+
+
+
 osSemaphoreId myBinarySem01Handle;
 osSemaphoreId myBinarySem02Handle;
 osSemaphoreId myBinarySem03Handle;
@@ -75,6 +80,7 @@ osSemaphoreId myBinarySem04Handle;
 osSemaphoreId myBinarySem05Handle;
 osSemaphoreId myBinarySem06Handle;
 osSemaphoreId myCountingSem01Handle;
+
 
 /* USER CODE BEGIN Variables */
 
@@ -115,6 +121,15 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of myMutex03 */
   osMutexDef(myMutex03);
   myMutex03Handle = osMutexCreate(osMutex(myMutex03));
+
+  /* definition and creation of myMutex03 */
+  osMutexDef(PlayMutex);
+  PlayMutexHandle = osMutexCreate(osMutex(PlayMutex));
+
+
+  osMutexDef(ChooseSaveMutex);
+  ChooseFileMutexHandle = osMutexCreate(osMutex(ChooseSaveMutex));
+
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */

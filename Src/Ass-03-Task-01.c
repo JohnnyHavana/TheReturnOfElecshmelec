@@ -27,6 +27,8 @@ int wordCount = 0;
 uint8_t buildInputStringFirstTime;
 char **array_of_words;
 uint8_t debugOn = 1;
+uint8_t paused = 0;
+uint8_t record = 0;
 
 
 void buildInputString2(uint8_t c);

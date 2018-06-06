@@ -36,7 +36,6 @@ void Ass_03_Task_04(void const * argument)
   osMutexWait(myMutex01Handle, osWaitForever);
   BSP_LCD_DrawRect(XOFF-1,YOFF-1,XSIZE+1,YSIZE+1);
   osMutexRelease(myMutex01Handle);
-
   // Start the conversion process
   status = HAL_ADC_Start_DMA(&hadc1, (uint32_t *)&ADC_Value, 1000);
   if (status != HAL_OK)
@@ -47,10 +46,13 @@ void Ass_03_Task_04(void const * argument)
   // Start main loop
   while (1)
   {
-
 	  // Wait for first half of buffer
+
 	  osSemaphoreWait(myBinarySem05Handle, osWaitForever);
+	  //wait until the screen is unpaused
+	  osMutexWait(PlayMutexHandle, osWaitForever);
 	  osMutexWait(myMutex01Handle, osWaitForever);
+
 	  for(i=0;i<500;i=i+500)
 	  {
 		  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
@@ -64,6 +66,8 @@ void Ass_03_Task_04(void const * argument)
 		  xpos++;
 	  }
 	  osMutexRelease(myMutex01Handle);
+	  osMutexRelease(PlayMutexHandle);
+
 	  if (last_xpos>=XSIZE-1)
 	  {
 		  xpos=0;
@@ -72,6 +76,9 @@ void Ass_03_Task_04(void const * argument)
 
 	  // Wait for second half of buffer
 	  osSemaphoreWait(myBinarySem06Handle, osWaitForever);
+	  osMutexWait(PlayMutexHandle, osWaitForever);
+
+
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
 	  osMutexWait(myMutex01Handle, osWaitForever);
 	  for(i=0;i<500;i=i+500)
@@ -92,7 +99,9 @@ void Ass_03_Task_04(void const * argument)
 		  xpos=0;
 		  last_xpos=0;
 	  }
+
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
+	  osMutexRelease(PlayMutexHandle);
   }
 }
 
@@ -109,4 +118,43 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	osSemaphoreRelease(myBinarySem06Handle);
 	HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 }
+
+void recordData(uint32_t data){
+
+	static int currentArrayPos =0;
+	static int maxSize = 10000;
+	static int datas[maxSize];
+	if(currentArrayPos == 0){
+		  osMutexWait(ChooseFileMutexHandle, osWaitForever);
+
+	}
+
+	if(currentArrayPos >= maxSize){
+		stopRecording = 1;
+
+	}else{
+		datas[currentArrayPos] = data;
+	}
+
+	if(stopRecording){
+		//save data in one of the data things
+		buttonPressed(1);//stop the shit
+		//then we need to wait until another button is pressed
+
+		osMutexWait(ChooseFileMutexHandle, osWaitForever);
+
+		//todo store data
+		//now we overwrite mem globalVarMeme or something
+
+		record =0;
+		stopRecording = 0;
+
+		return;
+
+	}else{
+		currentArrayPos ++;
+	}
+
+}
+
 

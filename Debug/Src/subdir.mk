@@ -11,6 +11,7 @@ C_SRCS += \
 ../Src/Ass-03-Task-04.c \
 ../Src/Button.c \
 ../Src/Question1.c \
+../Src/Question2.c \
 ../Src/adc.c \
 ../Src/bsp_driver_sd.c \
 ../Src/dma.c \
@@ -36,6 +37,7 @@ OBJS += \
 ./Src/Ass-03-Task-04.o \
 ./Src/Button.o \
 ./Src/Question1.o \
+./Src/Question2.o \
 ./Src/adc.o \
 ./Src/bsp_driver_sd.o \
 ./Src/dma.o \
@@ -61,6 +63,7 @@ C_DEPS += \
 ./Src/Ass-03-Task-04.d \
 ./Src/Button.d \
 ./Src/Question1.d \
+./Src/Question2.d \
 ./Src/adc.d \
 ./Src/bsp_driver_sd.d \
 ./Src/dma.d \

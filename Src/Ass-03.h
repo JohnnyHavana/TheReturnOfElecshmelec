@@ -46,6 +46,9 @@ extern osMessageQId myQueue01Handle;
 extern osMutexId myMutex01Handle; // Protect LCD
 extern osMutexId myMutex02Handle; // Protect console output
 extern osMutexId myMutex03Handle;
+extern osMutexId PlayMutexHandle; // pauses the screen
+extern osMutexId ChooseFileMutexHandle; // pauses the screen
+
 
 // Assignment tasks
 extern void Ass_03_Task_01(void const *argument);
@@ -142,6 +145,11 @@ extern uint8_t getfp(Coordinate *display);
 #define ME_DEBUG
 
 uint8_t debugOn;
+uint8_t paused;
+uint8_t record;
+uint8_t stopRecording;
+uint8_t pulseRate;
+uint8_t globalSaveNumber;
 
 #endif
 

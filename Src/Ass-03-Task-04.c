@@ -47,6 +47,7 @@ void Ass_03_Task_04(void const * argument)
   // Start main loop
   while (1)
   {
+
 	  // Wait for first half of buffer
 	  osSemaphoreWait(myBinarySem05Handle, osWaitForever);
 	  osMutexWait(myMutex01Handle, osWaitForever);

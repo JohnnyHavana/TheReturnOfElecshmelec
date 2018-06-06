@@ -19,15 +19,16 @@
 #include "fatfs.h"
 #include "adc.h"
 #include "ff.h"
+#include "ffconf.h"
 
 #include <stdio.h>
 #include <stdint.h>
 #include <malloc.h>
 #include <string.h>
 #include <math.h>
+#include <stdint.h>
 
 
-#include "SystemColours.h"
 // OS handles
 extern osThreadId defaultTaskHandle;
 extern osThreadId myTask02Handle;
@@ -45,7 +46,6 @@ extern osMessageQId myQueue01Handle;
 extern osMutexId myMutex01Handle; // Protect LCD
 extern osMutexId myMutex02Handle; // Protect console output
 extern osMutexId myMutex03Handle;
-
 
 // Assignment tasks
 extern void Ass_03_Task_01(void const *argument);
@@ -73,6 +73,8 @@ extern uint8_t getfp(Coordinate *display);
 //
 // ADD YOUR CODE
 //
+
+
 
 #define printSystem() \
 	safe_printf("%sSYSTEM%s: ",C_SYSTEM,C_NORMAL);
@@ -109,3 +111,37 @@ extern uint8_t getfp(Coordinate *display);
 
 
 #endif /* ASS_03_H_ */
+
+
+
+#ifndef SYSTEMCOLOURS_H_
+#define SYSTEMCOLOURS_H_
+
+
+#define C_NORMAL "\e[0m"
+#define C_RED "\e[31m"
+#define C_GREEN "\e[32m"
+#define C_YELLOW "\e[33m"
+#define C_BLUE "\e[34m"
+#define C_MAGENTA "\e[35m"
+#define C_CYAN "\e[36m"
+#define C_WHITE "\e[37m"
+
+#define C_SYSTEM C_YELLOW
+#define C_DEBUG C_MAGENTA
+#define C_ERROR C_RED
+#define C_INPUT C_GREEN
+
+
+#endif
+
+
+
+
+#ifndef ME_DEBUG
+#define ME_DEBUG
+
+uint8_t debugOn;
+
+#endif
+

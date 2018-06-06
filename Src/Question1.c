@@ -1,9 +1,9 @@
+#include "Question1.h"
 
-#include "CommandList.h"
-
-
+//char **array_of_words;
 //Here is your bible. Fucking use it.
 //http://www.elm-chan.org/fsw/ff/00index_e.html
+
 
 #define DEBUG "debug"
 #define HELP "help"
@@ -18,8 +18,77 @@
 #define READ "read"
 #define WRITE "write"
 
-#include "ff.h"
-#include "ffconf.h"
+
+
+#define ON "on"
+#define OFF "off"
+
+
+
+void debugMode(uint8_t argNum, char* argStrings[]);
+
+
+
+
+/*
+ * Allows for debug messages to be turned on or off
+ * If no arguments supplied, it will print the current status of debug
+ * If one argument supplied <on | off> it will toggle the current status
+ * If more than one argument, seek help
+ * */
+void debugMode(uint8_t argNum, char* argStrings[])
+{
+	if(argNum < 2)
+	{
+		safe_printf("%sDEBUG%s: \t Debug status: %d\n", C_DEBUG,C_NORMAL, debugOn);
+	}
+
+	else if(argNum ==2)
+	{
+
+		char * secondKeyword =  (argStrings)[1];
+		if(strcmp(secondKeyword, ON) == 0)
+		{
+			if(debugOn == 1)
+			{
+				safe_printf("%sSYSTEM%s: Debug is already on.\n", C_SYSTEM,C_NORMAL);
+			}
+			else
+			{
+				safe_printf("%sSYSTEM%s: \t Debug message will be displayed\n", C_SYSTEM,C_NORMAL);
+				debugOn = 1;
+			}
+		}
+		else if(strcmp(secondKeyword, OFF) == 0)
+		{
+			if(debugOn == 0)
+			{
+				safe_printf("%sSYSTEM%s: Debug is already off.\n", C_SYSTEM,C_NORMAL);
+			}
+			else
+			{
+				debugOn = 0;
+				safe_printf("%sSYSTEM%s: \t Debug message will not be displayed\n", C_SYSTEM,C_NORMAL);
+			}
+		}
+		else
+		{
+			safe_printf("%sERROR%s: \t Error. Not a valid input for debug keyword. Seek help.\n", C_ERROR,C_NORMAL);
+
+
+		}
+	}
+	else
+		{
+			safe_printf("%sERROR%s: \t Error. Debug command must take zero or one argument. Seek help.\n", C_ERROR,C_NORMAL);
+			return;
+		}
+}
+
+
+
+
+
 void analyseCommands(uint8_t argNum, char *argStrings[])
 {
 	if(argNum == 0)
@@ -866,4 +935,7 @@ uint8_t checkArgumentLength(uint8_t flag, uint8_t expectedWordCount, uint8_t arg
 
 	}
 }
+
+
+
 

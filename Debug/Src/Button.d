@@ -1,5 +1,4 @@
-Src/Button.o: ../Src/Button.c ../Src/Button.h ../Src/Debug.h \
- ../Src/SystemColours.h ../Src/Ass-03.h \
+Src/Button.o: ../Src/Button.c ../Src/Button.h ../Src/Ass-03.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/FreeRTOSConfig.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/main.h \
@@ -70,10 +69,6 @@ Src/Button.o: ../Src/Button.c ../Src/Button.h ../Src/Debug.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h
 
 ../Src/Button.h:
-
-../Src/Debug.h:
-
-../Src/SystemColours.h:
 
 ../Src/Ass-03.h:
 

@@ -1,5 +1,4 @@
-Src/Debug.o: ../Src/Debug.c ../Src/Debug.h ../Src/SystemColours.h \
- ../Src/Ass-03.h \
+Src/Question1.o: ../Src/Question1.c ../Src/Question1.h ../Src/Ass-03.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/FreeRTOSConfig.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/main.h \
@@ -69,9 +68,7 @@ Src/Debug.o: ../Src/Debug.c ../Src/Debug.h ../Src/SystemColours.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/sd_diskio.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h
 
-../Src/Debug.h:
-
-../Src/SystemColours.h:
+../Src/Question1.h:
 
 ../Src/Ass-03.h:
 

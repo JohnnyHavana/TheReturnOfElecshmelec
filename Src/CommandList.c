@@ -459,7 +459,7 @@ void cp(uint8_t argNum, char *argStrings[])
 		//Making a copy of a folder
 		//FOLDER->FOLDER
 
-		error_safe_printf("Folder to Folder is not yet implemented\n");
+		error_safe_printf("Cannot copy Folder to Folder\n");
 		//todo implement folder to folder later
 		//folderToFolder(source, destination);
 
@@ -507,16 +507,16 @@ void fileToFile(char* source, char* destination)
 		filePathPlusSource[i] = 0;
 	}
 	strcat(filePathPlusSource, currentFilePath);
+	strcat(filePathPlusSource, "/");
 	strcat(filePathPlusSource, source);
 
 	int sourceExistenceCheck = checkFileFolderExists(filePathPlusSource);
 
-	printf("filepathplussource =>%s\n",filePathPlusSource);
-	//todo fix
+	//printf("filepathplussource =>%s\n",filePathPlusSource);
 
 	if(sourceExistenceCheck != 1)
 	{
-		error_safe_printf("Source File does not exist");
+		error_safe_printf("Source File does not exist\n");
 		return;
 	}
 
@@ -527,6 +527,7 @@ void fileToFile(char* source, char* destination)
 		filePathPlusDestination[i] = 0;
 	}
 	strcat(filePathPlusDestination, currentFilePath);
+	strcat(filePathPlusDestination, "/");
 	strcat(filePathPlusDestination, destination);
 
 	int destinationExistenceCheck = checkFileFolderExists(filePathPlusDestination);
@@ -545,52 +546,6 @@ void fileToFile(char* source, char* destination)
 }
 
 
-void folderToFolder(char* source, char* destination)
-{
-//	//FILE->FILE
-//	//Make sure that they source exists
-//	char filePathPlusSource[256];
-//	for(int i = 0; i < 256;i++)
-//	{
-//		filePathPlusSource[i] = 0;
-//	}
-//	strcat(filePathPlusSource, currentFilePath);
-//	strcat(filePathPlusSource, source);
-//	//strcat(filePathPlusSource,"/");
-//
-//	int sourceExistenceCheck = checkFileFolderExists(filePathPlusSource);
-//	printf("filepathplussource =>%s\n",filePathPlusSource);
-//	if(sourceExistenceCheck != 1)
-//	{
-//		safe_printf("Error. Source folder does not exist");
-//		return;
-//	}
-//
-//	//Make sure that destination doesnt exist
-//	char filePathPlusDestination[256];
-//	for(int i = 0; i < 256;i++)
-//	{
-//		filePathPlusDestination[i] = 0;
-//	}
-//	strcat(filePathPlusDestination, currentFilePath);
-//	strcat(filePathPlusDestination, destination);
-//	//strcat(filePathPlusDestination,"/");
-//
-//
-//	int destinationExistenceCheck = checkFileFolderExists(filePathPlusDestination);
-//	if(destinationExistenceCheck == 0)
-//	{
-//		safe_printf("Error. File %s already exists. Remove before copying.\n", destination);
-//		return;
-//	}
-//	else
-//	{
-//		//Making a copy of a file
-//		copyObjectToObject(filePathPlusSource, filePathPlusDestination);
-//		return;
-//	}
-
-}
 
 
 
@@ -675,7 +630,7 @@ void mkfil(int argNum, char* argStrings[])
 	char* foundDot = strstr(newFileName,".");
 	if(!foundDot)
 	{
-		error_safe_printf("Seems you're trying to make a folder dummy\n");
+		error_safe_printf("Please include file type (You were trying to make a folder)\n");
 		return;
 	}
 
@@ -756,7 +711,7 @@ void read(int argNum, char* argStrings[])
 		return;
 	}
 	rtext[bytesread] = '\0';
-	system_safe_printf("Read: '%s'\n", rtext);
+	system_safe_printf("Read:\n '%s'\n", rtext);
 
 	// Close file
 	f_close(&file);

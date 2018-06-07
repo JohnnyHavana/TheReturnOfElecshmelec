@@ -66,7 +66,8 @@ Src/Ass-03-Task-04.o: ../Src/Ass-03-Task-04.c ../Src/Ass-03.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Middlewares/Third_Party/FatFs/src/diskio.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Middlewares/Third_Party/FatFs/src/ff.h \
  C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/sd_diskio.h \
- C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h
+ C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h \
+ ../Src/Question1.h
 
 ../Src/Ass-03.h:
 
@@ -205,3 +206,5 @@ C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheRetur
 C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/sd_diskio.h:
 
 C:/Users/Jordan/Documents/SystemWorkbench/TheReturnOfElecshmelec-master/TheReturnOfElecshmelec-master/Inc/adc.h:
+
+../Src/Question1.h:

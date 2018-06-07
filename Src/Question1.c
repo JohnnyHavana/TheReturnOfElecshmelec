@@ -699,7 +699,7 @@ void mkfil(int argNum, char* argStrings[])
 	char* foundDot = strstr(newFileName,".");
 	if(!foundDot)
 	{
-		error_safe_printf("Please include file type (You were trying to make a folder)\n");
+		error_safe_printf("Please include file type (You were trying to make a folder) fileName:%s\n", newFileName);
 		return;
 	}
 
@@ -730,6 +730,37 @@ void mkfil(int argNum, char* argStrings[])
 		f_close(&newFile);
 
 }
+
+
+void mkfilForRecording(char* string)
+{
+	char* foundDot = strstr(string,".");
+	if(!foundDot)
+	{
+		error_safe_printf("Please include file type (You were trying to make a folder) fileName:%s\n", string);
+		return;
+	}
+
+
+
+	FRESULT res;
+	FIL newFile;
+
+	// Open file There.txt
+		if((res = f_open(&newFile, string, FA_CREATE_ALWAYS | FA_WRITE)) != FR_OK)
+		{
+			error_safe_printf("Could not open '%s'\n", string);
+			return;
+		}
+		if(debugOn == 1)
+		{
+			system_safe_printf("Created blank file'%s'\n", string);
+		}
+		// Close file
+		f_close(&newFile);
+
+}
+
 
 
 void read(int argNum, char* argStrings[])

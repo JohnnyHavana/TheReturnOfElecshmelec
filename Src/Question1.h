@@ -29,6 +29,7 @@ void cp(uint8_t argNum, char *argStrings[]);
 void rm(uint8_t argNum, char *argStrings[]);
 
 void mkfil(int argNum, char* argStrings[]);
+void mkfilForRecording(char* string);
 void read(int argNum, char* argStrings[]);
 void write(int argNum, char* argStrings[]);
 

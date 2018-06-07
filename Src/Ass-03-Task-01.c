@@ -30,6 +30,7 @@ uint8_t debugOn = 1;
 uint8_t paused = 0;
 uint8_t record = 0;
 uint8_t globalSaveNo = 1;
+char saveChar = '1';
 
 void buildInputString2(uint8_t c);
 void parseInputString();
@@ -67,7 +68,7 @@ void Ass_03_Task_01(void const * argument)
   //BSP_LCD_DisplayStringAt(5, 5, (uint8_t*)"ELEC3730 Assignment 3 (v03 $Rev: 1330 $)",LEFT_MODE);
   //BSP_LCD_DisplayStringAt(5,20, (uint8_t*)"This demonstration code can be used",LEFT_MODE);
   //BSP_LCD_DisplayStringAt(5,35, (uint8_t*)"as a starting point for the assignment.",LEFT_MODE);
-  for(int i = 0; buttons[i].valid !=0;i++)
+  for(int i = 0; i< 7 ;i++)
   {
 	  showButton(buttons[i]);
   }

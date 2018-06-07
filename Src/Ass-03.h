@@ -149,6 +149,7 @@ uint8_t record;
 uint8_t stopRecording;
 uint8_t pulseRate;
 uint8_t globalSaveNo;
+char saveChar;
 
 #endif
 

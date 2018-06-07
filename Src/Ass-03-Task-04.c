@@ -3,6 +3,7 @@
 //   $Author: Peter $
 
 #include "Ass-03.h"
+#include "Question1.h"
 
 // This is the task that reads the analog input. A buffer is divided in two to
 // allow working on one half of the buffer while the other half is being
@@ -66,7 +67,13 @@ void Ass_03_Task_04(void const * argument)
 		  // BSP_LCD_FillRect(xpos,ypos,1,1);
 		  last_xpos=xpos;
 		  last_ypos=ypos;
+
 		  xpos++;
+		  if(record){
+			  recordData(ypos);
+
+
+		  }
 	  }
 	  osMutexRelease(myMutex01Handle);
 	  osMutexRelease(PlayMutexHandle);
@@ -97,6 +104,9 @@ void Ass_03_Task_04(void const * argument)
 		  last_xpos=xpos;
 		  last_ypos=ypos;
 		  xpos++;
+		  if(record){
+			  recordData(ypos);
+		  }
 	  }
 	  osMutexRelease(myMutex01Handle);
 
@@ -127,15 +137,13 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 }
 
-void recordData(uint32_t data){
+
+
+void recordData(int data){
 
 	static int currentArrayPos =0;
-	static int maxSize = 10000;
-	static int datas[10000];
-	if(currentArrayPos == 0){
-		  osMutexWait(ChooseFileMutexHandle, osWaitForever);
-
-	}
+	static uint8_t maxSize = 10000;
+	static uint8_t datas[10000];
 
 	if(currentArrayPos >= maxSize){
 		stopRecording = 1;
@@ -146,17 +154,77 @@ void recordData(uint32_t data){
 
 	if(stopRecording){
 		//save data in one of the data things
-		buttonPressed(1);//stop the shit
+
 		//then we need to wait until another button is pressed
+		safe_printf("%s\n", "here");
+		char filename[8];
 
-		osMutexWait(ChooseFileMutexHandle, osWaitForever);
+		char filePathPlusSource[256];
+		for(int i = 0; i < 256;i++)
+		{
+			filePathPlusSource[i] = 0;
+		}
+		strcat(filePathPlusSource, currentFilePath);
+		strcat(filePathPlusSource, "/");
+		strcat(filePathPlusSource, "sav");
+		char num[1];
+		sprintf(num,"%d", globalSaveNo);
+		strcat(filePathPlusSource, num);
+		strcat(filePathPlusSource, ".txt");
+		strcat(filePathPlusSource,0);
+		input_safe_printf("%s\n",filePathPlusSource);
 
-		//todo store data
-		//now we overwrite mem globalVarMeme or something
+
+		char mkfilArgs[2][256];
+
+		strcpy(mkfilArgs[0], "mkfil");
+
+		strcpy(mkfilArgs[1],filePathPlusSource);
+
+
+		if(checkFileFolderExists(filePathPlusSource) ==1){//if the file exists we remove file then create a new file
+			safe_printf("In 1 %s\n", mkfilArgs[1]);
+			rm(2,mkfilArgs);
+		}
+		if(checkFileFolderExists(filePathPlusSource) ==2){
+			safe_printf("In 2 %s\n", mkfilArgs[1]);
+
+			for(int i = 0 ; i< 2; i++)
+			{
+				safe_printf("==>%s\n", mkfilArgs[i]);
+
+			}
+			mkfilForRecording(filePathPlusSource);//make the file
+		}else{
+
+			//error
+			return;
+
+		}
+
+		char writeInput[3][256];
+
+		strcpy(writeInput[0], "write");
+		strcpy(writeInput[1], filePathPlusSource);
+
+
+
+		for(int i = 0 ; i< currentArrayPos; i++){
+			char numberString[10];
+			sprintf(numberString,"%d", datas[i]);
+			strcpy(writeInput[2], numberString);
+			input_safe_printf("%s\n",writeInput[2])
+			write(3,writeInput);
+		}
+
+
 
 		record =0;
 		stopRecording = 0;
-
+		for(int i = 0 ; i< 10000;i++){
+			datas[i] = 0;
+		}
+		currentArrayPos = 0;
 		return;
 
 	}else{

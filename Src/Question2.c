@@ -10,10 +10,10 @@ void buttonPressed(Button buttonNutton){
 		stopPressed();
 		break;
 	case(3):
-		recordPressed();
+		loadPressed();
 		break;
 	case(4):
-		loadPressed();
+		recordPressed();
 		break;
 	case(5):
 		savePressed(1);
@@ -60,10 +60,17 @@ void stopPressed(){
 void recordPressed(){
 	if(record){
 		stopRecording =1;
+		buttons[3].pressed =0;
 	}else{
 		record = 1;
 		stopRecording = 0;
+		buttons[3].pressed =1;
 	}
+
+	osMutexWait(myMutex01Handle, osWaitForever);
+	showButton(buttons[3]);
+	osMutexRelease(myMutex01Handle);
+
 }
 
 
@@ -74,13 +81,19 @@ void loadPressed(){
 }
 
 void savePressed(uint8_t saveNo){
-	if(stopRecording){
-		//release mutex shit
-		globalSaveNo = saveNo;
+	//release mutex shit
+	globalSaveNo = saveNo;
 
-	}
+	buttons[6].pressed = 0;
+	buttons[5].pressed = 0;
+	buttons[4].pressed = 0;
+	buttons[3+saveNo].pressed =1;
 
-
+	osMutexWait(myMutex01Handle, osWaitForever);
+	showButton(buttons[6]);
+	showButton(buttons[5]);
+	showButton(buttons[4]);
+	osMutexRelease(myMutex01Handle);
 
 }
 

@@ -29,7 +29,7 @@ char **array_of_words;
 uint8_t debugOn = 1;
 uint8_t paused = 0;
 uint8_t record = 0;
-
+uint8_t globalSaveNo = 1;
 
 void buildInputString2(uint8_t c);
 void parseInputString();

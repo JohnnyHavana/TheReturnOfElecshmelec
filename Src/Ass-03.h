@@ -48,8 +48,7 @@ extern osMutexId myMutex02Handle; // Protect console output
 extern osMutexId myMutex03Handle;
 extern osMutexId PlayMutexHandle; // pauses the screen
 extern osMutexId ChooseFileMutexHandle; // pauses the screen
-
-
+extern osMutexId showButtonMutexHandle; // ensures the button is the only once drawing
 // Assignment tasks
 extern void Ass_03_Task_01(void const *argument);
 extern void Ass_03_Task_02(void const *argument);
@@ -149,7 +148,7 @@ uint8_t paused;
 uint8_t record;
 uint8_t stopRecording;
 uint8_t pulseRate;
-uint8_t globalSaveNumber;
+uint8_t globalSaveNo;
 
 #endif
 

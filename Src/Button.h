@@ -19,6 +19,8 @@
 		  char* text;
 		  int id;
 		  int valid;
+		  int pressed;
+		  uint16_t colour;
 	}Button;
 #endif
 

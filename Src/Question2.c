@@ -31,13 +31,28 @@ void buttonPressed(Button buttonNutton){
 void startPressed(){
 	if(paused){
 		paused = 0;
+		buttons[0].pressed = 1;
+		buttons[1].pressed = 0;
+		osMutexWait(myMutex01Handle, osWaitForever);
+		showButton(buttons[1]);
+		showButton(buttons[0]);
+		osMutexRelease(myMutex01Handle);
+
 		osMutexRelease(PlayMutexHandle);
+
 	}
 }
 
 void stopPressed(){
 	if(!paused){
 		paused = 1;
+		buttons[1].pressed = 1;
+		buttons[0].pressed = 0;
+		osMutexWait(myMutex01Handle, osWaitForever);
+		showButton(buttons[1]);
+		showButton(buttons[0]);
+		osMutexRelease(myMutex01Handle);
+
 		osMutexWait(PlayMutexHandle, osWaitForever);
 	}
 }

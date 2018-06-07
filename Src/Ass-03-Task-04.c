@@ -30,6 +30,7 @@ void Ass_03_Task_04(void const * argument)
 #define YSIZE 160
 
 
+
   osSignalWait(1,osWaitForever);
   system_safe_printf("Hello from Task 4 - Analog Input (turn ADC knob or use pulse sensor)\n");
   // Draw a box to plot in
@@ -50,6 +51,8 @@ void Ass_03_Task_04(void const * argument)
 
 	  osSemaphoreWait(myBinarySem05Handle, osWaitForever);
 	  //wait until the screen is unpaused
+//	  osMutexWait(showButtonMutexHandle, osWaitForever);
+
 	  osMutexWait(PlayMutexHandle, osWaitForever);
 	  osMutexWait(myMutex01Handle, osWaitForever);
 
@@ -67,6 +70,7 @@ void Ass_03_Task_04(void const * argument)
 	  }
 	  osMutexRelease(myMutex01Handle);
 	  osMutexRelease(PlayMutexHandle);
+//	  osMutexRelease(showButtonMutexHandle);
 
 	  if (last_xpos>=XSIZE-1)
 	  {
@@ -76,6 +80,7 @@ void Ass_03_Task_04(void const * argument)
 
 	  // Wait for second half of buffer
 	  osSemaphoreWait(myBinarySem06Handle, osWaitForever);
+//	  osMutexWait(showButtonMutexHandle, osWaitForever);
 	  osMutexWait(PlayMutexHandle, osWaitForever);
 
 
@@ -94,6 +99,7 @@ void Ass_03_Task_04(void const * argument)
 		  xpos++;
 	  }
 	  osMutexRelease(myMutex01Handle);
+
 	  if (last_xpos>=XSIZE-1)
 	  {
 		  xpos=0;
@@ -102,6 +108,8 @@ void Ass_03_Task_04(void const * argument)
 
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
 	  osMutexRelease(PlayMutexHandle);
+//	  osMutexRelease(showButtonMutexHandle);
+
   }
 }
 
@@ -123,7 +131,7 @@ void recordData(uint32_t data){
 
 	static int currentArrayPos =0;
 	static int maxSize = 10000;
-	static int datas[maxSize];
+	static int datas[10000];
 	if(currentArrayPos == 0){
 		  osMutexWait(ChooseFileMutexHandle, osWaitForever);
 

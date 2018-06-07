@@ -70,6 +70,7 @@ osMutexId myMutex02Handle;
 osMutexId myMutex03Handle;
 osMutexId PlayMutexHandle;
 osMutexId ChooseFileMutexHandle;
+osMutexId showButtonMutexHandle; // ensures the button is the only once drawing
 
 
 
@@ -130,6 +131,8 @@ void MX_FREERTOS_Init(void) {
   osMutexDef(ChooseSaveMutex);
   ChooseFileMutexHandle = osMutexCreate(osMutex(ChooseSaveMutex));
 
+  osMutexDef(buttonMutex);
+  ChooseFileMutexHandle = osMutexCreate(osMutex(buttonMutex));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */

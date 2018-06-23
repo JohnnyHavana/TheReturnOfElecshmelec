@@ -16,6 +16,7 @@
 // Note that there needs to be a way of starting and stopping the display.
 
 uint16_t ADC_Value[1000];
+void recordData(int data);
 
 void Ass_03_Task_04(void const * argument)
 {
@@ -139,26 +140,37 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 
 
 
-void recordData(int data){
+void recordData(int data)
+{
+	//method is called 10000 times for each data point that is recorded
 
-	static int currentArrayPos =0;
-	static uint8_t maxSize = 10000;
-	static uint8_t datas[10000];
+	//statics are used for maintaining positions throughout each method call
+	static int currentArrayPos =0; //start at 0, eventually get to 10000
+	static int maxSize = 10000;
+	static uint8_t dataValues[10000];
 
-	if(currentArrayPos >= maxSize){
+	//stop recording once the current array position hits 10000
+	if(currentArrayPos >= maxSize)
+	{
 		stopRecording = 1;
-
-	}else{
-		datas[currentArrayPos] = data;
+	}
+	else
+	{
+		//keep adding to the data value array
+		dataValues[currentArrayPos] = data;
 	}
 
-	if(stopRecording){
+	if(stopRecording)
+	{
 		//save data in one of the data things
 
-		//then we need to wait until another button is pressed
-		safe_printf("%s\n", "here");
-		char filename[8];
+		//then we need to wait until another button is pressed //todo do we?????
 
+		system_safe_printf("Recording completed\n");
+		//safe_printf("%s\n", "here");
+
+
+		//build filePathPlusSource - to store to position of save file.
 		char filePathPlusSource[256];
 		for(int i = 0; i < 256;i++)
 		{
@@ -171,63 +183,61 @@ void recordData(int data){
 		sprintf(num,"%d", globalSaveNo);
 		strcat(filePathPlusSource, num);
 		strcat(filePathPlusSource, ".txt");
-		strcat(filePathPlusSource,0);
-		input_safe_printf("%s\n",filePathPlusSource);
 
+		if(debugOn == 1){debug_safe_printf("FilePathPlus Source for Saving is =>%s\n",filePathPlusSource);}
 
-		char mkfilArgs[2][256];
-
-		strcpy(mkfilArgs[0], "mkfil");
-
-		strcpy(mkfilArgs[1],filePathPlusSource);
-
-
-		if(checkFileFolderExists(filePathPlusSource) ==1){//if the file exists we remove file then create a new file
-			safe_printf("In 1 %s\n", mkfilArgs[1]);
-			rm(2,mkfilArgs);
+		//Determine if the file path plus the source already exists on the Sd card
+		//If file already exists, remove the current file and create a new file
+		if(checkFileFolderExists(filePathPlusSource) ==1)
+		{
+			safe_printf("In 1 %s\n", filePathPlusSource);
+			rm2(filePathPlusSource);
 		}
-		if(checkFileFolderExists(filePathPlusSource) ==2){
-			safe_printf("In 2 %s\n", mkfilArgs[1]);
-
-			for(int i = 0 ; i< 2; i++)
-			{
-				safe_printf("==>%s\n", mkfilArgs[i]);
-
-			}
+		if(checkFileFolderExists(filePathPlusSource) ==2)
+		{
+			//file doesnt exist, make the file
+			safe_printf("In 2 %s\n", filePathPlusSource);
 			mkfilForRecording(filePathPlusSource);//make the file
-		}else{
-
-			//error
+		}
+		else
+		{
+			//Should not be reached, file can either exist or not
 			return;
-
-		}
-
-		char writeInput[3][256];
-
-		strcpy(writeInput[0], "write");
-		strcpy(writeInput[1], filePathPlusSource);
-
-
-
-		for(int i = 0 ; i< currentArrayPos; i++){
-			char numberString[10];
-			sprintf(numberString,"%d", datas[i]);
-			strcpy(writeInput[2], numberString);
-			input_safe_printf("%s\n",writeInput[2])
-			write(3,writeInput);
 		}
 
 
 
-		record =0;
+		//now we can start writing all values to the file
+		//If we are at this position, the current array position must be at 10000
+
+		//for each element that we have in the dataValues array, we want to write that to the file
+
+		for(int i = 0; i < currentArrayPos;i++)
+		{
+			char valueToString[10];
+			sprintf(valueToString, "%d", dataValues[i]);
+
+			write2(filePathPlusSource, valueToString); //write2 will add a \n to each line
+
+		}
+
+
+		//reset everything now that everything is written to a file
+		record = 0;
 		stopRecording = 0;
-		for(int i = 0 ; i< 10000;i++){
-			datas[i] = 0;
-		}
-		currentArrayPos = 0;
-		return;
+		//reset all elements in the dataValues[] array
+		for(int i = 0; i < 10000; i++)
+			dataValues[i] = 0;
 
-	}else{
+		//reset current array position
+		currentArrayPos = 0;
+
+		//finished.
+
+	}
+	else
+	{
+		//still recording, update current array pos
 		currentArrayPos ++;
 	}
 

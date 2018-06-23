@@ -27,11 +27,13 @@ void cp(uint8_t argNum, char *argStrings[]);
 	void folderToFolder(char* source, char* destination);
 
 void rm(uint8_t argNum, char *argStrings[]);
+void rm2(char* directoryToRemove);
 
 void mkfil(int argNum, char* argStrings[]);
 void mkfilForRecording(char* string);
 void read(int argNum, char* argStrings[]);
 void write(int argNum, char* argStrings[]);
+void write2(char* fileToWriteTo, char* stringToWrite);
 
 
 
@@ -43,8 +45,6 @@ uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, ch
 uint8_t checkArgumentLength(uint8_t flag, uint8_t expectedWordCount, uint8_t argNum);
 
 
-char currentFilePath[100];
-int analogValue;
 
 
 #endif

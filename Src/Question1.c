@@ -679,6 +679,31 @@ void rm(uint8_t argNum, char *argStrings[])
 	}
 }
 
+void rm2(char *directoryToRemove)
+{
+	//safe_printf("Found rm\n");
+
+	if(!directoryToRemove)
+	{
+		error_safe_printf("Missing char array for argument\n");
+		return;
+	}
+
+
+	FRESULT rmResult = f_unlink(directoryToRemove);
+	if(rmResult)
+	{
+		error_safe_printf("Unable to remove file (May not exist)\n");
+	}
+	else
+	{
+		if(debugOn == 1)
+		{
+			safe_printf("Deleted: %s\n",directoryToRemove);
+		}
+	}
+}
+
 
 void mkfil(int argNum, char* argStrings[])
 {
@@ -862,6 +887,40 @@ void write(int argNum, char* argStrings[])
 	strcat(stringToWrite, "\n");
 	//safe_printf("writing %s\n",stringToWrite);
 
+
+
+	FIL file;
+	FRESULT res;
+	UINT byteswritten;
+
+	// Open file There.txt
+	if((res = f_open(&file, fileToWriteTo, 	FA_OPEN_APPEND | FA_WRITE)) != FR_OK)
+	{
+		error_safe_printf("Couldn't open'%s'\n", fileToWriteTo);
+		return;
+	}
+	system_safe_printf("Opened file '%s'\n", fileToWriteTo);
+
+	// Write to file
+	if ((res = f_write(&file, stringToWrite, strlen(stringToWrite), &byteswritten)) != FR_OK)
+	{
+		safe_printf("ERROR: Could not write to '%s'\n", fileToWriteTo);
+		f_close(&file);
+		return;
+	}
+	safe_printf("Task 1: Written: %d bytes\n", byteswritten);
+
+	// Close file
+	f_close(&file);
+}
+
+
+void write2(char* fileToWriteTo, char* stringToWrite)
+{
+	//note  -- fileto write to includes the current directory and the file extension
+
+	strcat(stringToWrite, "\n");
+	//safe_printf("writing %s\n",stringToWrite);
 
 
 	FIL file;

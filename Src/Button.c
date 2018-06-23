@@ -9,10 +9,12 @@
 
 #ifndef MEBUTTONS
 #define MEBUTTONS
-	#define WIDTH 50
-	#define HEIGHT 50
+#define WIDTH 50
+#define HEIGHT 50
+
+
 Button buttons[7]= {
-/*    STARTX  STARTY    WIDTH       HEIGHT    LABEL       ID     VALIDITY		pressed*/
+/*    STARTX  STARTY    WIDTH       HEIGHT    LABEL       ID     VALIDITY		pressed  colour*/
 		{255,	10,		WIDTH+12,	HEIGHT,		"Start",		1,		1,  	1, 		LCD_COLOR_GREEN},
 		{255,	70,		WIDTH+12,	HEIGHT,		"Stop",			2,		1,  	0,	 	LCD_COLOR_RED},
 		{10,	180,	WIDTH,		HEIGHT,		"Load",			3,		1,  	0,	 	LCD_COLOR_WHITE},

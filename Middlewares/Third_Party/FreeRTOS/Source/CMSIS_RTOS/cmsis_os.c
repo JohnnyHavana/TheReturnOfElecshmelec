@@ -1239,7 +1239,6 @@ osMailQId osMailCreate (const osMailQDef_t *queue_def, osThreadId thread_id)
   /* Create a mail pool */
   (*(queue_def->cb))->pool = osPoolCreate(&pool_def);
   if ((*(queue_def->cb))->pool == NULL) {
-    //TODO: Delete queue. How to do it in FreeRTOS?
     vPortFree(*(queue_def->cb));
     return NULL;
   }

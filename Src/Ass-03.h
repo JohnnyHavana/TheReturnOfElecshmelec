@@ -149,7 +149,10 @@ uint8_t record;
 uint8_t stopRecording;
 uint8_t pulseRate;
 uint8_t globalSaveNo;
+int analogValue;
 char saveChar;
+char currentFilePath[100];
+
 
 #endif
 

@@ -182,7 +182,7 @@ void recordData(int data)
 		char num[1];
 		sprintf(num,"%d", globalSaveNo);
 		strcat(filePathPlusSource, num);
-		strcat(filePathPlusSource, ".txt");
+		strcat(filePathPlusSource, ".csv");
 
 		if(debugOn == 1){debug_safe_printf("FilePathPlus Source for Saving is =>%s\n",filePathPlusSource);}
 
@@ -190,13 +190,13 @@ void recordData(int data)
 		//If file already exists, remove the current file and create a new file
 		if(checkFileFolderExists(filePathPlusSource) ==1)
 		{
-			safe_printf("In 1 %s\n", filePathPlusSource);
+//			safe_printf("In 1 %s\n", filePathPlusSource);
 			rm2(filePathPlusSource);
 		}
 		if(checkFileFolderExists(filePathPlusSource) ==2)
 		{
 			//file doesnt exist, make the file
-			safe_printf("In 2 %s\n", filePathPlusSource);
+//			safe_printf("In 2 %s\n", filePathPlusSource);
 			mkfilForRecording(filePathPlusSource);//make the file
 		}
 		else

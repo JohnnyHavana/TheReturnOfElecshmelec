@@ -668,7 +668,21 @@ void rm(uint8_t argNum, char *argStrings[])
 	FRESULT rmResult = f_unlink(directoryToRemove);
 	if(rmResult)
 	{
-		error_safe_printf("Unable to remove file (May not exist)\n");
+		//try and see if its a string
+		strcat(directoryToRemove,"/");
+		//try again
+		FRESULT rmResult = f_unlink(directoryToRemove);
+		if(rmResult)
+		{
+			error_safe_printf("Unable to remove file (May not exist)\n");
+		}
+		else
+		{
+			system_safe_printf("Folder removed\n");
+		}
+
+
+
 	}
 	else
 	{
@@ -691,6 +705,7 @@ void rm2(char *directoryToRemove)
 
 
 	FRESULT rmResult = f_unlink(directoryToRemove);
+
 	if(rmResult)
 	{
 		error_safe_printf("Unable to remove file (May not exist)\n");

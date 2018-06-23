@@ -25,6 +25,8 @@
 
 
 
+
+int analogValue = 10;
 void debugMode(uint8_t argNum, char* argStrings[]);
 
 
@@ -74,8 +76,6 @@ void debugMode(uint8_t argNum, char* argStrings[])
 		else
 		{
 			safe_printf("%sERROR%s: \t Error. Not a valid input for debug keyword. Seek help.\n", C_ERROR,C_NORMAL);
-
-
 		}
 	}
 	else
@@ -234,6 +234,8 @@ void helpDesk(uint8_t argNum, char* argStrings[])
 	}
 }
 
+
+
 void analog(uint8_t argNum, char *argStrings[])
 {
 	safe_printf("Found analog\n");
@@ -246,10 +248,14 @@ void analog(uint8_t argNum, char *argStrings[])
 
 	if(checkForNumericArgument(1,argNum, argStrings) == 0)
 	{
-		error_safe_printf("Argument provided is not numeric\n");
+		error_safe_printf("Argument provided is not numeric OR not an integer\n");
 		return;
 	}
-	//todo missing implementation
+
+	analogValue = atoi(argStrings[1]);
+	system_safe_printf("Analog value has been updated to %d\n", analogValue);
+
+
 
 
 }
@@ -514,28 +520,15 @@ void cp(uint8_t argNum, char *argStrings[])
 	}
 	else if(foundDotInSource && !foundDotInDestination)
 	{
-		//Should throw an error in the early stages,
-		//todo if enough time at the end, implement mkdir inside here
+		//Copying a file to a folder
 		error_safe_printf("Cannot copy a file to a folder.\n");
 
-		//Copying a file to a folder
-		//Make sure the source exists
-		//Make sure the destination folder doesn't already exist
-		//If the folder doesn't exist, make the folder
 	}
 	else if(!foundDotInSource && !foundDotInDestination)
 	{
 		//Making a copy of a folder
 		//FOLDER->FOLDER
-
 		error_safe_printf("Cannot copy Folder to Folder\n");
-		//todo implement folder to folder later
-		//folderToFolder(source, destination);
-
-
-		//Make sure the source exists
-		//Make sure the destionation folder doesnt already exist
-		//if the destination folder doesnt exist, make the folder
 	}
 	else
 	{
@@ -921,7 +914,7 @@ uint8_t checkForNumericArgument(uint8_t processingIntegerFlag,uint8_t argNum, ch
 				}
 			}
 
-			else if(!(argStrings[i][j] >= 48 && argStrings[i][j] <= 57) && !argStrings[i][j] == '-')
+			else if(!(argStrings[i][j] >= 48 && argStrings[i][j] <= 57) && !(argStrings[i][j] == '-'))
 			{
 				//if the number is not within 0-9 (non numeric)
 

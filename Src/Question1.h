@@ -44,5 +44,7 @@ uint8_t checkArgumentLength(uint8_t flag, uint8_t expectedWordCount, uint8_t arg
 
 
 char currentFilePath[100];
+int analogValue;
+
 
 #endif

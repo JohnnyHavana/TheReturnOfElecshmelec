@@ -656,40 +656,48 @@ void copyObjectToObject(char* source, char* destination)
 void rm(uint8_t argNum, char *argStrings[])
 {
 	//safe_printf("Found rm\n");
-
 	if(argNum < 2 || argNum > 2)
 	{
 		error_safe_printf("Rm must require one argument\n");
 		return;
 	}
 
-	char* directoryToRemove = argStrings[1];
+	char pathAndFileName[256];
+	for(int i = 0; i < 256;i++)
+	{
+		pathAndFileName[i] = 0;
+	}
 
-	FRESULT rmResult = f_unlink(directoryToRemove);
+	strcat(pathAndFileName, currentFilePath);
+	strcat(pathAndFileName, "/");
+	strcat(pathAndFileName, argStrings[1]);
+
+
+
+
+    //char* directoryToRemove = argStrings[1];
+
+    FRESULT rmResult = f_unlink(pathAndFileName);
 	if(rmResult)
 	{
-		//try and see if its a string
-		strcat(directoryToRemove,"/");
-		//try again
-		FRESULT rmResult = f_unlink(directoryToRemove);
-		if(rmResult)
-		{
-			error_safe_printf("Unable to remove file (May not exist)\n");
-		}
-		else
-		{
-			system_safe_printf("Folder removed\n");
-		}
+        //check if we're trying to remove a folder instead
+        strcat(pathAndFileName,"/");
+        FRESULT rmResult = f_unlink(pathAndFileName);
+        if(rmResult)
+        {
+            error_safe_printf("Unable to remove object (May not exist)\n");
+        }
+        else
+        {
+            system_safe_printf("Deleted: %s\n",pathAndFileName);
+        }
 
 
-
+		error_safe_printf("Unable to remove file (May not exist)\n");
 	}
 	else
 	{
-		if(debugOn == 1)
-		{
-			safe_printf("Deleted: %s\n",directoryToRemove);
-		}
+        system_safe_printf("Deleted: %s\n",pathAndFileName);
 	}
 }
 

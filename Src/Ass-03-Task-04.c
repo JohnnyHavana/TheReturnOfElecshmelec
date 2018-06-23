@@ -57,24 +57,45 @@ void Ass_03_Task_04(void const * argument)
 
 	  osMutexWait(PlayMutexHandle, osWaitForever);
 	  osMutexWait(myMutex01Handle, osWaitForever);
-
-	  for(i=0;i<500;i=i+500)
+	  if(!loading)
 	  {
-		  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-		  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-		  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-		  ypos=(uint16_t)((uint32_t)(ADC_Value[i])*YSIZE/4096);
-		  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
-		  // BSP_LCD_FillRect(xpos,ypos,1,1);
-		  last_xpos=xpos;
-		  last_ypos=ypos;
+		  for(i=0;i<500;i=i+500)
+		  {
+			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
+			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  ypos=(uint16_t)((uint32_t)(ADC_Value[i])*YSIZE/4096);
+			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
+			  // BSP_LCD_FillRect(xpos,ypos,1,1);
+			  last_xpos=xpos;
+			  last_ypos=ypos;
 
-		  xpos++;
-		  if(record){
-			  recordData(ypos);
+			  xpos++;
+			  if(record){
+				  recordData(ypos);
 
 
+			  }
 		  }
+	  }else{
+
+
+		  if(loadingBufferNo >= 1000){
+			  getNextBuffer();
+		  }
+		  if(loading){//loading could change if reached end of thingo
+			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
+			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  ypos = loadingBuffer[loadingBufferNo];
+			  loadingBufferNo ++;
+			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
+
+			  last_xpos=xpos;
+			  last_ypos=ypos;
+			  xpos++;
+		  }
+
 	  }
 	  osMutexRelease(myMutex01Handle);
 	  osMutexRelease(PlayMutexHandle);
@@ -137,6 +158,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	osSemaphoreRelease(myBinarySem06Handle);
 	HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 }
+
+
 
 
 
@@ -242,5 +265,8 @@ void recordData(int data)
 	}
 
 }
+
+
+
 
 

@@ -30,6 +30,9 @@ uint8_t debugOn = 1;
 uint8_t paused = 0;
 uint8_t record = 0;
 uint8_t globalSaveNo = 1;
+uint8_t loading = 0;
+uint8_t loadingBufferNo = 0;
+uint8_t bufferCounter = 0;
 char saveChar = '1';
 
 void buildInputString2(uint8_t c);

@@ -75,7 +75,15 @@ void recordPressed(){
 
 
 void loadPressed(){
+	if(!loading){
+		loading = 1;
 
+
+	}else{
+		loading = 0;
+
+
+	}
 
 
 }

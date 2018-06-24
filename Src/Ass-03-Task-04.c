@@ -17,6 +17,7 @@
 
 uint16_t ADC_Value[1000];
 void recordData(int data);
+void loadData();
 
 void Ass_03_Task_04(void const * argument)
 {
@@ -115,20 +116,45 @@ void Ass_03_Task_04(void const * argument)
 
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
 	  osMutexWait(myMutex01Handle, osWaitForever);
-	  for(i=0;i<500;i=i+500)
+	  if(!loading)
 	  {
-		  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-		  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-		  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-		  ypos=(uint16_t)((uint32_t)(ADC_Value[i+500])*YSIZE/4096);
-		  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
-		  // BSP_LCD_FillCircle(xpos,ypos,2);
-		  last_xpos=xpos;
-		  last_ypos=ypos;
-		  xpos++;
-		  if(record){
-			  recordData(ypos);
+		  for(i=0;i<500;i=i+500)
+		  {
+			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
+			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  ypos=(uint16_t)((uint32_t)(ADC_Value[i])*YSIZE/4096);
+			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
+			  // BSP_LCD_FillRect(xpos,ypos,1,1);
+			  last_xpos=xpos;
+			  last_ypos=ypos;
+
+			  xpos++;
+			  if(record){
+				  recordData(ypos);
+
+
+			  }
 		  }
+	  }else{
+
+
+		  if(loadingBufferNo >= 1000){
+			  getNextBuffer();
+		  }
+		  if(loading){//loading could change if reached end of thingo
+			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
+			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  ypos = loadingBuffer[loadingBufferNo];
+			  loadingBufferNo ++;
+			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
+
+			  last_xpos=xpos;
+			  last_ypos=ypos;
+			  xpos++;
+		  }
+
 	  }
 	  osMutexRelease(myMutex01Handle);
 
@@ -159,6 +185,120 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 }
 
+
+void loadData()
+{
+	loadingBufferNo =0;
+	char filePathPlusSource[256];
+
+	strcpy(filePathPlusSource, currentFilePath);
+	strcat(filePathPlusSource, "/");
+	strcat(filePathPlusSource, "sav");
+	char num[1];
+	sprintf(num,"%d", globalSaveNo);
+	strcat(filePathPlusSource, num);
+	strcat(filePathPlusSource, ".csv");
+
+	FIL file;
+	#define BUFF_SIZE 1
+	FRESULT res;
+	uint32_t bytesread;
+
+
+
+	////todo add global and local check rather than global.
+	int fileExistenceCheck = checkFileFolderExists(filePathPlusSource);
+	if(fileExistenceCheck != 1)
+	{
+		error_safe_printf("The File does not exist\n");
+		return;
+	}
+
+	// Open file Hello.txt
+	if((res = f_open(&file, filePathPlusSource, FA_READ)) != FR_OK)
+	{
+		error_safe_printf("Opening '%s'\n", filePathPlusSource);
+		return;
+	}
+
+	uint32_t totalBytesRead = 0;
+
+	system_safe_printf("Opened file '%s'\n", filePathPlusSource);
+	// Read data from file
+
+
+	FSIZE_t fileSize = f_size(&file);
+	debug_safe_printf("File Size of File is: %d bytes\n",(int)fileSize);
+
+
+	char tempString[4];
+	uint8_t tempStringIndex = 0;
+	char tempInput[10];
+	char currentChar;
+	char previousChar = ' ';
+
+	uint8_t xAxisPlot = 0;
+
+	while(totalBytesRead < fileSize)
+	{
+		//reading one byte at a time for each char in the string
+		res = f_read(&file, tempInput, BUFF_SIZE, &bytesread);
+
+		if (res != FR_OK)
+		{
+			error_safe_printf("Function did not succeed. Current File Path: '%s'\n", filePathPlusSource);
+			f_close(&file);
+			return;
+		}
+		else
+		{
+			currentChar = tempInput[0];
+			//input_safe_printf("I have read =>%c\n", currentChar);
+
+			if(previousChar == ',' && currentChar == ' ')
+			{
+				//comma or space
+				tempString[tempStringIndex] = 0;
+				//string finished
+				//input_safe_printf("Current tempstring is: %s\n", tempString);
+				input_safe_printf("X: %d, Y: %d\n", xAxisPlot, atoi(tempString));
+
+				//reset temp string index
+				tempStringIndex = 0;
+				//reset temp string
+				for(int i = 0; i < 4;i++)
+				{
+					tempString[i] = 0;
+				}
+				//update x axis
+				xAxisPlot++;
+
+			}
+			else
+			{
+				//valid number
+				if(currentChar != ',')
+				{
+					tempString[tempStringIndex] = currentChar;
+					tempStringIndex++;
+				}
+			}
+
+			previousChar = currentChar;
+
+
+			totalBytesRead += bytesread;
+
+		}
+	}
+
+
+	//loadingBuffer[bytesread] = '\0';
+
+	// Close file
+	f_close(&file);
+
+}
 
 
 

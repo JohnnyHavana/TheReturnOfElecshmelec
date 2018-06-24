@@ -75,20 +75,25 @@ void recordPressed(){
 
 
 void loadPressed(){
-	if(!loading){
+	if(!loading)
+	{
 		loading = 1;
-
-
-	}else{
+		loadData();
+		system_safe_printf("Loading operation complete\n");
+		loading = 0;
+	}
+	else
+	{
 		loading = 0;
 
-
 	}
-
-
 }
 
 void savePressed(uint8_t saveNo){
+	//todo evan come back to this section on monday
+//	if(recording || loading){
+//		return;
+//	}
 	//release mutex shit
 	globalSaveNo = saveNo;
 

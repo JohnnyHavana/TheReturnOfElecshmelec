@@ -150,7 +150,7 @@ uint8_t stopRecording;
 uint8_t pulseRate;
 uint8_t globalSaveNo;
 uint8_t loading;
-uint8_t loadingBuffer[100];
+uint8_t loadingBuffer[10000];
 uint8_t loadingBufferNo;
 uint8_t bufferCounter;
 int analogValue;

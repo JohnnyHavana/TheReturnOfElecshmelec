@@ -293,7 +293,7 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
     res = f_readdir(&dir, &fno);
 	if(res != FR_OK)
 	{
-		error_safe_printf("Could not read directory");
+		error_safe_printf("Could not read directory\n");
 		f_closedir(&dir);
 		return;
 	}
@@ -817,6 +817,7 @@ void read(int argNum, char* argStrings[])
 	uint8_t rtext[BUFF_SIZE];
 	FRESULT res;
 	uint32_t bytesread;
+	uint32_t totalBytesRead = 0;
 
 
 	char* fileToRead = argStrings[1];
@@ -851,7 +852,10 @@ void read(int argNum, char* argStrings[])
 		f_close(&file);
 		return;
 	}
-	rtext[bytesread] = '\0';
+	//todo jordan - you will need to make sure to update the total bytes read such that you can stick a null terminator on the end (perhaps)
+	totalBytesRead += bytesread;
+
+	rtext[totalBytesRead] = '\0';
 	system_safe_printf("Read:\n '%s'\n", rtext);
 
 	// Close file
@@ -942,7 +946,7 @@ void write2(char* fileToWriteTo, char* stringToWrite)
 {
 	//note  -- fileto write to includes the current directory and the file extension
 
-	strcat(stringToWrite, "\n");
+	strcat(stringToWrite, ", ");
 	//safe_printf("writing %s\n",stringToWrite);
 
 

@@ -1,5 +1,20 @@
 #include "Question2.h"
 
+/*
+ *
+ * ELEC3730 ASSIGNMENT 3
+ * QUESTION2.H
+ * JORDAN HAIGH AND EVAN GRESHAM
+ *
+ *
+ * Class stores relevant methods that are used to build functionality for question 2
+ *
+ * */
+
+
+//todo commenting
+
+
 int zoomValue = 1;
 
 void buttonPressed(Button buttonNutton){

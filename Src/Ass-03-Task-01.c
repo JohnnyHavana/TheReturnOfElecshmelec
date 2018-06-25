@@ -78,7 +78,7 @@ void Ass_03_Task_01(void const * argument)
 
   BSP_LCD_SetFont(&Font8);
   BSP_LCD_DisplayStringAt(10, 172, "0s", LEFT_MODE);
-  BSP_LCD_DisplayStringAt(240, 172, "10s", LEFT_MODE);
+  BSP_LCD_DisplayStringAt(235, 172, "10s", LEFT_MODE);
 
   osMutexRelease(myMutex01Handle);
 

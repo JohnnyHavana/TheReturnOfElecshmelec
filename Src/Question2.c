@@ -177,5 +177,10 @@ void updateSpeed()
 
 void updateTimeSpan(char* newTimeScale)
 {
-	  BSP_LCD_DisplayStringAt(240, 172, newTimeScale, LEFT_MODE);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+	BSP_LCD_FillRect(235,172,15,7);
+	BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+
+    BSP_LCD_DisplayStringAt(235, 172, newTimeScale, LEFT_MODE);
 }

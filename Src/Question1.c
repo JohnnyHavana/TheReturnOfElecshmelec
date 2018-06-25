@@ -238,23 +238,38 @@ void helpDesk(uint8_t argNum, char* argStrings[])
 
 void analog(uint8_t argNum, char *argStrings[])
 {
-	safe_printf("Found analog\n");
+	//safe_printf("Found analog\n");
 
-	if(argNum != 2)
-	{
-		error_safe_printf("Analog must take one argument\n");
-		return;
-	}
+		if(argNum == 1)
+		{
+			system_safe_printf("Current Analog Value =>%d\n", analogValue);
+			return;
+		}
+		if(argNum > 2)
+		{
+			error_safe_printf("Analog must take one argument\n");
+			return;
+		}
 
-	if(checkForNumericArgument(1,argNum, argStrings) == 0)
-	{
-		error_safe_printf("Argument provided is not numeric OR not an integer\n");
-		return;
-	}
+		if(checkForNumericArgument(1,argNum, argStrings) == 0)
+		{
+			error_safe_printf("Argument provided is not numeric OR not an integer\n");
+			return;
+		}
 
-	analogValue = atoi(argStrings[1]);
-	system_safe_printf("Analog value has been updated to %d\n", analogValue);
+		analogValue = atoi(argStrings[1]);
+		system_safe_printf("Analog value has been updated to %d\n", analogValue);
 
+
+		//need to update the speed at which the board is running
+		//analog 10 - 10 seconds  = 500
+		//analog 1 - 1 second = 50;
+		speedValue = analogValue * 50;
+
+
+		char newTimeValue[10];
+		sprintf(newTimeValue, "%ds", analogValue);
+		updateTimeSpan(newTimeValue);
 
 
 

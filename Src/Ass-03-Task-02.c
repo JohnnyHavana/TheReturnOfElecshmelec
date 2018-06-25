@@ -1,6 +1,14 @@
-//     $Date: 2018-05-22 06:24:02 +1000 (Tue, 22 May 2018) $
-// $Revision: 1330 $
-//   $Author: Peter $
+/**
+ * ELEC3730 ASSIGNMENT 3
+ * TASK 2 - VALUE RECEIVER
+ * JORDAN HAIGH AND EVAN GRESHAM
+ *
+ *
+ * Class receives values from a message queue
+ * These values are the x and y coordinates of where the using is currently pressing on the display
+ *
+ * */
+
 
 #include "Ass-03.h"
 #include "Question2.h"
@@ -19,6 +27,11 @@
 #define XSIZE 240
 #define YSIZE 160
 
+/*
+ * One of the four entry points for the program
+ * Continuously waiting for a signal from another thread.
+ * Once we get the coordinate, we canbegin to determine what button is currently pressed
+ * */
 void Ass_03_Task_02(void const * argument)
 {
 
@@ -31,19 +44,18 @@ void Ass_03_Task_02(void const * argument)
 
 	while (1)
 	{
-		if (getfp(&display) == 0)
+		if (getfp(&display) == 0) //received coordinate
 		{
-
-
+			//create a current button pressed
 			Button currentButtonPressed;
-
+			//initialised with these values to prevent warnings. can be changed later
 			currentButtonPressed.text = "NOT A BUTTON";
 			currentButtonPressed.id = 999;
 
 			//go through button array and figure out which button was being pressed
 			for(int i = 0; i < 9;i++)
 			{
-			  if(buttonHere(display.x, display.y, buttons[i])!= -1)
+			  if(buttonHere(display.x, display.y, buttons[i])!= -1) //found a valid
 			  {
 				  if(debugOn ==1)debug_safe_printf("Found button..\n");
 				  currentButtonPressed = buttons[i];
@@ -53,7 +65,7 @@ void Ass_03_Task_02(void const * argument)
 
 			if(debugOn ==1)debug_safe_printf("I am touching '%s'. ID is %d \n" , currentButtonPressed.text, currentButtonPressed.id);
 		//					if(debugOn ==1)printf("TOUCH:  Got (%3d,%3d)\n", display.x, display.y);
-			if(currentButtonPressed.id != 999){
+			if(currentButtonPressed.id != 999){ //if it is a button, call its function
 				buttonPressed(currentButtonPressed);
 			}
 		}

@@ -60,11 +60,11 @@ void Ass_03_Task_04(void const * argument)
 	  osSemaphoreWait(myBinarySem05Handle, osWaitForever);
 	  //wait until the screen is unpaused
 //	  osMutexWait(showButtonMutexHandle, osWaitForever);
-
 	  osMutexWait(PlayMutexHandle, osWaitForever);
 	  osMutexWait(myMutex01Handle, osWaitForever);
 	  if(!loading)
 	  {
+
 		  for(i=0;i<500;i=i+speedValue) //upadated for zoom function
 		  {
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
@@ -83,9 +83,25 @@ void Ass_03_Task_04(void const * argument)
 			  xpos++;
 			  if(record){
 				  recordData(ypos);
-
-
 			  }
+
+			  if(isAnaloging)
+			  {
+				  if(analogTimer > 0){
+					  analogTimer -= ((float)speedValue/50.0) / 240 *1000;
+				  }else{
+					  //turn analog off
+					  isAnaloging =0;
+					  osMutexRelease(myMutex01Handle);
+					  stopPressed();
+					  osMutexWait(myMutex01Handle, osWaitForever);
+					  i= 500;
+				  }
+			  }
+
+			  //
+			  //10seconds/240
+
 		  }
 	  }else{
 
@@ -147,6 +163,19 @@ void Ass_03_Task_04(void const * argument)
 			  xpos++;
 			  if(record){
 				  recordData(ypos);
+			  }
+			  if(isAnaloging)
+			  {
+				  if(analogTimer > 0){
+					  analogTimer -= ((float)speedValue/50.0) / 240 * 1000 ;
+				  }else{
+					  //turn analog off
+					  isAnaloging =0;
+					  osMutexRelease(myMutex01Handle);
+					  stopPressed();
+					  osMutexWait(myMutex01Handle, osWaitForever);
+					  i=500;
+				  }
 			  }
 		  }
 

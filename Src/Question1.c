@@ -257,6 +257,13 @@ void analog(uint8_t argNum, char *argStrings[])
 			return;
 		}
 
+		if(!paused){
+			error_safe_printf("Pulse rate monitor needs to be paused before an analog command\n");
+			return;
+		}
+
+
+
 		analogValue = atoi(argStrings[1]);
 		system_safe_printf("Analog value has been updated to %d\n", analogValue);
 
@@ -264,14 +271,15 @@ void analog(uint8_t argNum, char *argStrings[])
 		//need to update the speed at which the board is running
 		//analog 10 - 10 seconds  = 500
 		//analog 1 - 1 second = 50;
-		speedValue = analogValue * 50;
-
-		  BSP_LCD_SetFont(&Font8);
-		char newTimeValue[10];
-		sprintf(newTimeValue, "%ds", analogValue);
-		updateTimeSpan(newTimeValue);
+		//		speedValue = analogValue * 50;
 
 
+//		BSP_LCD_SetFont(&Font8);
+//		char newTimeValue[10];
+//		sprintf(newTimeValue, "%ds", analogValue);
+//		updateTimeSpan(newTimeValue);
+		analogTimer = analogValue*1000;
+		isAnaloging =1;
 
 }
 

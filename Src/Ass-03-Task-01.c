@@ -34,6 +34,9 @@ uint8_t loading = 0;
 uint8_t loadingBufferNo = 0;
 uint8_t bufferCounter = 0;
 uint8_t bufferEnd = 0;
+uint8_t isAnaloging = 0;
+int analogTimer = 0;
+
 char saveChar = '1';
 
 void buildInputString2(uint8_t c);

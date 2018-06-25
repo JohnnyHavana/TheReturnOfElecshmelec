@@ -1,31 +1,34 @@
-//     $Date: 2018-05-22 06:24:02 +1000 (Tue, 22 May 2018) $
-// $Revision: 1330 $
-//   $Author: Peter $
+/**
+ * ELEC3730 ASSIGNMENT 3
+ * TASK 1 - COMMAND LINE PARSER
+ * JORDAN HAIGH AND EVAN GRESHAM
+ *
+ *
+ * Class gets input from user via a command line in putty.
+ * Class is able to translate their command in to an action that is relevant to the program
+ *
+ * */
+
+
 #include "Question1.h"
 #include "Ass-03.h"
 #include "Button.h"
 
-// This is the console task. Can use your code from the previous assignment
-// and expand.
-//
-// The example code is very basic, showing access to the SD card. Note that
-// if the SD card is access from both this task and the pulse rate monitor
-// task, a MUTEX will be required.
-//
-// *** MAKE UPDATES TO THE CODE AS REQUIRED ***
-//
-
-
+//File global variables used for storing save states
 FIL MyFile;
 FIL MyFile2, MyFile3;
 FRESULT Status;
 
+
+//Globals for string parser
 int length;
 char newString[100];
 int stringIndex = 0;
 int wordCount = 0;
 uint8_t buildInputStringFirstTime;
 char **array_of_words;
+
+//Globals for buttons
 uint8_t debugOn = 1;
 uint8_t paused = 0;
 uint8_t record = 0;
@@ -46,6 +49,13 @@ void releaseAndFreeBuiltStrings();
 void printArrayOfWords();
 int string_parser(char *inp, char **array_of_words_p[]);
 
+/*
+ * One of the four entry points for the program
+ * Initialises board, including setting up mutexes and whatnot.
+ * Displays the buttons on the LCD Screen - Wrapped in mutex for safety
+ * Afterwards, starts to get input from user through putty
+ * Keeps track of the current file path, similar to how Windows CMD would
+ * */
 void Ass_03_Task_01(void const * argument)
 {
 
@@ -58,7 +68,6 @@ void Ass_03_Task_01(void const * argument)
   safe_printf("Hello from Task 1 - Console (serial input)\n");
   safe_printf("INFO: Initialise LCD and TP first...\n");
 
-  // STEPIEN: Initialize and turn on LCD and calibrate the touch panel
   BSP_LCD_Init();
   BSP_LCD_DisplayOn();
   BSP_TP_Init();
@@ -87,26 +96,27 @@ void Ass_03_Task_01(void const * argument)
 
   osMutexRelease(myMutex01Handle);
 
+  //Current file path initalised to forward slash
   currentFilePath[0] = '/';
 
-
+//Console indexes used so that the user cant backspace their directory
   int consoleIndex = 0;
   int firstFlag = 1;
-  fflush(stdout);
+  fflush(stdout); //FFlush used for printing to screen
   while (1)
   {
-	  if(firstFlag == 1)
+	  if(firstFlag == 1) //Edge case
 	  {
 		  firstFlag = 0;
 		  safe_printf("%s>",currentFilePath);
 		  fflush(stdout);
 	  }
 	  //HAL_GPIO_TogglePin(GPIOD, LD3_Pin);
-	  c = getchar();
-	  while((c != '\r' && c != '\n'))
+	  c = getchar(); //get char from user
+	  while((c != '\r' && c != '\n')) //make sure it isnt an enter or new line
 	  {
-		  if((c == 8 || c == 127) && consoleIndex == 0){}
-		  else if((c == 8 || c == 127) && consoleIndex > 0)
+		  if((c == 8 || c == 127) && consoleIndex == 0){} //If it is a backspace or delte (forputty) and the console index is 0, disregard
+		  else if((c == 8 || c == 127) && consoleIndex > 0) //else we can start to backspace the index
 		  {
 			  consoleIndex--;
 			  safe_printf("%c",c);
@@ -115,6 +125,7 @@ void Ass_03_Task_01(void const * argument)
 		  }
 		  else
 		  {
+			  //Otherwise we keep adding to the console index
 			  consoleIndex++;
 			  safe_printf("%c",c);
 			  		  fflush(stdout);
@@ -125,10 +136,11 @@ void Ass_03_Task_01(void const * argument)
 		  c = getchar();
 	  }
 
+	  //hit an enter, reset variables
 	  consoleIndex = 0;
 	  firstFlag = 1;
 	  safe_printf("\n");
-
+	  //now we can start parsing the string
 	  parseInputString();
 	  analyseCommands(wordCount, array_of_words);
 	  releaseAndFreeBuiltStrings();
@@ -164,17 +176,22 @@ void buildInputString2(uint8_t c)
 	}
 }
 
+/*
+ * Prelude to string parsing
+ * Adds null terminator to the end
+ * Begins string parse
+ * */
 void parseInputString()
 {
 	newString[stringIndex] = '\0';
 
 	wordCount = string_parser(newString, &array_of_words);
 	if(debugOn == 1) printArrayOfWords();
-
-
-
 }
 
+/*
+ * Releases the array of words and resets the new string global variable to be blank
+ * */
 void releaseAndFreeBuiltStrings()
 {
 	free(array_of_words);

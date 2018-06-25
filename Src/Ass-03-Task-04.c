@@ -128,7 +128,7 @@ void Ass_03_Task_04(void const * argument)
 //	  osMutexRelease(showButtonMutexHandle);
 
 	  if(analogChange){
-		  isAnaloging =0;
+		  isAnaloging =0; //todo evan you were here
 		  analogTimer =0;
 		  stopPressed();
 //		  osMutexWait(PlayMutexHandle, osWaitForever);

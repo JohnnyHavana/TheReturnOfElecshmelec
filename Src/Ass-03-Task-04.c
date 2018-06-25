@@ -1,7 +1,12 @@
-//     $Date: 2018-05-22 06:24:02 +1000 (Tue, 22 May 2018) $
-// $Revision: 1330 $
-//   $Author: Peter $
-
+/**
+ * ELEC3730 ASSIGNMENT 3
+ * TASK 4 - ADC Values
+ * JORDAN HAIGH AND EVAN GRESHAM
+ *
+ *
+ * Class handles all the input and outputs for the graph in the pulse rate monitor
+ *
+ * */
 #include "Ass-03.h"
 #include "Question1.h"
 #include "Question2.h"
@@ -23,7 +28,12 @@ void loadData();
 
 speedValue = 500;
 
-
+/*
+ * One of the four entry points to the program.
+ * Gets value from the HAL and puts it in an array of values
+ * We can control the speed value to determine the period of the time span
+ * This also affects the smoothness of the curves
+ * */
 void Ass_03_Task_04(void const * argument)
 {
   uint16_t i;
@@ -232,6 +242,10 @@ void Ass_03_Task_04(void const * argument)
 
 // STEPIEN: Add callback functions to see if this can be used for double buffering equivalent
 
+
+/*
+ * Releases binary semaphore for ADC
+ * */
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	osSemaphoreRelease(myBinarySem05Handle);
@@ -245,6 +259,12 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 }
 
 
+/*
+ * Loads data from csv file
+ * We are reading char by char and determining where the commas are to separate the numbers
+ * This reduces stress on the CPU rather than creating an array of 50000 and running through that
+ *
+ * */
 void loadData()
 {
 	loadingBufferNo =0;
@@ -265,31 +285,31 @@ void loadData()
 
 
 
-	////todo add global and local check rather than global.
+	//make sure the file actually exists
 	int fileExistenceCheck = checkFileFolderExists(filePathPlusSource);
-	if(fileExistenceCheck != 1)
+	if(fileExistenceCheck != 1) //if doesnt exist
 	{
 		error_safe_printf("The File does not exist\n");
 		return;
 	}
 
-	// Open file Hello.txt
+	// Open the file
 	if((res = f_open(&file, filePathPlusSource, FA_READ)) != FR_OK)
 	{
-		error_safe_printf("Opening '%s'\n", filePathPlusSource);
+		error_safe_printf("Opening '%s'\n", filePathPlusSource); //if we had an issue with opening
 		return;
 	}
 
-	uint32_t totalBytesRead = 0;
+	uint32_t totalBytesRead = 0; //used for determining EOF. probably couldve used f_eof() instead
 
 	system_safe_printf("Opened file '%s'\n", filePathPlusSource);
 	// Read data from file
 
 
-	FSIZE_t fileSize = f_size(&file);
+	FSIZE_t fileSize = f_size(&file); //get file size
 	debug_safe_printf("File Size of File is: %d bytes\n",(int)fileSize);
 
-
+	//now we can start to look through the file char by char
 	char tempString[4];
 	uint8_t tempStringIndex = 0;
 	char tempInput[10];
@@ -300,26 +320,27 @@ void loadData()
 
 
 
-	while(totalBytesRead < fileSize)
+	while(totalBytesRead < fileSize) //whilst we arent at the end
 	{
 		//reading one byte at a time for each char in the string
 		res = f_read(&file, tempInput, BUFF_SIZE, &bytesread);
 
-		if (res != FR_OK)
+		if (res != FR_OK) //if somehow fail
 		{
 			error_safe_printf("Function did not succeed. Current File Path: '%s'\n", filePathPlusSource);
 			f_close(&file);
 			return;
 		}
-		else
+		else //all is good
 		{
-			currentChar = tempInput[0];
+			currentChar = tempInput[0]; //get the char from the temp string, since we are only read one at a time
 			//input_safe_printf("I have read =>%c\n", currentChar);
 
-			if(previousChar == ',' && currentChar == ' ')
+			if(previousChar == ',' && currentChar == ' ') //used for csv files(or at least ours)
 			{
-				//comma or space
-				tempString[tempStringIndex] = 0;
+				//comma and  space
+				//so the number is finished
+				tempString[tempStringIndex] = 0; //cap with null terminator
 				//string finished
 				//input_safe_printf("Current tempstring is: %s\n", tempString);
 //				input_safe_printf("X: %d, Y: %d\n", xAxisPlot, atoi(tempString));
@@ -342,8 +363,8 @@ void loadData()
 				//valid number
 				if(currentChar != ',')
 				{
-					tempString[tempStringIndex] = currentChar;
-					tempStringIndex++;
+					tempString[tempStringIndex] = currentChar; //add to our good char array
+					tempStringIndex++; //increment index for next go round
 				}
 			}
 
@@ -355,13 +376,13 @@ void loadData()
 		}
 	}
 
-
+	//finished reading file
 	//loadingBuffer[bytesread] = '\0';
 
 	// Close file
 	f_close(&file);
 	bufferEnd = xAxisPlot;
-	for(int i = 0 ; i<= bufferEnd; i++){
+	for(int i = 0 ; i<= bufferEnd; i++){ //print out values we found from file
 		input_safe_printf("X: %d, Y: %d\n", i, loadingBuffer[i]);
 	}
 	input_safe_printf("Buffer End %d\n", bufferEnd);
@@ -371,7 +392,10 @@ void loadData()
 
 
 
-
+/*
+ * Method is called a maximum 10000 times whilst recording
+ * Adds value to an array ready for writing to file
+ * */
 void recordData(int data)
 {
 	//method is called 10000 times for each data point that is recorded
@@ -395,7 +419,6 @@ void recordData(int data)
 	if(stopRecording)
 	{
 		//save data in one of the data things
-
 		//then we need to wait until another button is pressed
 
 		system_safe_printf("Recording completed\n");

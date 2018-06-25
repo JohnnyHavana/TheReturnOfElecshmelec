@@ -82,7 +82,7 @@
 /  1: Enable without LF-CRLF conversion.
 /  2: Enable with LF-CRLF conversion. */
 
-#define _USE_FIND            1 //todo please stop making me fix this shit
+#define _USE_FIND            1
 /* This option switches filtered directory read functions, f_findfirst() and
 /  f_findnext(). (0:Disable, 1:Enable 2:Enable with matching altname[] too) */
 

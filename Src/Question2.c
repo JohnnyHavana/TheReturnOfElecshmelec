@@ -12,11 +12,15 @@
  * */
 
 
-//todo commenting
+
 
 
 int zoomValue = 1;
 
+/*
+ * Takes in a button and determines the id
+ * Uses a switch case to call an appropriate function based on its id
+ * */
 void buttonPressed(Button buttonNutton){
 	switch(buttonNutton.id){
 	case(1):
@@ -49,35 +53,39 @@ void buttonPressed(Button buttonNutton){
 	}
 }
 
-
+/*
+ *
+ * */
 void startPressed(){
 	if(paused){
 		paused = 0;
 		buttons[0].pressed = 1;
 		buttons[1].pressed = 0;
-		system_safe_printf("starting completed1\n");
+		//todo evan you were here
+		//system_safe_printf("starting completed1\n");
 
 		osMutexWait(myMutex01Handle, osWaitForever);
-		system_safe_printf("starting completed2\n");
+		//system_safe_printf("starting completed2\n");
 
 		showButton(buttons[1]);
-		system_safe_printf("starting completed3\n");
+		//system_safe_printf("starting completed3\n");
 
 		showButton(buttons[0]);
-		system_safe_printf("starting completed4\n");
+		//system_safe_printf("starting completed4\n");
 
 		osMutexWait(myMutex01Handle, 0);
 
 		osMutexRelease(myMutex01Handle);
-		system_safe_printf("starting completed5\n");
+		//system_safe_printf("starting completed5\n");
 
 		osMutexRelease(PlayMutexHandle);
-		system_safe_printf("starting completed6\n");
+		//system_safe_printf("starting completed6\n");
 
 	}
 }
 
-void stopPressed(){
+void stopPressed()
+{
 	if(!paused){
 		paused = 1;
 		buttons[1].pressed = 1;
@@ -156,6 +164,10 @@ void savePressed(uint8_t saveNo)
 
 }
 
+
+/*
+ * Increments the zoom value if allowed, updates speed value as well
+ * */
 void zoomInPressed()
 {
 	if(!record)
@@ -174,7 +186,9 @@ void zoomInPressed()
 
 }
 
-
+/*
+ * Decrements zoom value if allowed, updates speed value as well
+ * */
 void zoomOutPressed()
 {
 	if(!record)
@@ -191,38 +205,44 @@ void zoomOutPressed()
 	}
 }
 
+/*
+ *Updates the speed value depending on the current zoom
+ *Updates Updates the time span of the x axis
+ * */
 void updateSpeed()
 {
 	if(zoomValue == 1)
 	{
-		speedValue = ZOOMSPEEDONE;
+		speedValue = ZOOMSPEEDONE; //speed set to 500
 		updateTimeSpan("10s");
 	}
 	else if(zoomValue  == 2)
 	{
-		speedValue = ZOOMSPEEDTWO;
+		speedValue = ZOOMSPEEDTWO; //speed set to 250
 		updateTimeSpan("6s");
 
 	}
 	else if(zoomValue == 3)
 	{
-		speedValue = ZOOMSPEEDTHREE;
+		speedValue = ZOOMSPEEDTHREE; //speed set to 100
 		updateTimeSpan("3s");
 
 	}
 	else
 	{
-		speedValue = ZOOMSPEEDFOUR;
+		speedValue = ZOOMSPEEDFOUR; //speed set to 50
 		updateTimeSpan("1s");
 
 	}
 
 }
 
+/*
+ * Updates time span label on the x axis
+ * */
 void updateTimeSpan(char* newTimeScale)
 {
-	  BSP_LCD_SetFont(&Font8);
-
+    BSP_LCD_SetFont(&Font8);
 	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_FillRect(235,172,15,7);

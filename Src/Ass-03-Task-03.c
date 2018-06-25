@@ -1,6 +1,14 @@
-//     $Date: 2018-05-22 06:24:02 +1000 (Tue, 22 May 2018) $
-// $Revision: 1330 $
-//   $Author: Peter $
+/**
+ * ELEC3730 ASSIGNMENT 3
+ * TASK 3 - VALUE SENDER
+ * JORDAN HAIGH AND EVAN GRESHAM
+ *
+ *
+ * Class creates a message and puts it onto a message queue to be received by task 2
+ * These are values the x and y coordinates of where the using is currently pressing on the display
+ *
+ * */
+
 
 #include "Ass-03.h"
 #include "Button.h"
@@ -25,6 +33,11 @@
 #define ON_COUNT   1
 #define OFF_COUNT 20
 
+/*
+ * Function donated by Peter Stepien
+ * Creates a message to put on the message queue containing the x and y coordinates
+ * Returns 0 is successful or 1 if not
+ * */
 uint8_t getfp(Coordinate *display)
 {
 	osEvent event;
@@ -42,6 +55,11 @@ uint8_t getfp(Coordinate *display)
     }
 }
 
+/*
+ * One of the main entry points to the program
+ * Determines debouncing to find if a finger is on the screen.
+ * Once it determines finger is on, it will bundle the x and y coords and send it off
+ * */
 void Ass_03_Task_03(void const * argument)
 {
 	int8_t pressed_count=ON_COUNT;  // Debounce counter (not pressed)

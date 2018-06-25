@@ -40,12 +40,24 @@ void startPressed(){
 		paused = 0;
 		buttons[0].pressed = 1;
 		buttons[1].pressed = 0;
+		system_safe_printf("starting completed1\n");
+
 		osMutexWait(myMutex01Handle, osWaitForever);
+		system_safe_printf("starting completed2\n");
+
 		showButton(buttons[1]);
+		system_safe_printf("starting completed3\n");
+
 		showButton(buttons[0]);
+		system_safe_printf("starting completed4\n");
+
+		osMutexWait(myMutex01Handle, 0);
+
 		osMutexRelease(myMutex01Handle);
+		system_safe_printf("starting completed5\n");
 
 		osMutexRelease(PlayMutexHandle);
+		system_safe_printf("starting completed6\n");
 
 	}
 }
@@ -58,8 +70,8 @@ void stopPressed(){
 		osMutexWait(myMutex01Handle, osWaitForever);
 		showButton(buttons[1]);
 		showButton(buttons[0]);
-		osMutexRelease(myMutex01Handle);
 
+		osMutexRelease(myMutex01Handle);
 		osMutexWait(PlayMutexHandle, osWaitForever);
 	}
 }

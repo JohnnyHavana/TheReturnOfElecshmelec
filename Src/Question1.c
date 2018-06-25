@@ -1,4 +1,5 @@
 #include "Question1.h"
+#include "Question2.h"
 
 //char **array_of_words;
 //Here is your bible. Fucking use it.
@@ -265,7 +266,7 @@ void analog(uint8_t argNum, char *argStrings[])
 
 
 		analogValue = atoi(argStrings[1]);
-		system_safe_printf("Analog value has been updated to %d\n", analogValue);
+//		system_safe_printf("Analog value has been updated to %d\n", analogValue);
 
 
 		//need to update the speed at which the board is running

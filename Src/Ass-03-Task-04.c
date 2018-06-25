@@ -91,10 +91,8 @@ void Ass_03_Task_04(void const * argument)
 					  analogTimer -= ((float)speedValue/50.0) / 240 *1000;
 				  }else{
 					  //turn analog off
-					  isAnaloging =0;
-					  osMutexRelease(myMutex01Handle);
-					  stopPressed();
-					  osMutexWait(myMutex01Handle, osWaitForever);
+					  analogChange =1;
+
 					  i= 500;
 				  }
 			  }
@@ -129,6 +127,15 @@ void Ass_03_Task_04(void const * argument)
 	  osMutexRelease(PlayMutexHandle);
 //	  osMutexRelease(showButtonMutexHandle);
 
+	  if(analogChange){
+		  isAnaloging =0;
+		  analogTimer =0;
+		  stopPressed();
+//		  osMutexWait(PlayMutexHandle, osWaitForever);
+//		  paused =1;
+		  analogChange =0;
+	  }
+
 	  if (last_xpos>=XSIZE-1)
 	  {
 		  xpos=0;
@@ -139,6 +146,7 @@ void Ass_03_Task_04(void const * argument)
 	  osSemaphoreWait(myBinarySem06Handle, osWaitForever);
 //	  osMutexWait(showButtonMutexHandle, osWaitForever);
 	  osMutexWait(PlayMutexHandle, osWaitForever);
+
 
 
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
@@ -167,13 +175,10 @@ void Ass_03_Task_04(void const * argument)
 			  if(isAnaloging)
 			  {
 				  if(analogTimer > 0){
-					  analogTimer -= ((float)speedValue/50.0) / 240 * 1000 ;
+					  analogTimer -= ((float)speedValue/50.0) / 240.0 * 1000.0 ;
 				  }else{
 					  //turn analog off
-					  isAnaloging =0;
-					  osMutexRelease(myMutex01Handle);
-					  stopPressed();
-					  osMutexWait(myMutex01Handle, osWaitForever);
+					  analogChange =1;
 					  i=500;
 				  }
 			  }
@@ -208,9 +213,19 @@ void Ass_03_Task_04(void const * argument)
 		  xpos=0;
 		  last_xpos=0;
 	  }
+	  osMutexRelease(PlayMutexHandle);
 
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
-	  osMutexRelease(PlayMutexHandle);
+
+	  if(analogChange){
+		  isAnaloging =0;
+		  analogTimer =0;
+//
+//		  osMutexWait(PlayMutexHandle, osWaitForever);
+//		  paused =0;
+		  stopPressed();
+		  analogChange =0;
+	  }
 //	  osMutexRelease(showButtonMutexHandle);
   }
 }

@@ -153,6 +153,7 @@ uint8_t loading;
 uint8_t loadingBuffer[10000];
 uint8_t loadingBufferNo;
 uint8_t bufferCounter;
+uint8_t bufferEnd;
 int analogValue;
 char saveChar;
 char currentFilePath[100];

@@ -4,6 +4,7 @@
 
 #include "Ass-03.h"
 #include "Question1.h"
+#include "Question2.h"
 
 // This is the task that reads the analog input. A buffer is divided in two to
 // allow working on one half of the buffer while the other half is being
@@ -68,7 +69,11 @@ void Ass_03_Task_04(void const * argument)
 		  {
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  if(record){
+				  BSP_LCD_SetTextColor(LCD_COLOR_RED);
+			  }else{
+				  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  }
 			  ypos=(uint16_t)((uint32_t)(ADC_Value[i])*YSIZE/4096);
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
 			  // BSP_LCD_FillRect(xpos,ypos,1,1);
@@ -84,24 +89,26 @@ void Ass_03_Task_04(void const * argument)
 		  }
 	  }else{
 
-
-		  if(loadingBufferNo >= 1000){
-			  getNextBuffer();
+		  if(loadingBufferNo > bufferEnd){
+			  osMutexRelease(myMutex01Handle);
+			  loadPressed();
+			  osMutexWait(myMutex01Handle, osWaitForever);
 		  }
 		  if(loading){//loading could change if reached end of thingo
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
+
 			  ypos = loadingBuffer[loadingBufferNo];
 			  loadingBufferNo ++;
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
-
 			  last_xpos=xpos;
 			  last_ypos=ypos;
 			  xpos++;
 		  }
 
 	  }
+	  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 	  osMutexRelease(myMutex01Handle);
 	  osMutexRelease(PlayMutexHandle);
 //	  osMutexRelease(showButtonMutexHandle);
@@ -122,11 +129,15 @@ void Ass_03_Task_04(void const * argument)
 	  osMutexWait(myMutex01Handle, osWaitForever);
 	  if(!loading)
 	  {
-		  for(i=0;i<500;i=i+500)
+		  for(i=0;i<500;i=i+speedValue)
 		  {
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  if(record){
+				  BSP_LCD_SetTextColor(LCD_COLOR_RED);
+			  }else{
+				  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  }
 			  ypos=(uint16_t)((uint32_t)(ADC_Value[i])*YSIZE/4096);
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
 			  // BSP_LCD_FillRect(xpos,ypos,1,1);
@@ -136,30 +147,31 @@ void Ass_03_Task_04(void const * argument)
 			  xpos++;
 			  if(record){
 				  recordData(ypos);
-
-
 			  }
 		  }
+
 	  }else{
 
+		  if(loadingBufferNo > bufferEnd){
+			  osMutexRelease(myMutex01Handle);
+			  loadPressed();
+			  osMutexWait(myMutex01Handle, osWaitForever);
 
-		  if(loadingBufferNo >= 1000){
-			  getNextBuffer();
-		  }
-		  if(loading){//loading could change if reached end of thingo
+
+		  }else{//loading could change if reached end of thingo
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-			  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+			  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 			  ypos = loadingBuffer[loadingBufferNo];
 			  loadingBufferNo ++;
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
-
 			  last_xpos=xpos;
 			  last_ypos=ypos;
 			  xpos++;
 		  }
 
 	  }
+	  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 	  osMutexRelease(myMutex01Handle);
 
 	  if (last_xpos>=XSIZE-1)
@@ -171,7 +183,6 @@ void Ass_03_Task_04(void const * argument)
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
 	  osMutexRelease(PlayMutexHandle);
 //	  osMutexRelease(showButtonMutexHandle);
-
   }
 }
 
@@ -241,7 +252,9 @@ void loadData()
 	char currentChar;
 	char previousChar = ' ';
 
-	uint8_t xAxisPlot = 0;
+	int xAxisPlot = 0;
+
+
 
 	while(totalBytesRead < fileSize)
 	{
@@ -265,7 +278,8 @@ void loadData()
 				tempString[tempStringIndex] = 0;
 				//string finished
 				//input_safe_printf("Current tempstring is: %s\n", tempString);
-				input_safe_printf("X: %d, Y: %d\n", xAxisPlot, atoi(tempString));
+//				input_safe_printf("X: %d, Y: %d\n", xAxisPlot, atoi(tempString));
+				loadingBuffer[xAxisPlot] = (uint8_t)atoi(tempString);
 
 				//reset temp string index
 				tempStringIndex = 0;
@@ -276,6 +290,7 @@ void loadData()
 				}
 				//update x axis
 				xAxisPlot++;
+
 
 			}
 			else
@@ -301,6 +316,12 @@ void loadData()
 
 	// Close file
 	f_close(&file);
+	bufferEnd = xAxisPlot;
+	for(int i = 0 ; i<= bufferEnd; i++){
+		input_safe_printf("X: %d, Y: %d\n", i, loadingBuffer[i]);
+	}
+	input_safe_printf("Buffer End %d\n", bufferEnd);
+
 
 }
 
@@ -317,7 +338,7 @@ void recordData(int data)
 	static uint8_t dataValues[10000];
 
 	//stop recording once the current array position hits 10000
-	if(currentArrayPos >= maxSize)
+	if(currentArrayPos == maxSize)
 	{
 		stopRecording = 1;
 	}
@@ -331,7 +352,7 @@ void recordData(int data)
 	{
 		//save data in one of the data things
 
-		//then we need to wait until another button is pressed //todo do we?????
+		//then we need to wait until another button is pressed
 
 		system_safe_printf("Recording completed\n");
 		//safe_printf("%s\n", "here");

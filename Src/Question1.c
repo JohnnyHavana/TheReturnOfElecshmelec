@@ -79,10 +79,10 @@ void debugMode(uint8_t argNum, char* argStrings[])
 		}
 	}
 	else
-		{
-			safe_printf("%sERROR%s: \t Error. Debug command must take zero or one argument. Seek help.\n", C_ERROR,C_NORMAL);
-			return;
-		}
+	{
+		safe_printf("%sERROR%s: \t Error. Debug command must take zero or one argument. Seek help.\n", C_ERROR,C_NORMAL);
+		return;
+	}
 }
 
 
@@ -266,7 +266,7 @@ void analog(uint8_t argNum, char *argStrings[])
 		//analog 1 - 1 second = 50;
 		speedValue = analogValue * 50;
 
-
+		  BSP_LCD_SetFont(&Font8);
 		char newTimeValue[10];
 		sprintf(newTimeValue, "%ds", analogValue);
 		updateTimeSpan(newTimeValue);

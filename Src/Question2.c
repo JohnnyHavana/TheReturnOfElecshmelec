@@ -68,6 +68,8 @@ void recordPressed(){
 	if(record){
 		stopRecording =1;
 		buttons[3].pressed =0;
+		system_safe_printf("Recording completed\n");
+
 	}else{
 		record = 1;
 		stopRecording = 0;
@@ -82,26 +84,35 @@ void recordPressed(){
 
 
 void loadPressed(){
+
+
 	if(!loading)
 	{
-		loading = 1;
+		buttons[2].pressed = 1;
+
 		loadData();
 		system_safe_printf("Loading operation complete\n");
-		loading = 0;
+		loading = 1;
 	}
 	else
 	{
 		loading = 0;
-
+		buttons[2].pressed = 0;
+		bufferEnd =0;
+		loadingBufferNo =0;
 	}
+
+	osMutexWait(myMutex01Handle, osWaitForever);
+	showButton(buttons[2]);
+	osMutexRelease(myMutex01Handle);
 }
 
 void savePressed(uint8_t saveNo)
 {
-	//todo evan come back to this section on monday
-//	if(recording || loading){
-//		return;
-//	}
+	//if recording or loading do not change the save file
+	if(record || loading){
+		return;
+	}
 	//release mutex shit
 	globalSaveNo = saveNo;
 
@@ -120,14 +131,17 @@ void savePressed(uint8_t saveNo)
 
 void zoomInPressed()
 {
-	if(zoomValue == 1 || zoomValue == 2 || zoomValue == 3)
+	if(!record)
 	{
-		zoomValue++;
-		updateSpeed();
-	}
-	else
-	{
-		error_safe_printf("Cannot zoom in further\n");
+		if(zoomValue == 1 || zoomValue == 2 || zoomValue == 3)
+		{
+			zoomValue++;
+			updateSpeed();
+		}
+		else
+		{
+			error_safe_printf("Cannot zoom in further\n");
+		}
 	}
 
 
@@ -136,14 +150,17 @@ void zoomInPressed()
 
 void zoomOutPressed()
 {
-	if(zoomValue == 2 || zoomValue == 3 || zoomValue == 4)
+	if(!record)
 	{
-		zoomValue--;
-		updateSpeed();
-	}
-	else
-	{
-		error_safe_printf("Cannot zoom out further\n");
+		if(zoomValue == 2 || zoomValue == 3 || zoomValue == 4)
+		{
+			zoomValue--;
+			updateSpeed();
+		}
+		else
+		{
+			error_safe_printf("Cannot zoom out further\n");
+		}
 	}
 }
 
@@ -177,6 +194,8 @@ void updateSpeed()
 
 void updateTimeSpan(char* newTimeScale)
 {
+	  BSP_LCD_SetFont(&Font8);
+
 	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 	BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 	BSP_LCD_FillRect(235,172,15,7);

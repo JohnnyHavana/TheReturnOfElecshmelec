@@ -25,7 +25,7 @@
 #endif
 
 
-Button buttons[7];
+Button buttons[9];
 
 int buttonHere(int x, int y, Button button); //Determine if button at X,Y coordinate - return Button ID if true
 void showButton(Button button); //Display button on Calculator

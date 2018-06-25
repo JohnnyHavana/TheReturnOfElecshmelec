@@ -71,10 +71,14 @@ void Ass_03_Task_01(void const * argument)
   //BSP_LCD_DisplayStringAt(5, 5, (uint8_t*)"ELEC3730 Assignment 3 (v03 $Rev: 1330 $)",LEFT_MODE);
   //BSP_LCD_DisplayStringAt(5,20, (uint8_t*)"This demonstration code can be used",LEFT_MODE);
   //BSP_LCD_DisplayStringAt(5,35, (uint8_t*)"as a starting point for the assignment.",LEFT_MODE);
-  for(int i = 0; i< 7 ;i++)
+  for(int i = 0; i< 9 ;i++)
   {
 	  showButton(buttons[i]);
   }
+
+  BSP_LCD_SetFont(&Font8);
+  BSP_LCD_DisplayStringAt(10, 172, "0s", LEFT_MODE);
+  BSP_LCD_DisplayStringAt(240, 172, "10s", LEFT_MODE);
 
   osMutexRelease(myMutex01Handle);
 

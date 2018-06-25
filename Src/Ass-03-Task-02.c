@@ -41,7 +41,7 @@ void Ass_03_Task_02(void const * argument)
 			currentButtonPressed.id = 999;
 
 			//go through button array and figure out which button was being pressed
-			for(int i = 0; i < 8;i++)
+			for(int i = 0; i < 9;i++)
 			{
 			  if(buttonHere(display.x, display.y, buttons[i])!= -1)
 			  {

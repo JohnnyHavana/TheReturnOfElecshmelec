@@ -9,5 +9,9 @@ void stopPressed();
 void recordPressed();
 void loadPressed();
 void savePressed(uint8_t saveNo);
+void zoomInPressed();
+void zoomOutPressed();
+void updateSpeed();
+void updateTimeSpan(char* newTimeScale);
 
 #endif

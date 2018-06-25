@@ -1,5 +1,6 @@
 #include "Question2.h"
 
+int zoomValue = 1;
 
 void buttonPressed(Button buttonNutton){
 	switch(buttonNutton.id){
@@ -23,6 +24,12 @@ void buttonPressed(Button buttonNutton){
 		break;
 	case(7):
 		savePressed(3);
+		break;
+	case(8):
+		zoomInPressed();
+		break;
+	case(9):
+		zoomOutPressed();
 		break;
 	}
 }
@@ -89,7 +96,8 @@ void loadPressed(){
 	}
 }
 
-void savePressed(uint8_t saveNo){
+void savePressed(uint8_t saveNo)
+{
 	//todo evan come back to this section on monday
 //	if(recording || loading){
 //		return;
@@ -110,9 +118,64 @@ void savePressed(uint8_t saveNo){
 
 }
 
+void zoomInPressed()
+{
+	if(zoomValue == 1 || zoomValue == 2 || zoomValue == 3)
+	{
+		zoomValue++;
+		updateSpeed();
+	}
+	else
+	{
+		error_safe_printf("Cannot zoom in further\n");
+	}
 
 
+}
 
 
+void zoomOutPressed()
+{
+	if(zoomValue == 2 || zoomValue == 3 || zoomValue == 4)
+	{
+		zoomValue--;
+		updateSpeed();
+	}
+	else
+	{
+		error_safe_printf("Cannot zoom out further\n");
+	}
+}
 
+void updateSpeed()
+{
+	if(zoomValue == 1)
+	{
+		speedValue = ZOOMSPEEDONE;
+		updateTimeSpan("10s");
+	}
+	else if(zoomValue  == 2)
+	{
+		speedValue = ZOOMSPEEDTWO;
+		updateTimeSpan("6s");
 
+	}
+	else if(zoomValue == 3)
+	{
+		speedValue = ZOOMSPEEDTHREE;
+		updateTimeSpan("3s");
+
+	}
+	else
+	{
+		speedValue = ZOOMSPEEDFOUR;
+		updateTimeSpan("1s");
+
+	}
+
+}
+
+void updateTimeSpan(char* newTimeScale)
+{
+	  BSP_LCD_DisplayStringAt(240, 172, newTimeScale, LEFT_MODE);
+}

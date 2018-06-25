@@ -157,6 +157,14 @@ int analogValue;
 char saveChar;
 char currentFilePath[100];
 
+int zoomValue;
+int speedValue;
+
+#define ZOOMSPEEDONE 500
+#define ZOOMSPEEDTWO 250
+#define ZOOMSPEEDTHREE 100
+#define ZOOMSPEEDFOUR 50
+
 
 #endif
 

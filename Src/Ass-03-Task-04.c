@@ -19,6 +19,10 @@ uint16_t ADC_Value[1000];
 void recordData(int data);
 void loadData();
 
+
+speedValue = 500;
+
+
 void Ass_03_Task_04(void const * argument)
 {
   uint16_t i;
@@ -60,7 +64,7 @@ void Ass_03_Task_04(void const * argument)
 	  osMutexWait(myMutex01Handle, osWaitForever);
 	  if(!loading)
 	  {
-		  for(i=0;i<500;i=i+500)
+		  for(i=0;i<500;i=i+speedValue) //upadated for zoom function
 		  {
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);

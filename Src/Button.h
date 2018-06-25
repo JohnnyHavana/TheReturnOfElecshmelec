@@ -26,9 +26,9 @@
 
 
 Button buttons[9];
-
+//Determine if button is here depending on x and y coordinated
 int buttonHere(int x, int y, Button button); //Determine if button at X,Y coordinate - return Button ID if true
 void showButton(Button button); //Display button on Calculator
-void buttonToString(Button button);
+void buttonToString(Button button); //button information to string
 
 #endif /* BUTTON_H_ */

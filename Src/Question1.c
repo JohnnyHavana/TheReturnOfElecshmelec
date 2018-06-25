@@ -747,8 +747,13 @@ void fileToFile(char* source, char* destination)
 
 }
 
+/*
+ * Copies file to another folder
+ * Makes sure that the file exists, the folder exists and if the destination file exists
+ * */
 void fileToFolder(char* sourceFile, char* destinationFolder)
 {
+	//concatenate path plus source file
 	char filePathPlusSource[256];
 	for(int i = 0; i < 256;i++)
 	{
@@ -769,6 +774,7 @@ void fileToFolder(char* sourceFile, char* destinationFolder)
 	//Need to determine if destination folder exists
 
 	//build concat string
+	//set to nulls to initiate
 	char filePathPlusDestination[256];
 	for(int i = 0; i < 256; i++)
 	{
@@ -781,8 +787,7 @@ void fileToFolder(char* sourceFile, char* destinationFolder)
 	//strcat(filePathPlusDestination,"/");
 
 
-
-
+	//use FILINFO to determine if directory exists
 	FILINFO fno;
 	FRESULT directoryResult = f_stat(filePathPlusDestination ,&fno);
 
@@ -832,40 +837,6 @@ void fileToFolder(char* sourceFile, char* destinationFolder)
 	}
 
 	system_safe_printf("Copying file to folder successful\n");
-
-
-
-
-//
-//	//now check it exists
-//	int existenceCheck = checkFileFolderExists(filePathPlusDestination);
-//	//if it does exist, we are good
-//	if(existenceCheck == 1)
-//	{
-//		//does exist, we can now check to determine if a file by the same name already exists
-//
-//	}
-//	else if(existenceCheck == 2)
-//	{
-//
-//
-//	}
-//	else
-//	{
-//	}
-//
-
-
-
-
-
-	//Make sure the folder does exist
-			// If it doesnt, create it
-
-			//Keep a copy of the filepathplus source
-			//make a variable for filepath plus destionation
-
-			//copy like before
 
 }
 

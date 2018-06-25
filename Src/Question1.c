@@ -323,6 +323,9 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
     DIR dir;
     static FILINFO fno;
 
+    int numberOfFiles = 0;
+    int numberOfFolders = 0;
+
 
     res = f_opendir(&dir, path);                       /* Open the directory */
     if (res != FR_OK) //if problem with opening directory
@@ -346,18 +349,26 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
 			break;
 		}
 
+		numberOfFiles++;
+
 		safe_printf("%s",fno.fname); //print the name of the file/folder found
 		if(fno.fattrib == AM_DIR) //if folder
 		{
 			safe_printf("\t (Folder)\n"); //print extra info to make it known its a folder
+			numberOfFiles--;
+			numberOfFolders++;
 		}
 		else
 		{
 			safe_printf("\n");
 		}
 
+
 		res = f_readdir(&dir, &fno); //prime for next line
 	}
+
+	safe_printf("Files: %d\n", numberOfFiles);
+	safe_printf("Folders: %d\n",numberOfFolders);
 	safe_printf("=================End of Directory=================\n");
 	res = f_closedir(&dir); //finished
 
@@ -573,6 +584,39 @@ void mkdir(uint8_t argNum, char *argStrings[])
 }
 
 /*
+ * Alternative mkdir method
+ * People calling this already have done the checks
+ * */
+void mkdir2(char* folderToMake)
+{
+	if(!folderToMake)
+	{
+		error_safe_printf("Folder to make is null\n");
+		return;
+	}
+
+
+	FRESULT mkdirResult = f_mkdir(folderToMake);
+	if(mkdirResult)
+	{
+		//In the event that the directory already exists
+		error_safe_printf("Error occurred making directory.\n");
+	}
+	else
+	{
+		//Successful
+		if(debugOn == 1)
+		{
+			debug_safe_printf("Created: %s\n", folderToMake);
+			//die(mkdirResult);
+		}
+
+	}
+
+
+}
+
+/*
  * Copying file to file
  * Can only work on file to file, anything else is too hard and I would require more time
  * Makes sure that three arguments are requried
@@ -603,7 +647,7 @@ void cp(uint8_t argNum, char *argStrings[])
 	else if(foundDotInSource && !foundDotInDestination)
 	{
 		//Copying a file to a folder
-		error_safe_printf("Cannot copy a file to a folder.\n");
+		fileToFolder(source, destination);
 
 	}
 	else if(!foundDotInSource && !foundDotInDestination)
@@ -703,6 +747,127 @@ void fileToFile(char* source, char* destination)
 
 }
 
+void fileToFolder(char* sourceFile, char* destinationFolder)
+{
+	char filePathPlusSource[256];
+	for(int i = 0; i < 256;i++)
+	{
+		filePathPlusSource[i] = 0;
+	}
+	strcat(filePathPlusSource,currentFilePath);
+	strcat(filePathPlusSource,"/");
+	strcat(filePathPlusSource, sourceFile);
+
+	//Source is now concatenated
+	//Determine source exists
+	if(checkFileFolderExists(filePathPlusSource)!= 1)
+	{
+		error_safe_printf("File does not exist\n");
+		return;
+	}
+
+	//Need to determine if destination folder exists
+
+	//build concat string
+	char filePathPlusDestination[256];
+	for(int i = 0; i < 256; i++)
+	{
+		filePathPlusDestination[i] = 0;
+	}
+
+	strcat(filePathPlusDestination,currentFilePath);
+	strcat(filePathPlusDestination, "/");
+	strcat(filePathPlusDestination, destinationFolder);
+	//strcat(filePathPlusDestination,"/");
+
+
+
+
+	FILINFO fno;
+	FRESULT directoryResult = f_stat(filePathPlusDestination ,&fno);
+
+	switch(directoryResult)
+	{
+		case FR_OK:
+		{
+			//directory does exist
+			strcat(filePathPlusDestination, "/");
+			strcat(filePathPlusDestination, sourceFile);
+			int fileExistenceCheck = checkFileFolderExists(filePathPlusDestination);
+			if(fileExistenceCheck == 1)
+			{
+				//file already exists in folder, remove before copying
+				error_safe_printf("Destination file already exists, remove before copying\n");
+				return;
+			}
+			else if(fileExistenceCheck == 2)
+			{
+				//doesnt exist, we can copy
+				copyObjectToObject(filePathPlusSource, filePathPlusDestination);
+			}
+			else
+			{
+				error_safe_printf("Unexpected error. Could not complete operation - Line 769\n")
+				return;
+			}
+			break;
+		}
+		case FR_NO_FILE:
+		{
+			//if it doesnt exist, make the directory
+			mkdir2(filePathPlusDestination);
+			//then we can do copy to folder
+			strcat(filePathPlusDestination, "/");
+			strcat(filePathPlusDestination, sourceFile);
+			copyObjectToObject(filePathPlusSource, filePathPlusDestination);
+			break;
+		}
+
+		default:
+		{
+			error_safe_printf("Unexpected error. Cannot complete operation - Line 879\n");
+			return;
+		}
+
+	}
+
+	system_safe_printf("Copying file to folder successful\n");
+
+
+
+
+//
+//	//now check it exists
+//	int existenceCheck = checkFileFolderExists(filePathPlusDestination);
+//	//if it does exist, we are good
+//	if(existenceCheck == 1)
+//	{
+//		//does exist, we can now check to determine if a file by the same name already exists
+//
+//	}
+//	else if(existenceCheck == 2)
+//	{
+//
+//
+//	}
+//	else
+//	{
+//	}
+//
+
+
+
+
+
+	//Make sure the folder does exist
+			// If it doesnt, create it
+
+			//Keep a copy of the filepathplus source
+			//make a variable for filepath plus destionation
+
+			//copy like before
+
+}
 
 
 

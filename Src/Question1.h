@@ -28,13 +28,16 @@ void cd(uint8_t argNum, char *argStrings[]);
 	void moveBackwardDirectory(char* previousDirectory);
 
 void mkdir(uint8_t argNum, char *argStrings[]);
+void mkdir2(char* folderToMake);
+
 
 void cp(uint8_t argNum, char *argStrings[]);
 
 	int checkFileFolderExists(char* directoryOfInterest);
 	void copyObjectToObject(char* source, char* destination);
 	void fileToFile(char* source, char* destination);
-	void folderToFolder(char* source, char* destination);
+	void fileToFolder(char* source, char* destination);
+	//void folderToFolder(char* source, char* destination);
 
 void rm(uint8_t argNum, char *argStrings[]);
 void rm2(char* directoryToRemove);

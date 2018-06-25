@@ -11493,7 +11493,7 @@ LOAD c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32
                 0x08000000                g_pfnVectors
                 0x08000188                . = ALIGN (0x4)
 
-.text           0x08000190    0x10de8
+.text           0x08000190    0x10dc0
                 0x08000190                . = ALIGN (0x4)
  *(.text)
  .text          0x08000190       0x6c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
@@ -12562,765 +12562,764 @@ LOAD c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32
                 0x0800a454      0x1b0 Src/Ass-03-Task-04.o
                 0x0800a454                recordData
  .text.Ass_03_Task_04
-                0x0800a604      0x518 Src/Ass-03-Task-04.o
+                0x0800a604      0x4f4 Src/Ass-03-Task-04.o
                 0x0800a604                Ass_03_Task_04
  .text.buttonHere
-                0x0800ab1c       0x3e Src/Button.o
-                0x0800ab1c                buttonHere
- *fill*         0x0800ab5a        0x2 
+                0x0800aaf8       0x3e Src/Button.o
+                0x0800aaf8                buttonHere
+ *fill*         0x0800ab36        0x2 
  .text.showButton
-                0x0800ab5c       0xa4 Src/Button.o
-                0x0800ab5c                showButton
+                0x0800ab38       0xa4 Src/Button.o
+                0x0800ab38                showButton
  .text.debugMode
-                0x0800ac00      0x14c Src/Question1.o
-                0x0800ac00                debugMode
+                0x0800abdc      0x14c Src/Question1.o
+                0x0800abdc                debugMode
  .text.helpDesk
-                0x0800ad4c      0x3d8 Src/Question1.o
-                0x0800ad4c                helpDesk
+                0x0800ad28      0x3d8 Src/Question1.o
+                0x0800ad28                helpDesk
  .text.scan_files
-                0x0800b124      0x158 Src/Question1.o
-                0x0800b124                scan_files
- .text.ls       0x0800b27c       0x5c Src/Question1.o
-                0x0800b27c                ls
+                0x0800b100      0x158 Src/Question1.o
+                0x0800b100                scan_files
+ .text.ls       0x0800b258       0x5c Src/Question1.o
+                0x0800b258                ls
  .text.moveForwardDirectory
-                0x0800b2d8      0x15c Src/Question1.o
-                0x0800b2d8                moveForwardDirectory
+                0x0800b2b4      0x15c Src/Question1.o
+                0x0800b2b4                moveForwardDirectory
  .text.moveBackwardDirectory
-                0x0800b434      0x160 Src/Question1.o
-                0x0800b434                moveBackwardDirectory
- .text.cd       0x0800b594      0x12c Src/Question1.o
-                0x0800b594                cd
- .text.mkdir    0x0800b6c0       0xe0 Src/Question1.o
-                0x0800b6c0                mkdir
+                0x0800b410      0x160 Src/Question1.o
+                0x0800b410                moveBackwardDirectory
+ .text.cd       0x0800b570      0x12c Src/Question1.o
+                0x0800b570                cd
+ .text.mkdir    0x0800b69c       0xe0 Src/Question1.o
+                0x0800b69c                mkdir
  .text.checkFileFolderExists
-                0x0800b7a0       0x20 Src/Question1.o
-                0x0800b7a0                checkFileFolderExists
+                0x0800b77c       0x20 Src/Question1.o
+                0x0800b77c                checkFileFolderExists
  .text.copyObjectToObject
-                0x0800b7c0       0xf8 Src/Question1.o
-                0x0800b7c0                copyObjectToObject
+                0x0800b79c       0xf8 Src/Question1.o
+                0x0800b79c                copyObjectToObject
  .text.fileToFile
-                0x0800b8b8      0x110 Src/Question1.o
-                0x0800b8b8                fileToFile
- .text.cp       0x0800b9c8      0x128 Src/Question1.o
-                0x0800b9c8                cp
- .text.rm       0x0800baf0      0x194 Src/Question1.o
-                0x0800baf0                rm
- .text.rm2      0x0800bc84       0xbc Src/Question1.o
-                0x0800bc84                rm2
- .text.mkfil    0x0800bd40      0x170 Src/Question1.o
-                0x0800bd40                mkfil
+                0x0800b894      0x110 Src/Question1.o
+                0x0800b894                fileToFile
+ .text.cp       0x0800b9a4      0x128 Src/Question1.o
+                0x0800b9a4                cp
+ .text.rm       0x0800bacc      0x194 Src/Question1.o
+                0x0800bacc                rm
+ .text.rm2      0x0800bc60       0xbc Src/Question1.o
+                0x0800bc60                rm2
+ .text.mkfil    0x0800bd1c      0x170 Src/Question1.o
+                0x0800bd1c                mkfil
  .text.mkfilForRecording
-                0x0800beb0       0xfc Src/Question1.o
-                0x0800beb0                mkfilForRecording
- .text.read     0x0800bfac      0x1d8 Src/Question1.o
-                0x0800bfac                read
- .text.write    0x0800c184      0x204 Src/Question1.o
-                0x0800c184                write
- .text.write2   0x0800c388      0x118 Src/Question1.o
-                0x0800c388                write2
+                0x0800be8c       0xfc Src/Question1.o
+                0x0800be8c                mkfilForRecording
+ .text.read     0x0800bf88      0x1d8 Src/Question1.o
+                0x0800bf88                read
+ .text.write    0x0800c160      0x204 Src/Question1.o
+                0x0800c160                write
+ .text.write2   0x0800c364      0x118 Src/Question1.o
+                0x0800c364                write2
  .text.checkForNumericArgument
-                0x0800c4a0      0x100 Src/Question1.o
-                0x0800c4a0                checkForNumericArgument
- .text.analog   0x0800c5a0      0x14c Src/Question1.o
-                0x0800c5a0                analog
+                0x0800c47c      0x100 Src/Question1.o
+                0x0800c47c                checkForNumericArgument
+ .text.analog   0x0800c57c      0x14c Src/Question1.o
+                0x0800c57c                analog
  .text.analyseCommands
-                0x0800c6ec      0x184 Src/Question1.o
-                0x0800c6ec                analyseCommands
+                0x0800c6c8      0x184 Src/Question1.o
+                0x0800c6c8                analyseCommands
  .text.startPressed
-                0x0800c870      0x1ec Src/Question2.o
-                0x0800c870                startPressed
+                0x0800c84c      0x1ec Src/Question2.o
+                0x0800c84c                startPressed
  .text.stopPressed
-                0x0800ca5c       0x7c Src/Question2.o
-                0x0800ca5c                stopPressed
+                0x0800ca38       0x7c Src/Question2.o
+                0x0800ca38                stopPressed
  .text.recordPressed
-                0x0800cad8       0xb4 Src/Question2.o
-                0x0800cad8                recordPressed
+                0x0800cab4       0xb4 Src/Question2.o
+                0x0800cab4                recordPressed
  .text.loadPressed
-                0x0800cb8c       0xb8 Src/Question2.o
-                0x0800cb8c                loadPressed
+                0x0800cb68       0xb8 Src/Question2.o
+                0x0800cb68                loadPressed
  .text.savePressed
-                0x0800cc44       0xa8 Src/Question2.o
-                0x0800cc44                savePressed
+                0x0800cc20       0xa8 Src/Question2.o
+                0x0800cc20                savePressed
  .text.updateTimeSpan
-                0x0800ccec       0x40 Src/Question2.o
-                0x0800ccec                updateTimeSpan
+                0x0800ccc8       0x40 Src/Question2.o
+                0x0800ccc8                updateTimeSpan
  .text.updateSpeed
-                0x0800cd2c       0x64 Src/Question2.o
-                0x0800cd2c                updateSpeed
+                0x0800cd08       0x64 Src/Question2.o
+                0x0800cd08                updateSpeed
  .text.zoomInPressed
-                0x0800cd90       0x70 Src/Question2.o
-                0x0800cd90                zoomInPressed
+                0x0800cd6c       0x70 Src/Question2.o
+                0x0800cd6c                zoomInPressed
  .text.zoomOutPressed
-                0x0800ce00       0x70 Src/Question2.o
-                0x0800ce00                zoomOutPressed
+                0x0800cddc       0x70 Src/Question2.o
+                0x0800cddc                zoomOutPressed
  .text.buttonPressed
-                0x0800ce70       0x64 Src/Question2.o
-                0x0800ce70                buttonPressed
+                0x0800ce4c       0x64 Src/Question2.o
+                0x0800ce4c                buttonPressed
  .text.MX_ADC1_Init
-                0x0800ced4       0x70 Src/adc.o
-                0x0800ced4                MX_ADC1_Init
+                0x0800ceb0       0x70 Src/adc.o
+                0x0800ceb0                MX_ADC1_Init
  .text.HAL_ADC_MspInit
-                0x0800cf44       0x94 Src/adc.o
-                0x0800cf44                HAL_ADC_MspInit
+                0x0800cf20       0x94 Src/adc.o
+                0x0800cf20                HAL_ADC_MspInit
  .text.BSP_SD_ReadBlocks_DMA
-                0x0800cfd8       0x18 Src/bsp_driver_sd.o
-                0x0800cfd8                BSP_SD_ReadBlocks_DMA
+                0x0800cfb4       0x18 Src/bsp_driver_sd.o
+                0x0800cfb4                BSP_SD_ReadBlocks_DMA
  .text.BSP_SD_WriteBlocks_DMA
-                0x0800cff0       0x18 Src/bsp_driver_sd.o
-                0x0800cff0                BSP_SD_WriteBlocks_DMA
+                0x0800cfcc       0x18 Src/bsp_driver_sd.o
+                0x0800cfcc                BSP_SD_WriteBlocks_DMA
  .text.BSP_SD_GetCardState
-                0x0800d008       0x14 Src/bsp_driver_sd.o
-                0x0800d008                BSP_SD_GetCardState
+                0x0800cfe4       0x14 Src/bsp_driver_sd.o
+                0x0800cfe4                BSP_SD_GetCardState
  .text.BSP_SD_GetCardInfo
-                0x0800d01c       0x10 Src/bsp_driver_sd.o
-                0x0800d01c                BSP_SD_GetCardInfo
+                0x0800cff8       0x10 Src/bsp_driver_sd.o
+                0x0800cff8                BSP_SD_GetCardInfo
  .text.BSP_SD_IsDetected
-                0x0800d02c       0x10 Src/bsp_driver_sd.o
-                0x0800d02c                BSP_SD_IsDetected
+                0x0800d008       0x10 Src/bsp_driver_sd.o
+                0x0800d008                BSP_SD_IsDetected
  .text.BSP_SD_Init
-                0x0800d03c       0x34 Src/bsp_driver_sd.o
-                0x0800d03c                BSP_SD_Init
+                0x0800d018       0x34 Src/bsp_driver_sd.o
+                0x0800d018                BSP_SD_Init
  .text.MX_DMA_Init
-                0x0800d070       0x54 Src/dma.o
-                0x0800d070                MX_DMA_Init
+                0x0800d04c       0x54 Src/dma.o
+                0x0800d04c                MX_DMA_Init
  .text.MX_FATFS_Init
-                0x0800d0c4       0xb0 Src/fatfs.o
-                0x0800d0c4                MX_FATFS_Init
+                0x0800d0a0       0xb0 Src/fatfs.o
+                0x0800d0a0                MX_FATFS_Init
  .text.get_fattime
-                0x0800d174        0x4 Src/fatfs.o
-                0x0800d174                get_fattime
+                0x0800d150        0x4 Src/fatfs.o
+                0x0800d150                get_fattime
  .text.StartDefaultTask
-                0x0800d178       0x10 Src/freertos.o
-                0x0800d178                StartDefaultTask
+                0x0800d154       0x10 Src/freertos.o
+                0x0800d154                StartDefaultTask
  .text.StartTask02
-                0x0800d188       0x12 Src/freertos.o
-                0x0800d188                StartTask02
+                0x0800d164       0x12 Src/freertos.o
+                0x0800d164                StartTask02
  .text.StartTask03
-                0x0800d19a       0x12 Src/freertos.o
-                0x0800d19a                StartTask03
+                0x0800d176       0x12 Src/freertos.o
+                0x0800d176                StartTask03
  .text.StartTask04
-                0x0800d1ac       0x14 Src/freertos.o
-                0x0800d1ac                StartTask04
+                0x0800d188       0x14 Src/freertos.o
+                0x0800d188                StartTask04
  .text.Callback01
-                0x0800d1c0       0x10 Src/freertos.o
-                0x0800d1c0                Callback01
+                0x0800d19c       0x10 Src/freertos.o
+                0x0800d19c                Callback01
  .text.MX_FREERTOS_Init
-                0x0800d1d0      0x1e8 Src/freertos.o
-                0x0800d1d0                MX_FREERTOS_Init
+                0x0800d1ac      0x1e8 Src/freertos.o
+                0x0800d1ac                MX_FREERTOS_Init
  .text.HAL_FSMC_MspInit
-                0x0800d3b8       0x70 Src/fsmc.o
+                0x0800d394       0x70 Src/fsmc.o
  .text.MX_FSMC_Init
-                0x0800d428       0x68 Src/fsmc.o
-                0x0800d428                MX_FSMC_Init
+                0x0800d404       0x68 Src/fsmc.o
+                0x0800d404                MX_FSMC_Init
  .text.HAL_SRAM_MspInit
-                0x0800d490        0x8 Src/fsmc.o
-                0x0800d490                HAL_SRAM_MspInit
+                0x0800d46c        0x8 Src/fsmc.o
+                0x0800d46c                HAL_SRAM_MspInit
  .text.MX_GPIO_Init
-                0x0800d498      0x238 Src/gpio.o
-                0x0800d498                MX_GPIO_Init
+                0x0800d474      0x238 Src/gpio.o
+                0x0800d474                MX_GPIO_Init
  .text.HAL_TIM_PeriodElapsedCallback
-                0x0800d6d0       0x18 Src/main.o
-                0x0800d6d0                HAL_TIM_PeriodElapsedCallback
+                0x0800d6ac       0x18 Src/main.o
+                0x0800d6ac                HAL_TIM_PeriodElapsedCallback
  .text._Error_Handler
-                0x0800d6e8        0x2 Src/main.o
-                0x0800d6e8                _Error_Handler
- *fill*         0x0800d6ea        0x2 
+                0x0800d6c4        0x2 Src/main.o
+                0x0800d6c4                _Error_Handler
+ *fill*         0x0800d6c6        0x2 
  .text.SystemClock_Config
-                0x0800d6ec       0xc0 Src/main.o
-                0x0800d6ec                SystemClock_Config
- .text.main     0x0800d7ac       0x30 Src/main.o
-                0x0800d7ac                main
+                0x0800d6c8       0xc0 Src/main.o
+                0x0800d6c8                SystemClock_Config
+ .text.main     0x0800d788       0x30 Src/main.o
+                0x0800d788                main
  .text.SD_CheckStatus
-                0x0800d7dc       0x24 Src/sd_diskio.o
+                0x0800d7b8       0x24 Src/sd_diskio.o
  .text.SD_initialize
-                0x0800d800       0x5c Src/sd_diskio.o
-                0x0800d800                SD_initialize
+                0x0800d7dc       0x5c Src/sd_diskio.o
+                0x0800d7dc                SD_initialize
  .text.SD_status
-                0x0800d85c        0x8 Src/sd_diskio.o
-                0x0800d85c                SD_status
- .text.SD_read  0x0800d864       0x60 Src/sd_diskio.o
-                0x0800d864                SD_read
+                0x0800d838        0x8 Src/sd_diskio.o
+                0x0800d838                SD_status
+ .text.SD_read  0x0800d840       0x60 Src/sd_diskio.o
+                0x0800d840                SD_read
  .text.SD_write
-                0x0800d8c4       0x60 Src/sd_diskio.o
-                0x0800d8c4                SD_write
+                0x0800d8a0       0x60 Src/sd_diskio.o
+                0x0800d8a0                SD_write
  .text.SD_ioctl
-                0x0800d924       0x5c Src/sd_diskio.o
-                0x0800d924                SD_ioctl
+                0x0800d900       0x5c Src/sd_diskio.o
+                0x0800d900                SD_ioctl
  .text.BSP_SD_WriteCpltCallback
-                0x0800d980       0x18 Src/sd_diskio.o
-                0x0800d980                BSP_SD_WriteCpltCallback
+                0x0800d95c       0x18 Src/sd_diskio.o
+                0x0800d95c                BSP_SD_WriteCpltCallback
  .text.BSP_SD_ReadCpltCallback
-                0x0800d998       0x18 Src/sd_diskio.o
-                0x0800d998                BSP_SD_ReadCpltCallback
+                0x0800d974       0x18 Src/sd_diskio.o
+                0x0800d974                BSP_SD_ReadCpltCallback
  .text.HAL_SD_RxCpltCallback
-                0x0800d9b0        0x8 Src/sd_diskio.o
-                0x0800d9b0                HAL_SD_RxCpltCallback
+                0x0800d98c        0x8 Src/sd_diskio.o
+                0x0800d98c                HAL_SD_RxCpltCallback
  .text.HAL_SD_TxCpltCallback
-                0x0800d9b8        0x8 Src/sd_diskio.o
-                0x0800d9b8                HAL_SD_TxCpltCallback
+                0x0800d994        0x8 Src/sd_diskio.o
+                0x0800d994                HAL_SD_TxCpltCallback
  .text.MX_SDIO_SD_Init
-                0x0800d9c0       0x20 Src/sdio.o
-                0x0800d9c0                MX_SDIO_SD_Init
+                0x0800d99c       0x20 Src/sdio.o
+                0x0800d99c                MX_SDIO_SD_Init
  .text.HAL_SD_MspInit
-                0x0800d9e0      0x148 Src/sdio.o
-                0x0800d9e0                HAL_SD_MspInit
+                0x0800d9bc      0x148 Src/sdio.o
+                0x0800d9bc                HAL_SD_MspInit
  .text.MX_SPI2_Init
-                0x0800db28       0x4c Src/spi.o
-                0x0800db28                MX_SPI2_Init
+                0x0800db04       0x4c Src/spi.o
+                0x0800db04                MX_SPI2_Init
  .text.HAL_SPI_MspInit
-                0x0800db74       0x60 Src/spi.o
-                0x0800db74                HAL_SPI_MspInit
+                0x0800db50       0x60 Src/spi.o
+                0x0800db50                HAL_SPI_MspInit
  .text.HAL_MspInit
-                0x0800dbd4       0x5e Src/stm32f4xx_hal_msp.o
-                0x0800dbd4                HAL_MspInit
- *fill*         0x0800dc32        0x2 
+                0x0800dbb0       0x5e Src/stm32f4xx_hal_msp.o
+                0x0800dbb0                HAL_MspInit
+ *fill*         0x0800dc0e        0x2 
  .text.HAL_InitTick
-                0x0800dc34       0x7c Src/stm32f4xx_hal_timebase_TIM.o
-                0x0800dc34                HAL_InitTick
+                0x0800dc10       0x7c Src/stm32f4xx_hal_timebase_TIM.o
+                0x0800dc10                HAL_InitTick
  .text.SysTick_Handler
-                0x0800dcb0        0x8 Src/stm32f4xx_it.o
-                0x0800dcb0                SysTick_Handler
+                0x0800dc8c        0x8 Src/stm32f4xx_it.o
+                0x0800dc8c                SysTick_Handler
  .text.TIM1_UP_TIM10_IRQHandler
-                0x0800dcb8       0x10 Src/stm32f4xx_it.o
-                0x0800dcb8                TIM1_UP_TIM10_IRQHandler
+                0x0800dc94       0x10 Src/stm32f4xx_it.o
+                0x0800dc94                TIM1_UP_TIM10_IRQHandler
  .text.SPI2_IRQHandler
-                0x0800dcc8       0x10 Src/stm32f4xx_it.o
-                0x0800dcc8                SPI2_IRQHandler
+                0x0800dca4       0x10 Src/stm32f4xx_it.o
+                0x0800dca4                SPI2_IRQHandler
  .text.USART2_IRQHandler
-                0x0800dcd8       0x10 Src/stm32f4xx_it.o
-                0x0800dcd8                USART2_IRQHandler
+                0x0800dcb4       0x10 Src/stm32f4xx_it.o
+                0x0800dcb4                USART2_IRQHandler
  .text.SDIO_IRQHandler
-                0x0800dce8       0x10 Src/stm32f4xx_it.o
-                0x0800dce8                SDIO_IRQHandler
+                0x0800dcc4       0x10 Src/stm32f4xx_it.o
+                0x0800dcc4                SDIO_IRQHandler
  .text.DMA2_Stream0_IRQHandler
-                0x0800dcf8       0x10 Src/stm32f4xx_it.o
-                0x0800dcf8                DMA2_Stream0_IRQHandler
+                0x0800dcd4       0x10 Src/stm32f4xx_it.o
+                0x0800dcd4                DMA2_Stream0_IRQHandler
  .text.DMA2_Stream3_IRQHandler
-                0x0800dd08       0x10 Src/stm32f4xx_it.o
-                0x0800dd08                DMA2_Stream3_IRQHandler
+                0x0800dce4       0x10 Src/stm32f4xx_it.o
+                0x0800dce4                DMA2_Stream3_IRQHandler
  .text.DMA2_Stream6_IRQHandler
-                0x0800dd18       0x10 Src/stm32f4xx_it.o
-                0x0800dd18                DMA2_Stream6_IRQHandler
+                0x0800dcf4       0x10 Src/stm32f4xx_it.o
+                0x0800dcf4                DMA2_Stream6_IRQHandler
  .text.SystemInit
-                0x0800dd28       0x4c Src/system_stm32f4xx.o
-                0x0800dd28                SystemInit
+                0x0800dd04       0x4c Src/system_stm32f4xx.o
+                0x0800dd04                SystemInit
  .text.MX_USART2_UART_Init
-                0x0800dd74       0x3c Src/usart.o
-                0x0800dd74                MX_USART2_UART_Init
+                0x0800dd50       0x3c Src/usart.o
+                0x0800dd50                MX_USART2_UART_Init
  .text.HAL_UART_MspInit
-                0x0800ddb0       0x60 Src/usart.o
-                0x0800ddb0                HAL_UART_MspInit
- .text._write   0x0800de10       0x8c Src/usart.o
-                0x0800de10                _write
+                0x0800dd8c       0x60 Src/usart.o
+                0x0800dd8c                HAL_UART_MspInit
+ .text._write   0x0800ddec       0x8c Src/usart.o
+                0x0800ddec                _write
  .text.HAL_UART_TxCpltCallback
-                0x0800de9c       0x1c Src/usart.o
-                0x0800de9c                HAL_UART_TxCpltCallback
- .text._read    0x0800deb8       0x50 Src/usart.o
-                0x0800deb8                _read
+                0x0800de78       0x1c Src/usart.o
+                0x0800de78                HAL_UART_TxCpltCallback
+ .text._read    0x0800de94       0x50 Src/usart.o
+                0x0800de94                _read
  .text.HAL_UART_RxCpltCallback
-                0x0800df08       0x10 Src/usart.o
-                0x0800df08                HAL_UART_RxCpltCallback
+                0x0800dee4       0x10 Src/usart.o
+                0x0800dee4                HAL_UART_RxCpltCallback
  .text.Reset_Handler
-                0x0800df18       0x50 startup/startup_stm32f407xx.o
-                0x0800df18                Reset_Handler
+                0x0800def4       0x50 startup/startup_stm32f407xx.o
+                0x0800def4                Reset_Handler
  .text.Default_Handler
-                0x0800df68        0x2 startup/startup_stm32f407xx.o
-                0x0800df68                RTC_Alarm_IRQHandler
-                0x0800df68                HASH_RNG_IRQHandler
-                0x0800df68                EXTI2_IRQHandler
-                0x0800df68                TIM8_CC_IRQHandler
-                0x0800df68                DebugMon_Handler
-                0x0800df68                TIM1_CC_IRQHandler
-                0x0800df68                DMA2_Stream5_IRQHandler
-                0x0800df68                HardFault_Handler
-                0x0800df68                DMA1_Stream5_IRQHandler
-                0x0800df68                PVD_IRQHandler
-                0x0800df68                TAMP_STAMP_IRQHandler
-                0x0800df68                NMI_Handler
-                0x0800df68                CAN2_RX1_IRQHandler
-                0x0800df68                EXTI3_IRQHandler
-                0x0800df68                TIM8_TRG_COM_TIM14_IRQHandler
-                0x0800df68                TIM8_UP_TIM13_IRQHandler
-                0x0800df68                I2C3_ER_IRQHandler
-                0x0800df68                EXTI0_IRQHandler
-                0x0800df68                I2C2_EV_IRQHandler
-                0x0800df68                DMA1_Stream2_IRQHandler
-                0x0800df68                CAN1_RX0_IRQHandler
-                0x0800df68                FPU_IRQHandler
-                0x0800df68                OTG_HS_WKUP_IRQHandler
-                0x0800df68                UsageFault_Handler
-                0x0800df68                CAN2_SCE_IRQHandler
-                0x0800df68                DMA2_Stream2_IRQHandler
-                0x0800df68                SPI1_IRQHandler
-                0x0800df68                TIM6_DAC_IRQHandler
-                0x0800df68                TIM1_BRK_TIM9_IRQHandler
-                0x0800df68                DCMI_IRQHandler
-                0x0800df68                CAN2_RX0_IRQHandler
-                0x0800df68                USART6_IRQHandler
-                0x0800df68                USART3_IRQHandler
-                0x0800df68                CAN1_RX1_IRQHandler
-                0x0800df68                UART5_IRQHandler
-                0x0800df68                TIM4_IRQHandler
-                0x0800df68                I2C1_EV_IRQHandler
-                0x0800df68                DMA1_Stream6_IRQHandler
-                0x0800df68                DMA1_Stream1_IRQHandler
-                0x0800df68                UART4_IRQHandler
-                0x0800df68                TIM3_IRQHandler
-                0x0800df68                RCC_IRQHandler
-                0x0800df68                TIM8_BRK_TIM12_IRQHandler
-                0x0800df68                Default_Handler
-                0x0800df68                EXTI15_10_IRQHandler
-                0x0800df68                ADC_IRQHandler
-                0x0800df68                DMA1_Stream7_IRQHandler
-                0x0800df68                TIM7_IRQHandler
-                0x0800df68                CAN2_TX_IRQHandler
-                0x0800df68                TIM5_IRQHandler
-                0x0800df68                DMA2_Stream7_IRQHandler
-                0x0800df68                I2C3_EV_IRQHandler
-                0x0800df68                EXTI9_5_IRQHandler
-                0x0800df68                RTC_WKUP_IRQHandler
-                0x0800df68                ETH_WKUP_IRQHandler
-                0x0800df68                OTG_HS_EP1_IN_IRQHandler
-                0x0800df68                MemManage_Handler
-                0x0800df68                DMA1_Stream0_IRQHandler
-                0x0800df68                CAN1_TX_IRQHandler
-                0x0800df68                EXTI4_IRQHandler
-                0x0800df68                FSMC_IRQHandler
-                0x0800df68                ETH_IRQHandler
-                0x0800df68                OTG_HS_EP1_OUT_IRQHandler
-                0x0800df68                WWDG_IRQHandler
-                0x0800df68                TIM2_IRQHandler
-                0x0800df68                OTG_FS_WKUP_IRQHandler
-                0x0800df68                TIM1_TRG_COM_TIM11_IRQHandler
-                0x0800df68                OTG_HS_IRQHandler
-                0x0800df68                EXTI1_IRQHandler
-                0x0800df68                I2C2_ER_IRQHandler
-                0x0800df68                DMA2_Stream1_IRQHandler
-                0x0800df68                CAN1_SCE_IRQHandler
-                0x0800df68                FLASH_IRQHandler
-                0x0800df68                DMA2_Stream4_IRQHandler
-                0x0800df68                BusFault_Handler
-                0x0800df68                USART1_IRQHandler
-                0x0800df68                OTG_FS_IRQHandler
-                0x0800df68                SPI3_IRQHandler
-                0x0800df68                DMA1_Stream4_IRQHandler
-                0x0800df68                I2C1_ER_IRQHandler
-                0x0800df68                DMA1_Stream3_IRQHandler
- .text.atoi     0x0800df6a        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-atoi.o)
-                0x0800df6a                atoi
- *fill*         0x0800df72        0x2 
- .text.__errno  0x0800df74        0xc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-errno.o)
-                0x0800df74                __errno
+                0x0800df44        0x2 startup/startup_stm32f407xx.o
+                0x0800df44                RTC_Alarm_IRQHandler
+                0x0800df44                HASH_RNG_IRQHandler
+                0x0800df44                EXTI2_IRQHandler
+                0x0800df44                TIM8_CC_IRQHandler
+                0x0800df44                DebugMon_Handler
+                0x0800df44                TIM1_CC_IRQHandler
+                0x0800df44                DMA2_Stream5_IRQHandler
+                0x0800df44                HardFault_Handler
+                0x0800df44                DMA1_Stream5_IRQHandler
+                0x0800df44                PVD_IRQHandler
+                0x0800df44                TAMP_STAMP_IRQHandler
+                0x0800df44                NMI_Handler
+                0x0800df44                CAN2_RX1_IRQHandler
+                0x0800df44                EXTI3_IRQHandler
+                0x0800df44                TIM8_TRG_COM_TIM14_IRQHandler
+                0x0800df44                TIM8_UP_TIM13_IRQHandler
+                0x0800df44                I2C3_ER_IRQHandler
+                0x0800df44                EXTI0_IRQHandler
+                0x0800df44                I2C2_EV_IRQHandler
+                0x0800df44                DMA1_Stream2_IRQHandler
+                0x0800df44                CAN1_RX0_IRQHandler
+                0x0800df44                FPU_IRQHandler
+                0x0800df44                OTG_HS_WKUP_IRQHandler
+                0x0800df44                UsageFault_Handler
+                0x0800df44                CAN2_SCE_IRQHandler
+                0x0800df44                DMA2_Stream2_IRQHandler
+                0x0800df44                SPI1_IRQHandler
+                0x0800df44                TIM6_DAC_IRQHandler
+                0x0800df44                TIM1_BRK_TIM9_IRQHandler
+                0x0800df44                DCMI_IRQHandler
+                0x0800df44                CAN2_RX0_IRQHandler
+                0x0800df44                USART6_IRQHandler
+                0x0800df44                USART3_IRQHandler
+                0x0800df44                CAN1_RX1_IRQHandler
+                0x0800df44                UART5_IRQHandler
+                0x0800df44                TIM4_IRQHandler
+                0x0800df44                I2C1_EV_IRQHandler
+                0x0800df44                DMA1_Stream6_IRQHandler
+                0x0800df44                DMA1_Stream1_IRQHandler
+                0x0800df44                UART4_IRQHandler
+                0x0800df44                TIM3_IRQHandler
+                0x0800df44                RCC_IRQHandler
+                0x0800df44                TIM8_BRK_TIM12_IRQHandler
+                0x0800df44                Default_Handler
+                0x0800df44                EXTI15_10_IRQHandler
+                0x0800df44                ADC_IRQHandler
+                0x0800df44                DMA1_Stream7_IRQHandler
+                0x0800df44                TIM7_IRQHandler
+                0x0800df44                CAN2_TX_IRQHandler
+                0x0800df44                TIM5_IRQHandler
+                0x0800df44                DMA2_Stream7_IRQHandler
+                0x0800df44                I2C3_EV_IRQHandler
+                0x0800df44                EXTI9_5_IRQHandler
+                0x0800df44                RTC_WKUP_IRQHandler
+                0x0800df44                ETH_WKUP_IRQHandler
+                0x0800df44                OTG_HS_EP1_IN_IRQHandler
+                0x0800df44                MemManage_Handler
+                0x0800df44                DMA1_Stream0_IRQHandler
+                0x0800df44                CAN1_TX_IRQHandler
+                0x0800df44                EXTI4_IRQHandler
+                0x0800df44                FSMC_IRQHandler
+                0x0800df44                ETH_IRQHandler
+                0x0800df44                OTG_HS_EP1_OUT_IRQHandler
+                0x0800df44                WWDG_IRQHandler
+                0x0800df44                TIM2_IRQHandler
+                0x0800df44                OTG_FS_WKUP_IRQHandler
+                0x0800df44                TIM1_TRG_COM_TIM11_IRQHandler
+                0x0800df44                OTG_HS_IRQHandler
+                0x0800df44                EXTI1_IRQHandler
+                0x0800df44                I2C2_ER_IRQHandler
+                0x0800df44                DMA2_Stream1_IRQHandler
+                0x0800df44                CAN1_SCE_IRQHandler
+                0x0800df44                FLASH_IRQHandler
+                0x0800df44                DMA2_Stream4_IRQHandler
+                0x0800df44                BusFault_Handler
+                0x0800df44                USART1_IRQHandler
+                0x0800df44                OTG_FS_IRQHandler
+                0x0800df44                SPI3_IRQHandler
+                0x0800df44                DMA1_Stream4_IRQHandler
+                0x0800df44                I2C1_ER_IRQHandler
+                0x0800df44                DMA1_Stream3_IRQHandler
+ .text.atoi     0x0800df46        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-atoi.o)
+                0x0800df46                atoi
+ *fill*         0x0800df4e        0x2 
+ .text.__errno  0x0800df50        0xc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-errno.o)
+                0x0800df50                __errno
  .text.__sflush_r
-                0x0800df80      0x110 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fflush.o)
-                0x0800df80                __sflush_r
+                0x0800df5c      0x110 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fflush.o)
+                0x0800df5c                __sflush_r
  .text._fflush_r
-                0x0800e090       0x54 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fflush.o)
-                0x0800e090                _fflush_r
- .text.fflush   0x0800e0e4       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fflush.o)
-                0x0800e0e4                fflush
- .text.fileno   0x0800e108       0x58 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fileno.o)
-                0x0800e108                fileno
+                0x0800e06c       0x54 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fflush.o)
+                0x0800e06c                _fflush_r
+ .text.fflush   0x0800e0c0       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fflush.o)
+                0x0800e0c0                fflush
+ .text.fileno   0x0800e0e4       0x58 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fileno.o)
+                0x0800e0e4                fileno
  .text._cleanup_r
-                0x0800e160        0xc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
-                0x0800e160                _cleanup_r
+                0x0800e13c        0xc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0800e13c                _cleanup_r
  .text.std.isra.0
-                0x0800e16c       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0800e148       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
  .text.__sfmoreglue
-                0x0800e1b4       0x2c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
-                0x0800e1b4                __sfmoreglue
- .text.__sinit  0x0800e1e0       0x60 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
-                0x0800e1e0                __sinit
- .text.__sfp    0x0800e240       0x78 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
-                0x0800e240                __sfp
- .text._fwalk   0x0800e2b8       0x38 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fwalk.o)
-                0x0800e2b8                _fwalk
+                0x0800e190       0x2c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0800e190                __sfmoreglue
+ .text.__sinit  0x0800e1bc       0x60 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0800e1bc                __sinit
+ .text.__sfp    0x0800e21c       0x78 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0800e21c                __sfp
+ .text._fwalk   0x0800e294       0x38 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fwalk.o)
+                0x0800e294                _fwalk
  .text._fwalk_reent
-                0x0800e2f0       0x3c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fwalk.o)
-                0x0800e2f0                _fwalk_reent
+                0x0800e2cc       0x3c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fwalk.o)
+                0x0800e2cc                _fwalk_reent
  .text.__libc_init_array
-                0x0800e32c       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-init.o)
-                0x0800e32c                __libc_init_array
- .text.malloc   0x0800e374       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-malloc.o)
-                0x0800e374                malloc
- .text.free     0x0800e384       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-malloc.o)
-                0x0800e384                free
- .text.memcpy   0x0800e394       0x16 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-memcpy-stub.o)
-                0x0800e394                memcpy
- .text.memset   0x0800e3aa       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-memset.o)
-                0x0800e3aa                memset
- *fill*         0x0800e3ba        0x2 
- .text._free_r  0x0800e3bc       0x9c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-freer.o)
-                0x0800e3bc                _free_r
+                0x0800e308       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-init.o)
+                0x0800e308                __libc_init_array
+ .text.malloc   0x0800e350       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-malloc.o)
+                0x0800e350                malloc
+ .text.free     0x0800e360       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-malloc.o)
+                0x0800e360                free
+ .text.memcpy   0x0800e370       0x16 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-memcpy-stub.o)
+                0x0800e370                memcpy
+ .text.memset   0x0800e386       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-memset.o)
+                0x0800e386                memset
+ *fill*         0x0800e396        0x2 
+ .text._free_r  0x0800e398       0x9c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-freer.o)
+                0x0800e398                _free_r
  .text._malloc_r
-                0x0800e458       0xbc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-mallocr.o)
-                0x0800e458                _malloc_r
- .text.__cvt    0x0800e514       0xc2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
-                0x0800e514                __cvt
+                0x0800e434       0xbc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-mallocr.o)
+                0x0800e434                _malloc_r
+ .text.__cvt    0x0800e4f0       0xc2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x0800e4f0                __cvt
  .text.__exponent
-                0x0800e5d6       0x6a c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
-                0x0800e5d6                __exponent
+                0x0800e5b2       0x6a c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x0800e5b2                __exponent
  .text._printf_float
-                0x0800e640      0x480 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
-                0x0800e640                _printf_float
+                0x0800e61c      0x480 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x0800e61c                _printf_float
  .text._printf_common
-                0x0800eac0       0xec c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x0800eac0                _printf_common
+                0x0800ea9c       0xec c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0800ea9c                _printf_common
  .text._printf_i
-                0x0800ebac      0x240 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x0800ebac                _printf_i
- .text.printf   0x0800edec       0x30 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-printf.o)
-                0x0800edec                iprintf
-                0x0800edec                printf
- .text.putchar  0x0800ee1c       0x28 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-putchar.o)
-                0x0800ee1c                putchar
- .text._puts_r  0x0800ee44       0xb8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-puts.o)
-                0x0800ee44                _puts_r
- .text.puts     0x0800eefc       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-puts.o)
-                0x0800eefc                puts
+                0x0800eb88      0x240 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0800eb88                _printf_i
+ .text.printf   0x0800edc8       0x30 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-printf.o)
+                0x0800edc8                iprintf
+                0x0800edc8                printf
+ .text.putchar  0x0800edf8       0x28 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-putchar.o)
+                0x0800edf8                putchar
+ .text._puts_r  0x0800ee20       0xb8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-puts.o)
+                0x0800ee20                _puts_r
+ .text.puts     0x0800eed8       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-puts.o)
+                0x0800eed8                puts
  .text.__srget_r
-                0x0800ef0c       0x58 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-rget.o)
-                0x0800ef0c                __srget_r
- .text._sbrk_r  0x0800ef64       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-sbrkr.o)
-                0x0800ef64                _sbrk_r
- .text.sprintf  0x0800ef84       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-sprintf.o)
-                0x0800ef84                siprintf
-                0x0800ef84                sprintf
- .text.__sread  0x0800efcc       0x22 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
-                0x0800efcc                __sread
+                0x0800eee8       0x58 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-rget.o)
+                0x0800eee8                __srget_r
+ .text._sbrk_r  0x0800ef40       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-sbrkr.o)
+                0x0800ef40                _sbrk_r
+ .text.sprintf  0x0800ef60       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-sprintf.o)
+                0x0800ef60                siprintf
+                0x0800ef60                sprintf
+ .text.__sread  0x0800efa8       0x22 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
+                0x0800efa8                __sread
  .text.__swrite
-                0x0800efee       0x38 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
-                0x0800efee                __swrite
- .text.__sseek  0x0800f026       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
-                0x0800f026                __sseek
+                0x0800efca       0x38 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
+                0x0800efca                __swrite
+ .text.__sseek  0x0800f002       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
+                0x0800f002                __sseek
  .text.__sclose
-                0x0800f04a        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
-                0x0800f04a                __sclose
- .text.strcat   0x0800f052       0x1e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strcat.o)
-                0x0800f052                strcat
- .text.strchr   0x0800f070       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strchr.o)
-                0x0800f070                strchr
- .text.strcpy   0x0800f08c       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strcpy.o)
-                0x0800f08c                strcpy
+                0x0800f026        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-stdio.o)
+                0x0800f026                __sclose
+ .text.strcat   0x0800f02e       0x1e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strcat.o)
+                0x0800f02e                strcat
+ .text.strchr   0x0800f04c       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strchr.o)
+                0x0800f04c                strchr
+ .text.strcpy   0x0800f068       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strcpy.o)
+                0x0800f068                strcpy
  .text._strtol_l.isra.0
-                0x0800f09c      0x100 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strtol.o)
- .text.strtol   0x0800f19c       0x2c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strtol.o)
-                0x0800f19c                strtol
+                0x0800f078      0x100 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strtol.o)
+ .text.strtol   0x0800f178       0x2c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-strtol.o)
+                0x0800f178                strtol
  .text.__swbuf_r
-                0x0800f1c8       0xa4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-wbuf.o)
-                0x0800f1c8                __swbuf_r
+                0x0800f1a4       0xa4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-wbuf.o)
+                0x0800f1a4                __swbuf_r
  .text._write_r
-                0x0800f26c       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-writer.o)
-                0x0800f26c                _write_r
+                0x0800f248       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-writer.o)
+                0x0800f248                _write_r
  .text.__swsetup_r
-                0x0800f290       0xdc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-wsetup.o)
-                0x0800f290                __swsetup_r
+                0x0800f26c       0xdc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-wsetup.o)
+                0x0800f26c                __swsetup_r
  .text._close_r
-                0x0800f36c       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-closer.o)
-                0x0800f36c                _close_r
- .text.quorem   0x0800f38c      0x118 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-dtoa.o)
- *fill*         0x0800f4a4        0x4 
- .text._dtoa_r  0x0800f4a8      0xb9c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-dtoa.o)
-                0x0800f4a8                _dtoa_r
+                0x0800f348       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-closer.o)
+                0x0800f348                _close_r
+ .text.quorem   0x0800f368      0x118 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-dtoa.o)
+ .text._dtoa_r  0x0800f480      0xb9c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-dtoa.o)
+                0x0800f480                _dtoa_r
  .text.__locale_ctype_ptr_l
-                0x08010044        0x6 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-locale.o)
-                0x08010044                __locale_ctype_ptr_l
- *fill*         0x0801004a        0x2 
+                0x0801001c        0x6 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-locale.o)
+                0x0801001c                __locale_ctype_ptr_l
+ *fill*         0x08010022        0x2 
  .text._localeconv_r
-                0x0801004c       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-localeconv.o)
-                0x0801004c                _localeconv_r
+                0x08010024       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-localeconv.o)
+                0x08010024                _localeconv_r
  .text._lseek_r
-                0x08010068       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-lseekr.o)
-                0x08010068                _lseek_r
+                0x08010040       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-lseekr.o)
+                0x08010040                _lseek_r
  .text.__swhatbuf_r
-                0x0801008c       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-makebuf.o)
-                0x0801008c                __swhatbuf_r
+                0x08010064       0x48 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-makebuf.o)
+                0x08010064                __swhatbuf_r
  .text.__smakebuf_r
-                0x080100d4       0x80 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-makebuf.o)
-                0x080100d4                __smakebuf_r
+                0x080100ac       0x80 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-makebuf.o)
+                0x080100ac                __smakebuf_r
  .text.__ascii_mbtowc
-                0x08010154       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mbtowc_r.o)
-                0x08010154                __ascii_mbtowc
+                0x0801012c       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mbtowc_r.o)
+                0x0801012c                __ascii_mbtowc
  .text.__malloc_lock
-                0x08010178        0x2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mlock.o)
-                0x08010178                __malloc_lock
+                0x08010150        0x2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mlock.o)
+                0x08010150                __malloc_lock
  .text.__malloc_unlock
-                0x0801017a        0x2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mlock.o)
-                0x0801017a                __malloc_unlock
- .text._Balloc  0x0801017c       0x68 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x0801017c                _Balloc
- .text._Bfree   0x080101e4       0x2e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x080101e4                _Bfree
+                0x08010152        0x2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mlock.o)
+                0x08010152                __malloc_unlock
+ .text._Balloc  0x08010154       0x68 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08010154                _Balloc
+ .text._Bfree   0x080101bc       0x2e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x080101bc                _Bfree
  .text.__multadd
-                0x08010212       0x76 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x08010212                __multadd
+                0x080101ea       0x76 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x080101ea                __multadd
  .text.__hi0bits
-                0x08010288       0x3e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x08010288                __hi0bits
+                0x08010260       0x3e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08010260                __hi0bits
  .text.__lo0bits
-                0x080102c6       0x5e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x080102c6                __lo0bits
- .text.__i2b    0x08010324       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x08010324                __i2b
+                0x0801029e       0x5e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x0801029e                __lo0bits
+ .text.__i2b    0x080102fc       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x080102fc                __i2b
  .text.__multiply
-                0x08010336      0x11a c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x08010336                __multiply
+                0x0801030e      0x11a c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x0801030e                __multiply
  .text.__pow5mult
-                0x08010450       0x9c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x08010450                __pow5mult
+                0x08010428       0x9c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08010428                __pow5mult
  .text.__lshift
-                0x080104ec       0xa2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x080104ec                __lshift
- .text.__mcmp   0x0801058e       0x34 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x0801058e                __mcmp
- .text.__mdiff  0x080105c2       0xbc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x080105c2                __mdiff
- .text.__d2b    0x0801067e       0x9e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x0801067e                __d2b
+                0x080104c4       0xa2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x080104c4                __lshift
+ .text.__mcmp   0x08010566       0x34 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08010566                __mcmp
+ .text.__mdiff  0x0801059a       0xbc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x0801059a                __mdiff
+ .text.__d2b    0x08010656       0x9e c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08010656                __d2b
  .text._calloc_r
-                0x0801071c       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-callocr.o)
-                0x0801071c                _calloc_r
+                0x080106f4       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-callocr.o)
+                0x080106f4                _calloc_r
  .text.__ssputs_r
-                0x08010738       0xb6 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-svfprintf.o)
-                0x08010738                __ssputs_r
- *fill*         0x080107ee        0x2 
+                0x08010710       0xb6 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-svfprintf.o)
+                0x08010710                __ssputs_r
+ *fill*         0x080107c6        0x2 
  .text._svfprintf_r
-                0x080107f0      0x1e8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-svfprintf.o)
-                0x080107f0                _svfiprintf_r
-                0x080107f0                _svfprintf_r
+                0x080107c8      0x1e8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-svfprintf.o)
+                0x080107c8                _svfiprintf_r
+                0x080107c8                _svfprintf_r
  .text.__sfputc_r
-                0x080109d8       0x30 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
+                0x080109b0       0x30 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x08010a08       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
-                0x08010a08                __sfputs_r
+                0x080109e0       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
+                0x080109e0                __sfputs_r
  .text._vfprintf_r
-                0x08010a2c      0x22c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
-                0x08010a2c                _vfprintf_r
-                0x08010a2c                _vfiprintf_r
- .text._putc_r  0x08010c58       0x6c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-putc.o)
-                0x08010c58                _putc_r
- .text._read_r  0x08010cc4       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-readr.o)
-                0x08010cc4                _read_r
- .text.lflush   0x08010ce8       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-refill.o)
- *fill*         0x08010cfa        0x2 
+                0x08010a04      0x22c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
+                0x08010a04                _vfprintf_r
+                0x08010a04                _vfiprintf_r
+ .text._putc_r  0x08010c30       0x6c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-putc.o)
+                0x08010c30                _putc_r
+ .text._read_r  0x08010c9c       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-readr.o)
+                0x08010c9c                _read_r
+ .text.lflush   0x08010cc0       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-refill.o)
+ *fill*         0x08010cd2        0x2 
  .text.__srefill_r
-                0x08010cfc      0x114 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-refill.o)
-                0x08010cfc                __srefill_r
+                0x08010cd4      0x114 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-refill.o)
+                0x08010cd4                __srefill_r
  .text.__ascii_wctomb
-                0x08010e10       0x1a c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-wctomb_r.o)
-                0x08010e10                __ascii_wctomb
- *fill*         0x08010e2a        0x2 
+                0x08010de8       0x1a c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-wctomb_r.o)
+                0x08010de8                __ascii_wctomb
+ *fill*         0x08010e02        0x2 
  .text._fstat_r
-                0x08010e2c       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fstatr.o)
-                0x08010e2c                _fstat_r
+                0x08010e04       0x24 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-fstatr.o)
+                0x08010e04                _fstat_r
  .text._isatty_r
-                0x08010e50       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-isattyr.o)
-                0x08010e50                _isatty_r
- .text.memmove  0x08010e70       0x34 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-memmove.o)
-                0x08010e70                memmove
+                0x08010e28       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-isattyr.o)
+                0x08010e28                _isatty_r
+ .text.memmove  0x08010e48       0x34 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-memmove.o)
+                0x08010e48                memmove
  .text._realloc_r
-                0x08010ea4       0x4c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-reallocr.o)
-                0x08010ea4                _realloc_r
+                0x08010e7c       0x4c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-reallocr.o)
+                0x08010e7c                _realloc_r
  .text._malloc_usable_size_r
-                0x08010ef0       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-msizer.o)
-                0x08010ef0                _malloc_usable_size_r
- *fill*         0x08010f02        0x2 
- .text._close   0x08010f04       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(close.o)
-                0x08010f04                _close
- .text._fstat   0x08010f14       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(fstat.o)
-                0x08010f14                _fstat
- .text._isatty  0x08010f24       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(isatty.o)
-                0x08010f24                _isatty
- .text._lseek   0x08010f34       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(lseek.o)
-                0x08010f34                _lseek
- .text._sbrk    0x08010f44       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(sbrk.o)
-                0x08010f44                _sbrk
+                0x08010ec8       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-msizer.o)
+                0x08010ec8                _malloc_usable_size_r
+ *fill*         0x08010eda        0x2 
+ .text._close   0x08010edc       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(close.o)
+                0x08010edc                _close
+ .text._fstat   0x08010eec       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(fstat.o)
+                0x08010eec                _fstat
+ .text._isatty  0x08010efc       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(isatty.o)
+                0x08010efc                _isatty
+ .text._lseek   0x08010f0c       0x10 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(lseek.o)
+                0x08010f0c                _lseek
+ .text._sbrk    0x08010f1c       0x1c c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libnosys.a(sbrk.o)
+                0x08010f1c                _sbrk
  *(.glue_7)
- .glue_7        0x08010f60        0x0 linker stubs
+ .glue_7        0x08010f38        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08010f60        0x0 linker stubs
+ .glue_7t       0x08010f38        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08010f60        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+ .eh_frame      0x08010f38        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
  *(.init)
- .init          0x08010f60        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x08010f60                _init
- .init          0x08010f64        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+ .init          0x08010f38        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x08010f38                _init
+ .init          0x08010f3c        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
  *(.fini)
- .fini          0x08010f6c        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x08010f6c                _fini
- .fini          0x08010f70        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
-                0x08010f78                . = ALIGN (0x4)
-                0x08010f78                _etext = .
+ .fini          0x08010f44        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x08010f44                _fini
+ .fini          0x08010f48        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+                0x08010f50                . = ALIGN (0x4)
+                0x08010f50                _etext = .
 
-.vfp11_veneer   0x08010f78        0x0
- .vfp11_veneer  0x08010f78        0x0 linker stubs
+.vfp11_veneer   0x08010f50        0x0
+ .vfp11_veneer  0x08010f50        0x0 linker stubs
 
-.v4_bx          0x08010f78        0x0
- .v4_bx         0x08010f78        0x0 linker stubs
+.v4_bx          0x08010f50        0x0
+ .v4_bx         0x08010f50        0x0 linker stubs
 
-.iplt           0x08010f78        0x0
- .iplt          0x08010f78        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+.iplt           0x08010f50        0x0
+ .iplt          0x08010f50        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
-.rodata         0x08010f78     0x43d0
-                0x08010f78                . = ALIGN (0x4)
+.rodata         0x08010f50     0x43d0
+                0x08010f50                . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08010f78      0x474 Drivers/BSP/Fonts/font12.o
-                0x08010f78                Font12_Table
- .rodata        0x080113ec      0xbe0 Drivers/BSP/Fonts/font16.o
-                0x080113ec                Font16_Table
- .rodata        0x08011fcc     0x1ab8 Drivers/BSP/Fonts/font24.o
-                0x08011fcc                Font24_Table
- .rodata        0x08013a84      0x2f8 Drivers/BSP/Fonts/font8.o
-                0x08013a84                Font8_Table
- .rodata        0x08013d7c        0x8 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
- .rodata        0x08013d84       0x9e Middlewares/Third_Party/FatFs/src/ff.o
- *fill*         0x08013e22        0x2 
- .rodata        0x08013e24       0x58 Src/freertos.o
- .rodata        0x08013e7c       0x1c Src/sd_diskio.o
-                0x08013e84                SD_Driver
- .rodata        0x08013e98       0x18 Src/system_stm32f4xx.o
-                0x08013e98                AHBPrescTable
-                0x08013ea8                APBPrescTable
+ .rodata        0x08010f50      0x474 Drivers/BSP/Fonts/font12.o
+                0x08010f50                Font12_Table
+ .rodata        0x080113c4      0xbe0 Drivers/BSP/Fonts/font16.o
+                0x080113c4                Font16_Table
+ .rodata        0x08011fa4     0x1ab8 Drivers/BSP/Fonts/font24.o
+                0x08011fa4                Font24_Table
+ .rodata        0x08013a5c      0x2f8 Drivers/BSP/Fonts/font8.o
+                0x08013a5c                Font8_Table
+ .rodata        0x08013d54        0x8 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .rodata        0x08013d5c       0x9e Middlewares/Third_Party/FatFs/src/ff.o
+ *fill*         0x08013dfa        0x2 
+ .rodata        0x08013dfc       0x58 Src/freertos.o
+ .rodata        0x08013e54       0x1c Src/sd_diskio.o
+                0x08013e5c                SD_Driver
+ .rodata        0x08013e70       0x18 Src/system_stm32f4xx.o
+                0x08013e70                AHBPrescTable
+                0x08013e80                APBPrescTable
  *(.rodata*)
  .rodata.str1.4
-                0x08013eb0       0x26 Drivers/BSP/openx07v_c_lcd.o
- *fill*         0x08013ed6        0x2 
+                0x08013e88       0x26 Drivers/BSP/openx07v_c_lcd.o
+ *fill*         0x08013eae        0x2 
  .rodata.str1.4
-                0x08013ed8       0x2e Drivers/BSP/touch_panel.o
- *fill*         0x08013f06        0x2 
+                0x08013eb0       0x2e Drivers/BSP/touch_panel.o
+ *fill*         0x08013ede        0x2 
  .rodata.str1.4
-                0x08013f08       0x44 Middlewares/Third_Party/FatFs/src/ff.o
+                0x08013ee0       0x44 Middlewares/Third_Party/FatFs/src/ff.o
  .rodata.str1.4
-                0x08013f4c       0x44 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
+                0x08013f24       0x44 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
                                   0x1 (size before relaxing)
  .rodata.str1.4
-                0x08013f4c        0x5 Middlewares/Third_Party/FreeRTOS/Source/tasks.o
- *fill*         0x08013f51        0x3 
+                0x08013f24        0x5 Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+ *fill*         0x08013f29        0x3 
  .rodata.str1.4
-                0x08013f54       0x10 Middlewares/Third_Party/FreeRTOS/Source/timers.o
+                0x08013f2c       0x10 Middlewares/Third_Party/FreeRTOS/Source/timers.o
  .rodata.str1.4
-                0x08013f64      0x124 Src/Ass-03-Task-01.o
+                0x08013f3c      0x124 Src/Ass-03-Task-01.o
  .rodata.str1.4
-                0x08014088       0x9b Src/Ass-03-Task-02.o
+                0x08014060       0x9b Src/Ass-03-Task-02.o
                                  0xb3 (size before relaxing)
- *fill*         0x08014123        0x1 
+ *fill*         0x080140fb        0x1 
  .rodata.str1.4
-                0x08014124       0x5b Src/Ass-03-Task-03.o
+                0x080140fc       0x5b Src/Ass-03-Task-03.o
                                  0x7b (size before relaxing)
- *fill*         0x0801417f        0x1 
+ *fill*         0x08014157        0x1 
  .rodata.str1.4
-                0x08014180      0x18f Src/Ass-03-Task-04.o
+                0x08014158      0x18f Src/Ass-03-Task-04.o
                                 0x1c3 (size before relaxing)
- *fill*         0x0801430f        0x1 
+ *fill*         0x080142e7        0x1 
  .rodata.str1.4
-                0x08014310       0xaa Src/Button.o
+                0x080142e8       0xaa Src/Button.o
                                  0xc6 (size before relaxing)
- *fill*         0x080143ba        0x2 
+ *fill*         0x08014392        0x2 
  .rodata.str1.4
-                0x080143bc      0xad0 Src/Question1.o
+                0x08014394      0xad0 Src/Question1.o
                                 0xb74 (size before relaxing)
  .rodata.str1.4
-                0x08014e8c       0xd0 Src/Question2.o
+                0x08014e64       0xd0 Src/Question2.o
                                 0x11c (size before relaxing)
  .rodata.str1.4
-                0x08014f5c        0xd Src/adc.o
- *fill*         0x08014f69        0x3 
+                0x08014f34        0xd Src/adc.o
+ *fill*         0x08014f41        0x3 
  .rodata.str1.4
-                0x08014f6c       0x97 Src/fatfs.o
- *fill*         0x08015003        0x1 
+                0x08014f44       0x97 Src/fatfs.o
+ *fill*         0x08014fdb        0x1 
  .rodata.str1.4
-                0x08015004       0x30 Src/freertos.o
+                0x08014fdc       0x30 Src/freertos.o
  .rodata.str1.4
-                0x08015034        0xe Src/fsmc.o
- *fill*         0x08015042        0x2 
+                0x0801500c        0xe Src/fsmc.o
+ *fill*         0x0801501a        0x2 
  .rodata.str1.4
-                0x08015044        0xe Src/main.o
- *fill*         0x08015052        0x2 
+                0x0801501c        0xe Src/main.o
+ *fill*         0x0801502a        0x2 
  .rodata.str1.4
-                0x08015054        0xe Src/sdio.o
- *fill*         0x08015062        0x2 
+                0x0801502c        0xe Src/sdio.o
+ *fill*         0x0801503a        0x2 
  .rodata.str1.4
-                0x08015064        0xd Src/spi.o
- *fill*         0x08015071        0x3 
+                0x0801503c        0xd Src/spi.o
+ *fill*         0x08015049        0x3 
  .rodata.str1.4
-                0x08015074       0x10 Src/usart.o
+                0x0801504c       0x10 Src/usart.o
                                   0xf (size before relaxing)
  .rodata.__sf_fake_stderr
-                0x08015084       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
-                0x08015084                __sf_fake_stderr
+                0x0801505c       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0801505c                __sf_fake_stderr
  .rodata.__sf_fake_stdin
-                0x080150a4       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
-                0x080150a4                __sf_fake_stdin
+                0x0801507c       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0801507c                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x080150c4       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
-                0x080150c4                __sf_fake_stdout
+                0x0801509c       0x20 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-findfp.o)
+                0x0801509c                __sf_fake_stdout
  .rodata._global_impure_ptr
-                0x080150e4        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-impure.o)
-                0x080150e4                _global_impure_ptr
+                0x080150bc        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-impure.o)
+                0x080150bc                _global_impure_ptr
  .rodata._printf_float.str1.1
-                0x080150e8       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x080150c0       0x12 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_float.o)
  .rodata._printf_i.str1.1
-                0x080150fa       0x22 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x080150d2       0x22 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf_i.o)
  .rodata._dtoa_r.str1.1
-                0x0801511c        0xd c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-dtoa.o)
+                0x080150f4        0xd c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-dtoa.o)
                                   0xf (size before relaxing)
  .rodata._setlocale_r.str1.1
-                0x08015129        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-locale.o)
+                0x08015101        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-locale.o)
                                   0x9 (size before relaxing)
  .rodata.str1.1
-                0x08015131        0x2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-locale.o)
- *fill*         0x08015133        0x5 
+                0x08015109        0x2 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-locale.o)
+ *fill*         0x0801510b        0x5 
  .rodata.__mprec_bigtens
-                0x08015138       0x28 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x08015138                __mprec_bigtens
+                0x08015110       0x28 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08015110                __mprec_bigtens
  .rodata.__mprec_tens
-                0x08015160       0xc8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
-                0x08015160                __mprec_tens
+                0x08015138       0xc8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08015138                __mprec_tens
  .rodata.p05.7170
-                0x08015228        0xc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
+                0x08015200        0xc c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o)
  .rodata._svfprintf_r.str1.1
-                0x08015234       0x11 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-svfprintf.o)
+                0x0801520c       0x11 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-svfprintf.o)
  .rodata._vfprintf_r.str1.1
-                0x08015245       0x11 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
+                0x0801521d       0x11 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-nano-vfprintf.o)
  .rodata._ctype_
-                0x08015245      0x101 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-ctype_.o)
-                0x08015245                _ctype_
-                0x08015348                . = ALIGN (0x4)
- *fill*         0x08015346        0x2 
+                0x0801521d      0x101 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-ctype_.o)
+                0x0801521d                _ctype_
+                0x08015320                . = ALIGN (0x4)
+ *fill*         0x0801531e        0x2 
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08015348        0x8
-                0x08015348                __exidx_start = .
+.ARM            0x08015320        0x8
+                0x08015320                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x08015348        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard\libgcc.a(_udivmoddi4.o)
-                0x08015350                __exidx_end = .
+ .ARM.exidx     0x08015320        0x8 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard\libgcc.a(_udivmoddi4.o)
+                0x08015328                __exidx_end = .
 
-.rel.dyn        0x08015350        0x0
- .rel.iplt      0x08015350        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+.rel.dyn        0x08015328        0x0
+ .rel.iplt      0x08015328        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
-.preinit_array  0x08015350        0x0
-                0x08015350                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x08015328        0x0
+                0x08015328                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x08015350                PROVIDE (__preinit_array_end, .)
+                0x08015328                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x08015350        0x4
-                0x08015350                PROVIDE (__init_array_start, .)
+.init_array     0x08015328        0x4
+                0x08015328                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
- .init_array    0x08015350        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
-                0x08015354                PROVIDE (__init_array_end, .)
+ .init_array    0x08015328        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+                0x0801532c                PROVIDE (__init_array_end, .)
 
-.fini_array     0x08015354        0x4
+.fini_array     0x0801532c        0x4
                 [!provide]                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08015354        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+ .fini_array    0x0801532c        0x4 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
                 [!provide]                PROVIDE (__fini_array_end, .)
-                0x08015358                _sidata = LOADADDR (.data)
+                0x08015330                _sidata = LOADADDR (.data)
 
-.data           0x20000000      0x3a4 load address 0x08015358
+.data           0x20000000      0x3a4 load address 0x08015330
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
@@ -13367,15 +13366,15 @@ LOAD c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32
                 0x20000238                __global_locale
                 0x200003a4                . = ALIGN (0x4)
                 0x200003a4                _edata = .
-                0x080156fc                _siccmram = LOADADDR (.ccmram)
+                0x080156d4                _siccmram = LOADADDR (.ccmram)
 
-.jcr            0x200003a4        0x0 load address 0x080156fc
+.jcr            0x200003a4        0x0 load address 0x080156d4
  .jcr           0x200003a4        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
-.igot.plt       0x200003a4        0x0 load address 0x080156fc
+.igot.plt       0x200003a4        0x0 load address 0x080156d4
  .igot.plt      0x200003a4        0x0 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
-.ccmram         0x10000000        0x0 load address 0x080156fc
+.ccmram         0x10000000        0x0 load address 0x080156d4
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _sccmram = .
  *(.ccmram)
@@ -13776,7 +13775,7 @@ LOAD c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32
                 0x000019e9       0x22 c:/apps/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
 OUTPUT(Ass-03-STM32.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x57d55
+.debug_info     0x00000000    0x57d51
  .debug_info    0x00000000      0x14e Drivers/BSP/Fonts/font12.o
  .debug_info    0x0000014e      0x14e Drivers/BSP/Fonts/font16.o
  .debug_info    0x0000029c      0x14e Drivers/BSP/Fonts/font24.o
@@ -13809,32 +13808,32 @@ OUTPUT(Ass-03-STM32.elf elf32-littlearm)
  .debug_info    0x0002ce7a     0x18e5 Middlewares/Third_Party/FreeRTOS/Source/timers.o
  .debug_info    0x0002e75f      0xdb4 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.o
  .debug_info    0x0002f513      0xce4 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
- .debug_info    0x000301f7     0x2184 Src/Ass-03-Task-01.o
- .debug_info    0x0003237b     0x1bc6 Src/Ass-03-Task-02.o
- .debug_info    0x00033f41     0x1cd0 Src/Ass-03-Task-03.o
- .debug_info    0x00035c11     0x2ae2 Src/Ass-03-Task-04.o
- .debug_info    0x000386f3     0x1ccb Src/Button.o
- .debug_info    0x0003a3be     0x58aa Src/Question1.o
- .debug_info    0x0003fc68     0x21de Src/Question2.o
- .debug_info    0x00041e46     0x12d3 Src/adc.o
- .debug_info    0x00043119     0x13a1 Src/bsp_driver_sd.o
- .debug_info    0x000444ba      0xdf5 Src/dma.o
- .debug_info    0x000452af     0x1ade Src/fatfs.o
- .debug_info    0x00046d8d     0x205c Src/freertos.o
- .debug_info    0x00048de9     0x12a7 Src/fsmc.o
- .debug_info    0x0004a090      0xf8d Src/gpio.o
- .debug_info    0x0004b01d     0x2590 Src/main.o
- .debug_info    0x0004d5ad     0x163d Src/sd_diskio.o
- .debug_info    0x0004ebea     0x1615 Src/sdio.o
- .debug_info    0x000501ff     0x148f Src/spi.o
- .debug_info    0x0005168e      0xc75 Src/stm32f4xx_hal_msp.o
- .debug_info    0x00052303     0x13d3 Src/stm32f4xx_hal_timebase_TIM.o
- .debug_info    0x000536d6     0x1720 Src/stm32f4xx_it.o
- .debug_info    0x00054df6      0xd30 Src/system_stm32f4xx.o
- .debug_info    0x00055b26     0x217e Src/usart.o
- .debug_info    0x00057ca4       0xb1 startup/startup_stm32f407xx.o
+ .debug_info    0x000301f7     0x2185 Src/Ass-03-Task-01.o
+ .debug_info    0x0003237c     0x1bc6 Src/Ass-03-Task-02.o
+ .debug_info    0x00033f42     0x1cd0 Src/Ass-03-Task-03.o
+ .debug_info    0x00035c12     0x2add Src/Ass-03-Task-04.o
+ .debug_info    0x000386ef     0x1ccb Src/Button.o
+ .debug_info    0x0003a3ba     0x58aa Src/Question1.o
+ .debug_info    0x0003fc64     0x21de Src/Question2.o
+ .debug_info    0x00041e42     0x12d3 Src/adc.o
+ .debug_info    0x00043115     0x13a1 Src/bsp_driver_sd.o
+ .debug_info    0x000444b6      0xdf5 Src/dma.o
+ .debug_info    0x000452ab     0x1ade Src/fatfs.o
+ .debug_info    0x00046d89     0x205c Src/freertos.o
+ .debug_info    0x00048de5     0x12a7 Src/fsmc.o
+ .debug_info    0x0004a08c      0xf8d Src/gpio.o
+ .debug_info    0x0004b019     0x2590 Src/main.o
+ .debug_info    0x0004d5a9     0x163d Src/sd_diskio.o
+ .debug_info    0x0004ebe6     0x1615 Src/sdio.o
+ .debug_info    0x000501fb     0x148f Src/spi.o
+ .debug_info    0x0005168a      0xc75 Src/stm32f4xx_hal_msp.o
+ .debug_info    0x000522ff     0x13d3 Src/stm32f4xx_hal_timebase_TIM.o
+ .debug_info    0x000536d2     0x1720 Src/stm32f4xx_it.o
+ .debug_info    0x00054df2      0xd30 Src/system_stm32f4xx.o
+ .debug_info    0x00055b22     0x217e Src/usart.o
+ .debug_info    0x00057ca0       0xb1 startup/startup_stm32f407xx.o
 
-.debug_abbrev   0x00000000     0x9641
+.debug_abbrev   0x00000000     0x9632
  .debug_abbrev  0x00000000       0xa5 Drivers/BSP/Fonts/font12.o
  .debug_abbrev  0x000000a5       0xa5 Drivers/BSP/Fonts/font16.o
  .debug_abbrev  0x0000014a       0xa5 Drivers/BSP/Fonts/font24.o
@@ -13870,27 +13869,27 @@ OUTPUT(Ass-03-STM32.elf elf32-littlearm)
  .debug_abbrev  0x000057b7      0x33c Src/Ass-03-Task-01.o
  .debug_abbrev  0x00005af3      0x2df Src/Ass-03-Task-02.o
  .debug_abbrev  0x00005dd2      0x2f9 Src/Ass-03-Task-03.o
- .debug_abbrev  0x000060cb      0x3a8 Src/Ass-03-Task-04.o
- .debug_abbrev  0x00006473      0x2cb Src/Button.o
- .debug_abbrev  0x0000673e      0x387 Src/Question1.o
- .debug_abbrev  0x00006ac5      0x2ee Src/Question2.o
- .debug_abbrev  0x00006db3      0x272 Src/adc.o
- .debug_abbrev  0x00007025      0x2de Src/bsp_driver_sd.o
- .debug_abbrev  0x00007303      0x232 Src/dma.o
- .debug_abbrev  0x00007535      0x2c0 Src/fatfs.o
- .debug_abbrev  0x000077f5      0x2ea Src/freertos.o
- .debug_abbrev  0x00007adf      0x268 Src/fsmc.o
- .debug_abbrev  0x00007d47      0x229 Src/gpio.o
- .debug_abbrev  0x00007f70      0x2da Src/main.o
- .debug_abbrev  0x0000824a      0x323 Src/sd_diskio.o
- .debug_abbrev  0x0000856d      0x2a4 Src/sdio.o
- .debug_abbrev  0x00008811      0x25f Src/spi.o
- .debug_abbrev  0x00008a70      0x209 Src/stm32f4xx_hal_msp.o
- .debug_abbrev  0x00008c79      0x295 Src/stm32f4xx_hal_timebase_TIM.o
- .debug_abbrev  0x00008f0e      0x216 Src/stm32f4xx_it.o
- .debug_abbrev  0x00009124      0x205 Src/system_stm32f4xx.o
- .debug_abbrev  0x00009329      0x306 Src/usart.o
- .debug_abbrev  0x0000962f       0x12 startup/startup_stm32f407xx.o
+ .debug_abbrev  0x000060cb      0x399 Src/Ass-03-Task-04.o
+ .debug_abbrev  0x00006464      0x2cb Src/Button.o
+ .debug_abbrev  0x0000672f      0x387 Src/Question1.o
+ .debug_abbrev  0x00006ab6      0x2ee Src/Question2.o
+ .debug_abbrev  0x00006da4      0x272 Src/adc.o
+ .debug_abbrev  0x00007016      0x2de Src/bsp_driver_sd.o
+ .debug_abbrev  0x000072f4      0x232 Src/dma.o
+ .debug_abbrev  0x00007526      0x2c0 Src/fatfs.o
+ .debug_abbrev  0x000077e6      0x2ea Src/freertos.o
+ .debug_abbrev  0x00007ad0      0x268 Src/fsmc.o
+ .debug_abbrev  0x00007d38      0x229 Src/gpio.o
+ .debug_abbrev  0x00007f61      0x2da Src/main.o
+ .debug_abbrev  0x0000823b      0x323 Src/sd_diskio.o
+ .debug_abbrev  0x0000855e      0x2a4 Src/sdio.o
+ .debug_abbrev  0x00008802      0x25f Src/spi.o
+ .debug_abbrev  0x00008a61      0x209 Src/stm32f4xx_hal_msp.o
+ .debug_abbrev  0x00008c6a      0x295 Src/stm32f4xx_hal_timebase_TIM.o
+ .debug_abbrev  0x00008eff      0x216 Src/stm32f4xx_it.o
+ .debug_abbrev  0x00009115      0x205 Src/system_stm32f4xx.o
+ .debug_abbrev  0x0000931a      0x306 Src/usart.o
+ .debug_abbrev  0x00009620       0x12 startup/startup_stm32f407xx.o
 
 .debug_aranges  0x00000000     0x22e0
  .debug_aranges
@@ -14175,7 +14174,7 @@ OUTPUT(Ass-03-STM32.elf elf32-littlearm)
  .debug_macro   0x0002fb8f       0x10 Src/usart.o
  .debug_macro   0x0002fb9f      0x241 Src/usart.o
 
-.debug_line     0x00000000    0x2e9f5
+.debug_line     0x00000000    0x2e9f3
  .debug_line    0x00000000      0x2e0 Drivers/BSP/Fonts/font12.o
  .debug_line    0x000002e0      0x2e0 Drivers/BSP/Fonts/font16.o
  .debug_line    0x000005c0      0x2e0 Drivers/BSP/Fonts/font24.o
@@ -14211,27 +14210,27 @@ OUTPUT(Ass-03-STM32.elf elf32-littlearm)
  .debug_line    0x0001bbfe     0x10cf Src/Ass-03-Task-01.o
  .debug_line    0x0001cccd      0xf4c Src/Ass-03-Task-02.o
  .debug_line    0x0001dc19      0xf45 Src/Ass-03-Task-03.o
- .debug_line    0x0001eb5e     0x1107 Src/Ass-03-Task-04.o
- .debug_line    0x0001fc65      0xf34 Src/Button.o
- .debug_line    0x00020b99     0x1381 Src/Question1.o
- .debug_line    0x00021f1a     0x1022 Src/Question2.o
- .debug_line    0x00022f3c      0x9fa Src/adc.o
- .debug_line    0x00023936      0xaa9 Src/bsp_driver_sd.o
- .debug_line    0x000243df      0x998 Src/dma.o
- .debug_line    0x00024d77      0xf0a Src/fatfs.o
- .debug_line    0x00025c81      0xf63 Src/freertos.o
- .debug_line    0x00026be4      0xa12 Src/fsmc.o
- .debug_line    0x000275f6      0x9f4 Src/gpio.o
- .debug_line    0x00027fea      0xde2 Src/main.o
- .debug_line    0x00028dcc      0xe3b Src/sd_diskio.o
- .debug_line    0x00029c07      0xa10 Src/sdio.o
- .debug_line    0x0002a617      0x9db Src/spi.o
- .debug_line    0x0002aff2      0x99c Src/stm32f4xx_hal_msp.o
- .debug_line    0x0002b98e      0x9cf Src/stm32f4xx_hal_timebase_TIM.o
- .debug_line    0x0002c35d      0xcbe Src/stm32f4xx_it.o
- .debug_line    0x0002d01b      0x9c7 Src/system_stm32f4xx.o
- .debug_line    0x0002d9e2      0xf94 Src/usart.o
- .debug_line    0x0002e976       0x7f startup/startup_stm32f407xx.o
+ .debug_line    0x0001eb5e     0x1105 Src/Ass-03-Task-04.o
+ .debug_line    0x0001fc63      0xf34 Src/Button.o
+ .debug_line    0x00020b97     0x1381 Src/Question1.o
+ .debug_line    0x00021f18     0x1022 Src/Question2.o
+ .debug_line    0x00022f3a      0x9fa Src/adc.o
+ .debug_line    0x00023934      0xaa9 Src/bsp_driver_sd.o
+ .debug_line    0x000243dd      0x998 Src/dma.o
+ .debug_line    0x00024d75      0xf0a Src/fatfs.o
+ .debug_line    0x00025c7f      0xf63 Src/freertos.o
+ .debug_line    0x00026be2      0xa12 Src/fsmc.o
+ .debug_line    0x000275f4      0x9f4 Src/gpio.o
+ .debug_line    0x00027fe8      0xde2 Src/main.o
+ .debug_line    0x00028dca      0xe3b Src/sd_diskio.o
+ .debug_line    0x00029c05      0xa10 Src/sdio.o
+ .debug_line    0x0002a615      0x9db Src/spi.o
+ .debug_line    0x0002aff0      0x99c Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0002b98c      0x9cf Src/stm32f4xx_hal_timebase_TIM.o
+ .debug_line    0x0002c35b      0xcbe Src/stm32f4xx_it.o
+ .debug_line    0x0002d019      0x9c7 Src/system_stm32f4xx.o
+ .debug_line    0x0002d9e0      0xf94 Src/usart.o
+ .debug_line    0x0002e974       0x7f startup/startup_stm32f407xx.o
 
 .debug_str      0x00000000    0xdf577
  .debug_str     0x00000000     0x340f Drivers/BSP/Fonts/font12.o
@@ -14304,13 +14303,13 @@ OUTPUT(Ass-03-STM32.elf elf32-littlearm)
                               0xd4d6b (size before relaxing)
  .debug_str     0x000de3ad       0x59 Src/Ass-03-Task-03.o
                               0xd4eca (size before relaxing)
- .debug_str     0x000de406      0x18d Src/Ass-03-Task-04.o
-                              0xd513d (size before relaxing)
- .debug_str     0x000de593       0x44 Src/Button.o
+ .debug_str     0x000de406      0x199 Src/Ass-03-Task-04.o
+                              0xd5149 (size before relaxing)
+ .debug_str     0x000de59f       0x44 Src/Button.o
                               0xd4d8c (size before relaxing)
- .debug_str     0x000de5d7      0x374 Src/Question1.o
+ .debug_str     0x000de5e3      0x374 Src/Question1.o
                               0xd52de (size before relaxing)
- .debug_str     0x000de94b       0x9f Src/Question2.o
+ .debug_str     0x000de957       0x93 Src/Question2.o
                               0xd4e09 (size before relaxing)
  .debug_str     0x000de9ea       0x50 Src/adc.o
                               0xcd38f (size before relaxing)

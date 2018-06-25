@@ -1,9 +1,18 @@
 #include "Question1.h"
 #include "Question2.h"
 
-//char **array_of_words;
-//Here is your bible. Fucking use it.
-//http://www.elm-chan.org/fsw/ff/00index_e.html
+
+/*
+ *
+ * ELEC3730 ASSIGNMENT 3
+ * QUESTION1.C
+ * JORDAN HAIGH AND EVAN GRESHAM
+ *
+ *
+ * Class stores relevant methods that are used to build functionality for question 1
+ *
+ * */
+
 
 
 #define DEBUG "debug"
@@ -89,7 +98,10 @@ void debugMode(uint8_t argNum, char* argStrings[])
 
 
 
-
+/*
+ * Hub to determine what command has been entered by the user
+ * Error checks in place for no arguments, or invalid argument
+ * */
 void analyseCommands(uint8_t argNum, char *argStrings[])
 {
 	if(argNum == 0)
@@ -236,7 +248,10 @@ void helpDesk(uint8_t argNum, char* argStrings[])
 }
 
 
-
+/*
+ * Plots "the analog input for the given period of time <time>"
+ * Error checking to determine values
+ * */
 void analog(uint8_t argNum, char *argStrings[])
 {
 	//safe_printf("Found analog\n");
@@ -285,7 +300,9 @@ void analog(uint8_t argNum, char *argStrings[])
 }
 
 
-
+/*
+ * Lists the contents of a current directory
+ * */
 void ls(uint8_t argNum, char *argStrings[])
 {
 	if(argNum > 1)
@@ -308,13 +325,13 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
 
 
     res = f_opendir(&dir, path);                       /* Open the directory */
-    if (res != FR_OK)
+    if (res != FR_OK) //if problem with opening directory
     {
     	error_safe_printf("Directory could not be opened.\n");
     	return;
     }
 
-    res = f_readdir(&dir, &fno);
+    res = f_readdir(&dir, &fno); //read directory and store its contents and information
 	if(res != FR_OK)
 	{
 		error_safe_printf("Could not read directory\n");
@@ -322,36 +339,42 @@ void scan_files (char* path) /* Start node to be scanned (***also used as work a
 		return;
 	}
 	safe_printf("=================Current Directory=================\n");
-	while(res == FR_OK)
+	while(res == FR_OK) //if good, keep reading
 	{
-		if(fno.fname[0] == 0) //null
+		if(fno.fname[0] == 0) //null - reached end of reading directory
 		{
 			break;
 		}
 
-		safe_printf("%s",fno.fname);
+		safe_printf("%s",fno.fname); //print the name of the file/folder found
 		if(fno.fattrib == AM_DIR) //if folder
 		{
-			safe_printf("\t (Folder)\n");
+			safe_printf("\t (Folder)\n"); //print extra info to make it known its a folder
 		}
 		else
 		{
 			safe_printf("\n");
 		}
 
-		res = f_readdir(&dir, &fno);
+		res = f_readdir(&dir, &fno); //prime for next line
 	}
 	safe_printf("=================End of Directory=================\n");
-	res = f_closedir(&dir);
+	res = f_closedir(&dir); //finished
 
 }
 
+/*
+ * Change directory
+ * if no arguments, go to root
+ * If one argument
+ * 		If argument is .. - go back a folder
+ * 	    Else go forward folder
+ * Else - error
+ * */
 void cd(uint8_t argNum, char *argStrings[])
 {
-	char previousDirectory[256];
+	char previousDirectory[256]; //used when we cant go forward, so we revert back to this.
 	strcpy(previousDirectory, currentFilePath);
-
-
 
 	if(argNum > 2)
 	{
@@ -360,13 +383,14 @@ void cd(uint8_t argNum, char *argStrings[])
 	}
 	else if(argNum  == 2)
 	{
-		if(strcmp(argStrings[1],"..") == 0)
+		if(strcmp(argStrings[1],"..") == 0) //move back a folder
 		{
 			moveBackwardDirectory(previousDirectory);
 
 		}
 		else
 		{
+			//move forward a folder
 			moveForwardDirectory(argStrings,previousDirectory);
 		}
 	}
@@ -384,6 +408,7 @@ void cd(uint8_t argNum, char *argStrings[])
 		}
 		else
 		{
+			//successful
 			if(debugOn == 1)
 			{
 				debug_safe_printf("Moved to root\n");
@@ -392,6 +417,11 @@ void cd(uint8_t argNum, char *argStrings[])
 	}
 }
 
+/*
+ * Move forward a directory.
+ * Need to make sure that the directory actually exists
+ * If it doesnt, we print an error message and return to the previous directory
+ * */
 void moveForwardDirectory(char* argStrings[], char* previousDirectory)
 {
 
@@ -400,18 +430,18 @@ void moveForwardDirectory(char* argStrings[], char* previousDirectory)
 	FILINFO fno;
 	strcat(currentFilePath,"/");
 	strcat(currentFilePath,directoryToMoveTo);
-	FRESULT directoryResult = f_stat(currentFilePath ,&fno);
+	FRESULT directoryResult = f_stat(currentFilePath ,&fno); //making sure it actually exists
 
 
-	FRESULT changingDirectory;
+	FRESULT changingDirectory; //Directory we want to change to
 
 	switch(directoryResult)
 	{
-		case FR_OK:
+		case FR_OK: //All is well, we can change directory
 
 			changingDirectory = f_chdir(currentFilePath);
 
-			if(changingDirectory != FR_OK)
+			if(changingDirectory != FR_OK) //if there was an issue with this, revert to old directory
 			{
 				error_safe_printf("Something went wrong when changing directory.\n");
 				strcpy(currentFilePath, previousDirectory);
@@ -420,6 +450,7 @@ void moveForwardDirectory(char* argStrings[], char* previousDirectory)
 			}
 			else
 			{
+				//successful change directory
 				if(debugOn == 1)
 				{
 					debug_safe_printf("Changed directory to %s\n",currentFilePath);
@@ -429,6 +460,7 @@ void moveForwardDirectory(char* argStrings[], char* previousDirectory)
 
 		case FR_NO_FILE:
 		{
+			//directory doesnt exist
 			error_safe_printf("Directory does not exist\n");
 			strcpy(currentFilePath, previousDirectory);
 
@@ -437,6 +469,7 @@ void moveForwardDirectory(char* argStrings[], char* previousDirectory)
 		}
 		default:
 		{
+			//something else went wrong, shouldnt be able to access this area anyways
 			error_safe_printf("Something went wrong.\n");
 			strcpy(currentFilePath, previousDirectory);
 
@@ -445,11 +478,16 @@ void moveForwardDirectory(char* argStrings[], char* previousDirectory)
 	}
 }
 
+/*
+ * Move backwards a directory
+ * checks if we are already at the root or not - error message if we are
+ * searches backwards from the end of the string to find the first forward slash, thats where we will move back to
+ * */
 void moveBackwardDirectory(char *previousDirectory)
 {
 	if(strlen(currentFilePath) <= 1)
 	{
-		error_safe_printf("Cant go back from nothing dummy.\n");
+		error_safe_printf("Can't move back from root.\n");
 		//dont do anything
 		return;
 	}
@@ -459,31 +497,36 @@ void moveBackwardDirectory(char *previousDirectory)
 
 		for(int i = strlen(currentFilePath); i>1 ;i--)
 		{
-			currentFilePath[i] = 0;
+			currentFilePath[i] = 0; //null terminate as we go along
 
-			if(currentFilePath[i-1] == '/')
+			if(currentFilePath[i-1] == '/') //if next char across is a back slash, we have found our directory
 			{
 				currentFilePath[i-1] = 0;
-				break;
+				break; //finished
 			}
 			else
 				currentFilePath[i-1] = 0;
 
 		}
 
+		//print new file path
 		if(debugOn == 1)
 		{
 			debug_safe_printf("New filepath =>%s\n",currentFilePath);
 		}
 
+		//change the directory
 		FRESULT changingDirectory = f_chdir(currentFilePath);
 		if(changingDirectory != FR_OK)
 		{
+			//shouldnt get to this area since we know that it already exists
+			//maybe if the sd card is removed
 			error_safe_printf("Error. Could not transfer back a folder\n");
 			strcpy(currentFilePath, previousDirectory);
 		}
 		else
 		{
+			//successful
 			if(debugOn == 1)
 			{
 				debug_safe_printf("Moved back a folder\n");
@@ -494,6 +537,10 @@ void moveBackwardDirectory(char *previousDirectory)
 	}
 }
 
+/*
+ * Makes a new directory
+ *	Ensures that there is only one argument and that the directory doesnt already exist
+ * */
 void mkdir(uint8_t argNum, char *argStrings[])
 {
 	//safe_printf("Found mkdir\n");
@@ -509,10 +556,12 @@ void mkdir(uint8_t argNum, char *argStrings[])
 	FRESULT mkdirResult = f_mkdir(directoryToMake);
 	if(mkdirResult)
 	{
+		//In the event that the directory already exists
 		error_safe_printf("Error occurred making directory.\n");
 	}
 	else
 	{
+		//Successful
 		if(debugOn == 1)
 		{
 			debug_safe_printf("Created: %s\n", directoryToMake);
@@ -523,6 +572,12 @@ void mkdir(uint8_t argNum, char *argStrings[])
 
 }
 
+/*
+ * Copying file to file
+ * Can only work on file to file, anything else is too hard and I would require more time
+ * Makes sure that three arguments are requried
+ * Checks that each extra argument includes a dot, meaning that they ARE files
+ * */
 void cp(uint8_t argNum, char *argStrings[])
 {
 	//safe_printf("Found cp\n");
@@ -536,8 +591,11 @@ void cp(uint8_t argNum, char *argStrings[])
 	char* source = argStrings[1];
 	char* destination = argStrings[2];
 
+	//Find substring dot in string
 	char* foundDotInSource = strstr(source, ".");
 	char* foundDotInDestination = strstr(destination,".");
+
+	//If the char pointers are not null, we have found it
 	if(foundDotInSource && foundDotInDestination)
 	{
 		fileToFile(source, destination);
@@ -560,7 +618,12 @@ void cp(uint8_t argNum, char *argStrings[])
 	}
 }
 
-
+/*
+ * Validity check to ensure that the file/folder exists
+ *  1 = File does exist
+ *  2 = File does not exist
+ *  0 = Default (Shouldn't happen?)
+ * */
 int checkFileFolderExists(char* directoryOfInterest)
 {
 
@@ -583,10 +646,16 @@ int checkFileFolderExists(char* directoryOfInterest)
 	}
 }
 
+/*
+ * Copying file to file
+ * Creates the appropriate file paths to write to
+ *
+ * */
 void fileToFile(char* source, char* destination)
 {
 	//FILE->FILE
 	//Make sure that they source exists
+	//Creating the concatenation of the current file path and the source file
 	char filePathPlusSource[256];
 	for(int i = 0; i < 256;i++)
 	{
@@ -596,6 +665,7 @@ void fileToFile(char* source, char* destination)
 	strcat(filePathPlusSource, "/");
 	strcat(filePathPlusSource, source);
 
+	//make sure it exists
 	int sourceExistenceCheck = checkFileFolderExists(filePathPlusSource);
 
 	//printf("filepathplussource =>%s\n",filePathPlusSource);
@@ -606,6 +676,7 @@ void fileToFile(char* source, char* destination)
 		return;
 	}
 
+	//start concatenation for destination file
 	//Make sure that destination doesnt exist
 	char filePathPlusDestination[256];
 	for(int i = 0; i < 256;i++)
@@ -625,6 +696,7 @@ void fileToFile(char* source, char* destination)
 	else
 	{
 		//Making a copy of a file
+		//now we can start copying bytes from source to destination
 		copyObjectToObject(filePathPlusSource, filePathPlusDestination);
 		return;
 	}
@@ -634,7 +706,11 @@ void fileToFile(char* source, char* destination)
 
 
 
-
+/*
+ * Writes bytes from source to destination files
+ * modified from 	//http://elm-chan.org/fsw/ff/doc/open.html
+ *
+ * */
 void copyObjectToObject(char* source, char* destination)
 {
 	//Modified from
@@ -677,6 +753,12 @@ void copyObjectToObject(char* source, char* destination)
 }
 
 
+/*
+ * Remove function
+ * Ensures that one file is being removed
+ * Folders can be removed once they contain no files inside
+ * Ensures that the file/folder does exist
+ * */
 void rm(uint8_t argNum, char *argStrings[])
 {
 	//safe_printf("Found rm\n");
@@ -685,6 +767,8 @@ void rm(uint8_t argNum, char *argStrings[])
 		error_safe_printf("Rm must require one argument\n");
 		return;
 	}
+
+	//start concatenation for file to be removed
 
 	char pathAndFileName[256];
 	for(int i = 0; i < 256;i++)
@@ -696,13 +780,11 @@ void rm(uint8_t argNum, char *argStrings[])
 	strcat(pathAndFileName, "/");
 	strcat(pathAndFileName, argStrings[1]);
 
-
-
-
     //char* directoryToRemove = argStrings[1];
 
+	//remove file
     FRESULT rmResult = f_unlink(pathAndFileName);
-	if(rmResult)
+	if(rmResult) //successful for files
 	{
         //check if we're trying to remove a folder instead
         strcat(pathAndFileName,"/");
@@ -725,10 +807,13 @@ void rm(uint8_t argNum, char *argStrings[])
 	}
 }
 
+/*
+ * Alternative remove method, doesnt deal with the argc,argv argumetns
+ * */
 void rm2(char *directoryToRemove)
 {
 	//safe_printf("Found rm\n");
-
+	//people calling this method have already been through the checks. This can be error checked later
 	if(!directoryToRemove)
 	{
 		error_safe_printf("Missing char array for argument\n");
@@ -752,6 +837,11 @@ void rm2(char *directoryToRemove)
 }
 
 
+/*
+ * Make file
+ * Extra method made by us
+ * Creates a file
+ * */
 void mkfil(int argNum, char* argStrings[])
 {
 	if(argNum != 2)
@@ -781,22 +871,25 @@ void mkfil(int argNum, char* argStrings[])
 	FRESULT res;
 	FIL newFile;
 
-	// Open file There.txt
-		if((res = f_open(&newFile, pathAndFileName, FA_CREATE_ALWAYS | FA_WRITE)) != FR_OK)
-		{
-			error_safe_printf("Could not open '%s'\n", pathAndFileName);
-			return;
-		}
-		if(debugOn == 1)
-		{
-			system_safe_printf("Created blank file'%s'\n", pathAndFileName);
-		}
-		// Close file
-		f_close(&newFile);
+	if((res = f_open(&newFile, pathAndFileName, FA_CREATE_ALWAYS | FA_WRITE)) != FR_OK)
+	{
+		error_safe_printf("Could not open '%s'\n", pathAndFileName);
+		return;
+	}
+	if(debugOn == 1)
+	{
+		system_safe_printf("Created blank file'%s'\n", pathAndFileName);
+	}
+	// Close file
+	f_close(&newFile);
 
 }
 
 
+/*
+ * Alternative method for mkfilk
+ * People calling this have already been through the process of error checks
+ * */
 void mkfilForRecording(char* string)
 {
 	char* foundDot = strstr(string,".");
@@ -827,7 +920,10 @@ void mkfilForRecording(char* string)
 }
 
 
-
+/*
+ * Extra method used to read file
+ * Greatly useful when we are checking that the recording was working
+ * */
 void read(int argNum, char* argStrings[])
 {
 	if(argNum != 2)
@@ -846,6 +942,7 @@ void read(int argNum, char* argStrings[])
 
 	char* fileToRead = argStrings[1];
 
+	//start concatenation for fatfs methods
 	char pathPlusFile[256];
 	for(int i = 0; i < 256; i++)
 	{
@@ -854,7 +951,8 @@ void read(int argNum, char* argStrings[])
 
 	strcat(pathPlusFile, currentFilePath);
 	strcat(pathPlusFile, fileToRead);
-	////todo add global and local check rather than global.
+
+	//make sure this exists before we start reading junk
 	int fileExistenceCheck = checkFileFolderExists(fileToRead);
 	if(fileExistenceCheck != 1)
 	{
@@ -863,12 +961,15 @@ void read(int argNum, char* argStrings[])
 	}
 
 	// Open file Hello.txt
+	//Now we can start reading the file
+	//buff ize is set to 256, though should not be that. it shouldbe reading the entire thing..
 	if((res = f_open(&file, fileToRead, FA_READ)) != FR_OK)
 	{
 		error_safe_printf("Opening '%s'\n", fileToRead);
 		return;
 	}
 	system_safe_printf("Opened file '%s'\n", fileToRead);
+
 	// Read data from file
 	if ((res = f_read(&file, rtext, BUFF_SIZE-1, &bytesread)) != FR_OK)
 	{
@@ -876,7 +977,7 @@ void read(int argNum, char* argStrings[])
 		f_close(&file);
 		return;
 	}
-	//todo jordan - you will need to make sure to update the total bytes read such that you can stick a null terminator on the end (perhaps)
+
 	totalBytesRead += bytesread;
 
 	rtext[totalBytesRead] = '\0';
@@ -886,6 +987,11 @@ void read(int argNum, char* argStrings[])
 	f_close(&file);
 }
 
+/*
+ * Extra function developed by us to write N arguments to a file
+ * useful when determining if a file can store values
+ * error checks to determine all is well
+ * */
 void write(int argNum, char* argStrings[])
 {
 	if(argNum < 3)
@@ -896,6 +1002,8 @@ void write(int argNum, char* argStrings[])
 
 	char* fileToWriteTo = argStrings[1];
 
+
+	//concatenation to build file path
 	char pathPlusFile[256];
 	for(int i = 0; i < 256; i++)
 	{
@@ -904,7 +1012,8 @@ void write(int argNum, char* argStrings[])
 
 	strcat(pathPlusFile, currentFilePath);
 	strcat(pathPlusFile, fileToWriteTo);
-	////todo add global and local check rather than global.
+
+	//make sure the file exists
 	int fileExistenceCheck = checkFileFolderExists(fileToWriteTo);
 	if(fileExistenceCheck != 1)
 	{
@@ -914,7 +1023,7 @@ void write(int argNum, char* argStrings[])
 
 	int writeStringLength = 0;
 	char stringToWrite[256];
-	//blank out the string. otherwise corrupted shit at the beginning
+	//blank out the string. otherwise corrupted values at the beginning
 	for(int i = 0; i < 256;i++)
 	{
 		stringToWrite[i] = 0;
@@ -966,6 +1075,10 @@ void write(int argNum, char* argStrings[])
 }
 
 
+/*
+ * Secondary write method
+ * Removes the need for multiple args. just straight file to write to and string to write.
+ **/
 void write2(char* fileToWriteTo, char* stringToWrite)
 {
 	//note  -- fileto write to includes the current directory and the file extension

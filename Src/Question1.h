@@ -4,6 +4,16 @@
 
 #include "Ass-03.h"
 
+/*
+ *
+ * ELEC3730 ASSIGNMENT 3
+ * QUESTION1.H
+ * JORDAN HAIGH AND EVAN GRESHAM
+ *
+ *
+ * Class stores relevant methods that are used to build functionality for question 1
+ *
+ * */
 
 
 

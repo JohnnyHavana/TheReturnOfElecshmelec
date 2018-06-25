@@ -1,9 +1,12 @@
-/*
- * Button.cpp
+/**
+ * ELEC3730 ASSIGNMENT 3
+ * BUTTON.C
+ * JORDAN HAIGH AND EVAN GRESHAM
  *
- *  Created on: 25 May 2018
- *      Author: c3256730
- */
+ *
+ * Class stores all relevant information about each button, and methods to help its implementation
+ *
+ * */
 
 #include "Button.h"
 
@@ -13,7 +16,7 @@
 #define HEIGHT 50
 
 
-
+//Button struct useful for storing all information and displaying when the board is first activated
 Button buttons[9]= {
 /*    STARTX  STARTY    WIDTH       HEIGHT    LABEL       ID     VALIDITY		pressed  colour*/
 		{255,	10,		WIDTH+12,	HEIGHT,		"Start",		1,		1,  	1, 		LCD_COLOR_GREEN},
@@ -53,6 +56,7 @@ int buttonHere(int x, int y, Button button)
 
 /*
  * Show button on LCD Screen
+ * If button is currently being pressed, it will set the text and backing colour to appropriate
  * */
 void showButton(Button button){
 

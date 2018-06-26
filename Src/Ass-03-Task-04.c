@@ -26,7 +26,7 @@ void recordData(int data);
 void loadData();
 
 
-speedValue = 500;
+int speedValue = 500;
 
 /*
  * One of the four entry points to the program.
@@ -65,14 +65,22 @@ void Ass_03_Task_04(void const * argument)
   // Start main loop
   while (1)
   {
-	  // Wait for first half of buffer
 
+
+	  // Wait for first half of buffer
 	  osSemaphoreWait(myBinarySem05Handle, osWaitForever);
 	  //wait until the screen is unpaused
-//	  osMutexWait(showButtonMutexHandle, osWaitForever);
 	  osMutexWait(PlayMutexHandle, osWaitForever);
+	  //wait for drawing mutex
 	  osMutexWait(myMutex01Handle, osWaitForever);
-	  if(!loading)
+	  if(clear){//if clearing the board reset xpos and y pos
+		  xpos=0;
+		  ypos =0;
+		  last_ypos =0;
+		  last_ypos=0;
+		  clear =0;
+	  }
+	  if(!loading)//if not loading get points form ADC
 	  {
 
 		  for(i=0;i<500;i=i+speedValue) //upadated for zoom function
@@ -86,44 +94,41 @@ void Ass_03_Task_04(void const * argument)
 			  }
 			  ypos=(uint16_t)((uint32_t)(ADC_Value[i])*YSIZE/4096);
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
-			  // BSP_LCD_FillRect(xpos,ypos,1,1);
 			  last_xpos=xpos;
 			  last_ypos=ypos;
 
 			  xpos++;
-			  if(record){
+			  if(record){//if recording save the ypos
 				  recordData(ypos);
 			  }
 
-			  if(isAnaloging)
+			  if(isAnaloging)//if running an analog timer
 			  {
 				  if(analogTimer > 0){
-					  analogTimer -= ((float)speedValue/50.0) / 240 *1000;
-				  }else{
+					  analogTimer -= ((float)speedValue/50.0) / 240.0 * 1000.0 ;//subtract the amount of time passed
+				  }else{//if timer is done
 					  //turn analog off
-					  analogChange =1;
+					  isAnaloging =0;
+					  analogTimer =0;
+					  osMessagePut (myQueue01Handle, (uint32_t)(( 260 << 16) + 80), 0);
 
-					  i= 500;
+					  i=500;
 				  }
 			  }
-
-			  //
-			  //10seconds/240
-
 		  }
-	  }else{
+	  }else{//if loading get points from file
 
-		  if(loadingBufferNo > bufferEnd){
+		  if(loadingBufferNo > bufferEnd){//if reached the end of the loading buffer array
 			  osMutexRelease(myMutex01Handle);
-			  loadPressed();
+			  loadPressed();//done
 			  osMutexWait(myMutex01Handle, osWaitForever);
 		  }
-		  if(loading){//loading could change if reached end of thingo
+		  if(loading){//if still loading
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
 			  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
 
-			  ypos = loadingBuffer[loadingBufferNo];
+			  ypos = loadingBuffer[loadingBufferNo];//get the data
 			  loadingBufferNo ++;
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
 			  last_xpos=xpos;
@@ -135,16 +140,7 @@ void Ass_03_Task_04(void const * argument)
 	  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 	  osMutexRelease(myMutex01Handle);
 	  osMutexRelease(PlayMutexHandle);
-//	  osMutexRelease(showButtonMutexHandle);
 
-	  if(analogChange){
-		  isAnaloging =0; //todo evan you were here
-		  analogTimer =0;
-		  stopPressed();
-//		  osMutexWait(PlayMutexHandle, osWaitForever);
-//		  paused =1;
-		  analogChange =0;
-	  }
 
 	  if (last_xpos>=XSIZE-1)
 	  {
@@ -154,47 +150,54 @@ void Ass_03_Task_04(void const * argument)
 
 	  // Wait for second half of buffer
 	  osSemaphoreWait(myBinarySem06Handle, osWaitForever);
-//	  osMutexWait(showButtonMutexHandle, osWaitForever);
+	  //wait for play mutex, if stopped then
 	  osMutexWait(PlayMutexHandle, osWaitForever);
-
-
-
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
+	  //wait for drawing mutex
 	  osMutexWait(myMutex01Handle, osWaitForever);
-	  if(!loading)
+	  if(clear){//if clearing the board reset xpos and y pos
+		  xpos=0;
+		  ypos =0;
+		  last_ypos =0;
+		  last_ypos=0;
+		  clear =0;
+	  }
+	  if(!loading)//if not loading read from the ADC
 	  {
 		  for(i=0;i<500;i=i+speedValue)
 		  {
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-			  if(record){
+			  if(record){//if recording draw the line as red
 				  BSP_LCD_SetTextColor(LCD_COLOR_RED);
 			  }else{
 				  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 			  }
 			  ypos=(uint16_t)((uint32_t)(ADC_Value[i])*YSIZE/4096);
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
-			  // BSP_LCD_FillRect(xpos,ypos,1,1);
 			  last_xpos=xpos;
 			  last_ypos=ypos;
 
 			  xpos++;
-			  if(record){
+			  if(record){//if recording save the y pos
 				  recordData(ypos);
 			  }
-			  if(isAnaloging)
+			  if(isAnaloging)//if running an analog timer
 			  {
 				  if(analogTimer > 0){
-					  analogTimer -= ((float)speedValue/50.0) / 240.0 * 1000.0 ;
-				  }else{
+					  analogTimer -= ((float)speedValue/50.0) / 240.0 * 1000.0 ;//subtract the amount of time passed
+				  }else{//if timer is done
 					  //turn analog off
-					  analogChange =1;
+					  isAnaloging =0;
+					  analogTimer =0;
+					  osMessagePut (myQueue01Handle, (uint32_t)(( 260 << 16) + 80), 0);
+
 					  i=500;
 				  }
 			  }
 		  }
 
-	  }else{
+	  }else{//load the input from the file
 
 		  if(loadingBufferNo > bufferEnd){
 			  osMutexRelease(myMutex01Handle);
@@ -205,7 +208,7 @@ void Ass_03_Task_04(void const * argument)
 		  }else{//loading could change if reached end of thingo
 			  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
 			  BSP_LCD_DrawVLine(XOFF+xpos,YOFF,YSIZE);
-			  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
+			  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);//blue line
 			  ypos = loadingBuffer[loadingBufferNo];
 			  loadingBufferNo ++;
 			  BSP_LCD_DrawLine(XOFF+last_xpos,YOFF+last_ypos,XOFF+xpos,YOFF+ypos);
@@ -215,6 +218,7 @@ void Ass_03_Task_04(void const * argument)
 		  }
 
 	  }
+
 	  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 	  osMutexRelease(myMutex01Handle);
 
@@ -227,16 +231,6 @@ void Ass_03_Task_04(void const * argument)
 
 	  HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
 
-	  if(analogChange){
-		  isAnaloging =0;
-		  analogTimer =0;
-//
-//		  osMutexWait(PlayMutexHandle, osWaitForever);
-//		  paused =0;
-		  stopPressed();
-		  analogChange =0;
-	  }
-//	  osMutexRelease(showButtonMutexHandle);
   }
 }
 
@@ -381,7 +375,7 @@ void loadData()
 
 	// Close file
 	f_close(&file);
-	bufferEnd = xAxisPlot;
+	bufferEnd = xAxisPlot-1;
 	for(int i = 0 ; i<= bufferEnd; i++){ //print out values we found from file
 		input_safe_printf("X: %d, Y: %d\n", i, loadingBuffer[i]);
 	}
@@ -497,6 +491,9 @@ void recordData(int data)
 	}
 
 }
+
+
+
 
 
 

@@ -39,6 +39,7 @@ uint8_t bufferCounter = 0;
 uint8_t bufferEnd = 0;
 uint8_t isAnaloging = 0;
 uint8_t analogChange =0;
+uint8_t clear =0;
 int analogTimer = 0;
 
 char saveChar = '1';

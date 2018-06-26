@@ -143,24 +143,25 @@ extern uint8_t getfp(Coordinate *display);
 #ifndef ME_DEBUG
 #define ME_DEBUG
 
-uint8_t debugOn;
-uint8_t paused;
-uint8_t record;
-uint8_t stopRecording;
+uint8_t debugOn; //true if showing degub printfs
+uint8_t paused;//true if stopped
+uint8_t record;//true if recording data
+uint8_t stopRecording;//true if the data needs to stop recording
 uint8_t pulseRate;
-uint8_t globalSaveNo;
-uint8_t loading;
-uint8_t loadingBuffer[10000];
+uint8_t globalSaveNo;//which save file
+uint8_t loading;//true if loading data
 uint8_t loadingBufferNo;
 uint8_t bufferCounter;
-uint8_t bufferEnd;
+uint8_t bufferEnd;//final position of the buffer
 uint8_t isAnaloging;
 uint8_t analogChange;
+uint8_t clear;//true if the board has just been cleared
 int analogTimer;
 
 int analogValue;
 char saveChar;
 char currentFilePath[100];
+uint8_t loadingBuffer[10000];
 
 int zoomValue;
 int speedValue;

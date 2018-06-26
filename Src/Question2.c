@@ -21,6 +21,7 @@ int zoomValue = 1;
  * Takes in a button and determines the id
  * Uses a switch case to call an appropriate function based on its id
  * */
+
 void buttonPressed(Button buttonNutton){
 	switch(buttonNutton.id){
 	case(1):
@@ -54,63 +55,73 @@ void buttonPressed(Button buttonNutton){
 }
 
 /*
- *
+ *if the HRM is paused then resume the HRM
  * */
 void startPressed(){
 	if(paused){
-		paused = 0;
-		buttons[0].pressed = 1;
+		paused = 0;//resume play
+		buttons[0].pressed = 1;//set the start button as pressed
 		buttons[1].pressed = 0;
-		//todo evan you were here
-		//system_safe_printf("starting completed1\n");
-
 		osMutexWait(myMutex01Handle, osWaitForever);
-		//system_safe_printf("starting completed2\n");
-
-		showButton(buttons[1]);
-		//system_safe_printf("starting completed3\n");
-
+		showButton(buttons[1]);//color in the buttons
 		showButton(buttons[0]);
-		//system_safe_printf("starting completed4\n");
-
-		osMutexWait(myMutex01Handle, 0);
-
 		osMutexRelease(myMutex01Handle);
-		//system_safe_printf("starting completed5\n");
-
-		osMutexRelease(PlayMutexHandle);
-		//system_safe_printf("starting completed6\n");
+		osMutexRelease(PlayMutexHandle);//releases the mutex that was stopping task 4
 
 	}
 }
+/*
+ * if the hrm isn't paused them pause it
+ * Also if the hrm is recording or loading or analoging then stop that
+ * */
 
 void stopPressed()
 {
 	if(!paused){
 		paused = 1;
+		if(record){//if recording stop
+			recordPressed();
+		}
+		if(isAnaloging){//if analoging stop
+			  isAnaloging =0;
+			  analogTimer =0;
+			  analogChange =0;
+		}
+		if(loading){//if loading stop
+			loadPressed();
+		}
+
 		buttons[1].pressed = 1;
 		buttons[0].pressed = 0;
+
+		//display buttons
 		osMutexWait(myMutex01Handle, osWaitForever);
 		showButton(buttons[1]);
 		showButton(buttons[0]);
 
 		osMutexRelease(myMutex01Handle);
-		osMutexWait(PlayMutexHandle, osWaitForever);
+		osMutexWait(PlayMutexHandle, osWaitForever);//hold the mutex that task 4 needs to plot
 	}
 }
 
+
+/*
+ * record the data from the ADM
+ * */
+
 void recordPressed(){
-	if(record){
+	if(record){//if currently recording then stop
 		stopRecording =1;
 		buttons[3].pressed =0;
 		system_safe_printf("Recording completed\n");
 
-	}else{
+	}else{//start recording
 		record = 1;
 		stopRecording = 0;
 		buttons[3].pressed =1;
 	}
 
+	//show the button as on or off
 	osMutexWait(myMutex01Handle, osWaitForever);
 	showButton(buttons[3]);
 	osMutexRelease(myMutex01Handle);
@@ -118,18 +129,21 @@ void recordPressed(){
 }
 
 
+/*
+ * start loading from the save file
+ * */
 void loadPressed(){
 
 
-	if(!loading)
+	if(!loading)//start loading
 	{
 		buttons[2].pressed = 1;
 
-		loadData();
+		loadData();//load in the data
 		system_safe_printf("Loading operation complete\n");
 		loading = 1;
 	}
-	else
+	else//if currently loading
 	{
 		loading = 0;
 		buttons[2].pressed = 0;
@@ -137,11 +151,17 @@ void loadPressed(){
 		loadingBufferNo =0;
 	}
 
+	//fill in the loading button
 	osMutexWait(myMutex01Handle, osWaitForever);
 	showButton(buttons[2]);
 	osMutexRelease(myMutex01Handle);
 }
 
+
+/*
+ * called when the a save button is pressed
+ * parameter takes in the save number
+ * */
 void savePressed(uint8_t saveNo)
 {
 	//if recording or loading do not change the save file

@@ -1,7 +1,6 @@
 #include "Question1.h"
 #include "Question2.h"
 
-
 /*
  *
  * ELEC3730 ASSIGNMENT 3
@@ -296,6 +295,23 @@ void analog(uint8_t argNum, char *argStrings[])
 //		updateTimeSpan(newTimeValue);
 		analogTimer = analogValue*1000;
 		isAnaloging =1;
+		clearBoard();
+
+
+
+}
+
+
+void clearBoard(){
+	#define XOFF 10
+	#define YOFF 10
+	#define XSIZE 240
+	#define YSIZE 160
+	 BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+	 BSP_LCD_FillRect(XOFF-1,YOFF-1,XSIZE+1,YSIZE+1);
+	 BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+	 BSP_LCD_DrawRect(XOFF-1,YOFF-1,XSIZE+1,YSIZE+1);
+	 clear =1;
 
 }
 

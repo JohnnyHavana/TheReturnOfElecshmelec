@@ -22,6 +22,8 @@ void analyseCommands(uint8_t argNum, char *argStrings[]);
 void helpDesk(uint8_t argNum, char *argStrings[]);
 //Updates analog value for board
 void analog(uint8_t argNum, char *argStrings[]);
+//clears the board
+void clearBoard();
 //Lists contents of directory
 void ls(uint8_t argNum, char *argStrings[]);
 	//Main scanning method for ls

@@ -114,6 +114,7 @@ void recordPressed(){
 		stopRecording =1;
 		buttons[3].pressed =0;
 		system_safe_printf("Recording completed\n");
+		recordData(0,1);//save the data
 
 	}else{//start recording
 		record = 1;

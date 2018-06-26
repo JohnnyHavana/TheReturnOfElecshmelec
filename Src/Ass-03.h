@@ -171,6 +171,8 @@ int speedValue;
 #define ZOOMSPEEDTHREE 100
 #define ZOOMSPEEDFOUR 50
 
+void recordData(int data, uint8_t done);
+
 
 #endif
 
